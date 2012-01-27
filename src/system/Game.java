@@ -1,5 +1,7 @@
 package system;
  
+import model.SnakeHead;
+
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -10,7 +12,7 @@ import org.newdawn.slick.AppGameContainer;
 public class Game extends BasicGame 
 {
 	/// ATTRIBUTES
-	Image snake;
+	//SnakeHead inner_snake = new SnakeHead();
 	
 	/// METHODS
 	
@@ -22,21 +24,20 @@ public class Game extends BasicGame
 	@Override
 	public void init(GameContainer container) throws SlickException
 	{
-		snake = new Image("snake1.png");
 	}
 
 	@Override
 	public void update(GameContainer container, int delta)
 			throws SlickException
 	{
+		
 	}
 
 	@Override
 	public void render(GameContainer container, Graphics g)
 			throws SlickException
 	{
-		g.drawString("Hello, Slick world!", 0, 100);
-		g.drawImage(snake, 10, 10);
+		inner_snake.draw(g);
 	}
 
 	public static void main(String[] args)
