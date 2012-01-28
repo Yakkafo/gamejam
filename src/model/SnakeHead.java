@@ -2,7 +2,9 @@ package model;
 
 import math.dVect;
 
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.Renderable;
 
 import resources.ResourceManager;
@@ -56,9 +58,12 @@ public abstract class SnakeHead extends GameObject
 	public void draw(Graphics g)
 	{
 		// Draw the head (animated)
-		getHeadIm().draw((float)position.x, (float)position.y);
+		//((Animation)getHeadIm()).getCurrentFrame().drawCentered((float)position.x, (float)position.y);
+		g.drawRect((float)position.x-16, (float)position.y-16, 32,32);
 		// Draw the body (static, rotated)
-		getBodyIm().draw((float)center.x, (float)center.y);
+		//((Image)getBodyIm()).setRotation((float)angle);
+		//((Image)getBodyIm()).drawCentered((float)center.x, (float)center.y);
+		g.drawOval((float)(center.x-radius), (float)(center.y-radius), (float)radius*2, (float)radius*2);
 	}
 	
 	public void update()
