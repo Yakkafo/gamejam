@@ -74,9 +74,7 @@ public class ControlManager
 	
 	private int arrowToDelta()
 	{
-		return wheel_direction;
-		
-		/*
+		//return wheel_direction;
 		
 		if(input.isKeyDown(Input.KEY_UP))
 			return -1;
@@ -84,8 +82,6 @@ public class ControlManager
 			return 1;
 		else
 			return 0;
-			
-		*/
 	}
 
 	public void wheelEvent(int delta)
