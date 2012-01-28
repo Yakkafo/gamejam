@@ -5,7 +5,7 @@ import java.awt.Point;
 public class MiddleSnake extends SnakeHead
 {
 	/// CONSTANTS
-	private static final double RADIUS = 256;
+	private static final double RADIUS = 192;
 	
 	/// METHODS
 	

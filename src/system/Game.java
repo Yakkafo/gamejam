@@ -12,14 +12,10 @@ import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.AppGameContainer;
  
 public class Game extends BasicGame 
 {
 	/// CONSTANTS
-	private static final int DESIRED_W = 1024;
-	private static final int DESIRED_H = 768;
-	private static final boolean USE_FULLSCREEN = false;
 	private static final int MAX_FPS = 30;
 	
 	/// ATTRIBUTES
@@ -61,30 +57,17 @@ public class Game extends BasicGame
 			return;
 		frames_since_update = 0;
 		
+		// update the snakes
 		for(int i = 0; i < 3; i++)
-			snakes[i].addAngle(0.3);
+			snakes[i].addAngle(0.1);
 	}
 
 	@Override
 	public void render(GameContainer container, Graphics g)
 			throws SlickException
 	{
+		// draw the snakes
 		for(int i = 0; i < 3; i++)
 			snakes[i].draw(g);
 	}
-
-	public static void main(String[] args)
-	{
-		try
-		{
-			AppGameContainer app = new AppGameContainer(new Game());
-			app.setDisplayMode(DESIRED_W, DESIRED_H, USE_FULLSCREEN);
-			app.start();
-		}
-		catch (SlickException e)
-		{
-			e.printStackTrace();
-		}
-	}
-
 }
