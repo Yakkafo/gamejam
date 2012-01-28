@@ -20,7 +20,7 @@ public class Level implements IDynamic, IVisible
 	{
 		// Create snakes centered on middle
 		middle = init_middle;
-		objects.add(new CenterSnake(middle));
+		objects.add(new InnerSnake(middle));
 		objects.add(new MiddleSnake(middle));
 		objects.add(new OuterSnake(middle));
 		objects.add(new Marble(new dVect(0,0), middle));

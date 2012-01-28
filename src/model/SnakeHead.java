@@ -3,6 +3,7 @@ package model;
 import math.dVect;
 
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Renderable;
 
 import resources.ResourceManager;
 import system.ControlManager;
@@ -21,7 +22,8 @@ public abstract class SnakeHead extends GameObject
 	/// METHODS
 	
 	// creation
-	public SnakeHead(dVect init_center, double init_radius, int init_snake_number)
+	public SnakeHead(dVect init_center, double init_radius, 
+			int init_snake_number)
 	{
 		// Create position at origin 
 		super(new dVect(0, 0));
@@ -54,10 +56,9 @@ public abstract class SnakeHead extends GameObject
 	public void draw(Graphics g)
 	{
 		// Draw the head (animated)
-		ResourceManager.getInstance().getAnimation("snake")
-			.draw((float)position.x, (float)position.y);
-		
-		ResourceManager.getInstance().getImage("snake_body")
+		getHeadIm().draw((float)position.x, (float)position.y);
+		// Draw the body (static, rotated)
+		getBodyIm().draw((float)center.x, (float)center.y);
 	}
 	
 	public void update()
@@ -65,6 +66,16 @@ public abstract class SnakeHead extends GameObject
 		// Reposition the snake's head around circle
 		addAngle(TURN_RATE*ControlManager.getInstance()
 				.getSnakeDelta(snake_number));
+	}
+	
+	// overriden
+	
+	protected abstract Renderable getBodyIm();
+	
+	protected Renderable getHeadIm()
+	{
+		/// FIXME --- should be abstract, different for each snake
+		return ResourceManager.getInstance().getAnimation("snake");
 	}
 	
 	/// SUBROUTINES

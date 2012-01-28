@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import math.dVect;
 import math.iVect;
-import model.CenterSnake;
+import model.InnerSnake;
 import model.Level;
 import model.Marble;
 import model.MiddleSnake;

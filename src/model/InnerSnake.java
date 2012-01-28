@@ -6,24 +6,23 @@ import resources.ResourceManager;
 
 import math.dVect;
 
-public class MiddleSnake extends SnakeHead
+public class InnerSnake extends SnakeHead
 {
 	/// CONSTANTS
-	private static final double RADIUS = 192;
+	private static final double RADIUS = 128;
 	
 	/// METHODS
 	
 	// creation
-	public MiddleSnake(dVect init_center)
+	public InnerSnake(dVect init_center)
 	{
-		super(init_center, RADIUS, 1);
+		super(init_center, RADIUS, 0);
 	}
 
 	// interface
 	@Override
 	protected Renderable getBodyIm()
 	{
-		return ResourceManager.getInstance().getImage("snake_body_mid");
+		return ResourceManager.getInstance().getImage("snake_body_in");
 	}
-
 }
