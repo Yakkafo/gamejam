@@ -4,12 +4,9 @@ import java.util.ArrayList;
 
 import math.dVect;
 import math.iVect;
-import model.InnerSnake;
 import model.Level;
 import model.Marble;
-import model.MiddleSnake;
-import model.OuterSnake;
-import model.SnakeHead;
+import model.Snake;
 
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;

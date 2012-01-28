@@ -13,6 +13,12 @@ import utility.IVisible;
 
 public abstract class GameObject implements IVisible, IDynamic
 {
+	/// NESTED DEFINITIONS
+	public static enum Colour 
+	{
+		RED, GREEN, BLUE
+	}
+	
 	/// ATTRIBUTES
 	protected dVect position;
 	protected dRect hitbox;
@@ -21,9 +27,9 @@ public abstract class GameObject implements IVisible, IDynamic
 	/// METHODS
 	
 	// creation
-	public GameObject(dVect init_position)
+	public GameObject(dVect init_position, dVect hitbox_size)
 	{
-		hitbox = new dRect(0, 0, 64, 64);
+		hitbox = new dRect(0, 0, hitbox_size.x, hitbox_size.y);
 		position = init_position;
 		positionUpdated();	// move hitbox, etc to position
 	}

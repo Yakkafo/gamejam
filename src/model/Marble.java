@@ -6,32 +6,24 @@ import math.dVect;
 
 import org.newdawn.slick.Graphics;
 
-import resources.ResourceManager;
-
 public class Marble extends GameObject
 {
-	/// NESTED DEFINITIONS
-	public static enum Type 
-	{
-		RED, GREEN, BLUE
-	}
-	
 	/// CONSTANTS
 	private static double DEFAULT_SPEED = 3;
 
 	/// ATTRIBUTES
 	private dVect speed;
-	private Type type;
+	private GameObject.Colour colour;
 
 	public Marble(dVect init_position, dVect target)
 	{
-		super(init_position);
+		super(init_position, new dVect(32,32));
 		// Set speed towards target
 		speed = new dVect(target.x-position.x, target.y-position.y)
 						.normalise().scale(DEFAULT_SPEED);
 		// Set colour randomly
-		int pick = new Random().nextInt(Type.values().length);
-		type = Type.values()[pick];
+		int pick = new Random().nextInt(Colour.values().length);
+		colour = Colour.values()[pick];
 
 	}
 

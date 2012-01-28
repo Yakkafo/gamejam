@@ -14,7 +14,7 @@ public class Midgard extends GameObject
 	// creation
 	public Midgard(dVect init_position)
 	{
-		super(init_position);
+		super(init_position, new dVect(32, 32));
 	}
 	
 	// implement
