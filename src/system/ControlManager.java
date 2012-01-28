@@ -95,11 +95,11 @@ public class ControlManager
 				switch(snake_colour)
 				{
 					case BLUE:
-						return (input.isButtonPressed(4, deviceIndex)) ? arrowToDelta() : 0;
-					case RED://TODO
-						return (input.isButtonPressed(6, deviceIndex)) ? arrowToDelta() : 0;
-					case GREEN://TODO
-						return (input.isButtonPressed(5, deviceIndex)) ? arrowToDelta() : 0;
+						return (input.isControlPressed(4, deviceIndex)) ? arrowToDelta() : 0;
+					case RED:
+						return (input.isControlPressed(6, deviceIndex)) ? arrowToDelta() : 0;
+					case GREEN:
+						return (input.isControlPressed(5, deviceIndex)) ? arrowToDelta() : 0;
 					default:
 						return 0;
 		
@@ -116,9 +116,15 @@ public class ControlManager
 		{
 			case PS3Turntable :
 				if(input.getAxisValue(2, 0) < 0)
+				{
+					System.out.println("down !");
 					return -1;
+				}
 				else if(input.getAxisValue(2, 0) > 0)
+				{
+					System.out.println("up !");
 					return 1;
+				}
 				else
 					return 0;
 			default :
@@ -140,6 +146,7 @@ public class ControlManager
 	
 	public void forgetEvents()
 	{
+		arrowToDelta();
 		// Forget the mouse wheel direction the update after it occurs
 		wheel_direction = 0;
 	}
