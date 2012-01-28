@@ -48,22 +48,7 @@ public class Game extends BasicGame
 		
 		// Snakes are centred on middle of screen
 		dVect middle = new dVect(size.x, size.y);
-		level = new Level(middle);
-		
-		// TODO : Make these tests as methods
-		///Tests ;
-		
-		
-		//Check if turntable is connected :
-		for (int i=0;i<controllers.size();i++)
-			if(((Controller) controllers.get(i)).getName().compareTo("Guitar Hero5 for PlayStation (R) 3") == 0) 
-				System.out.println("Turntable connected.");
-		
-		//Get the number of axis
-		//System.out.println("Number of axis : "+container.getInput().getAxisCount(2)); //4
-		
-		
-		
+		level = new Level(middle);		
 	}
 
 	@Override
@@ -83,13 +68,36 @@ public class Game extends BasicGame
 		// Forget events that were received this step
 		ControlManager.getInstance().forgetEvents();
 		
+
+		
+	}
+	
+
+	@Override
+	public void render(GameContainer container, Graphics g)
+			throws SlickException
+	{
+		
+		// Draw all the level objects
+		level.draw(g);
+	}
+	
+	
+	public void mouseWheelMoved(int delta) 
+	{
+		ControlManager.getInstance().wheelEvent(delta);
+	}
+	
+	//TODO Do the same thing than mouseWheelMoved but for the turntable
+	public void methodeBidon()
+	{
 		// TODO : Make these tests as methods
 		/// TESTS
 		//Check if a button has been pressed
-		for(int i = 0; i < 20; i ++)
-				if (container.getInput().isControlPressed(i, /*get turntable id*/ 2))
-					System.out.println("Key pressed ! #"+i);
-		
+//		for(int i = 0; i < 20; i ++)
+//				if (container.getInput().isControlPressed(i, /*get turntable id*/ 2))
+//					System.out.println("Key pressed ! #"+i);
+//		
 		/*
 		 * BLUE : 4
 		 * RED : 6
@@ -116,22 +124,5 @@ public class Game extends BasicGame
 
 		//System.out.println("Axis 1 : "+container.getInput().getAxisValue(2, 0));
 
-		
-	}
-	
-
-	@Override
-	public void render(GameContainer container, Graphics g)
-			throws SlickException
-	{
-		
-		// Draw all the level objects
-		level.draw(g);
-	}
-	
-	
-	public void mouseWheelMoved(int delta) 
-	{
-		ControlManager.getInstance().wheelEvent(delta);
 	}
 }

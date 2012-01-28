@@ -37,7 +37,8 @@ public class ControlManager
 	private Device device;
 	private Input input;
 	private int wheel_direction = 0;
-	private int turnTableIndex = -1;
+	private int deviceIndex = -1;
+	private String deviceName;
 	private ArrayList<Controller> controllers;
 
 	/// METHODS
@@ -60,6 +61,15 @@ public class ControlManager
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		//TODO : do it better
+		//Check if turntable is connected :
+		for (int i=0;i<controllers.size();i++)
+			if(((Controller) controllers.get(i)).getName().compareTo("Guitar Hero5 for PlayStation (R) 3") == 0) 
+				System.out.println("Turntable connected.");
+				
+				//Get the number of axis
+				//System.out.println("Number of axis : "+container.getInput().getAxisCount(2)); //4
 	}
 	
 	// query
@@ -105,7 +115,7 @@ public class ControlManager
 	}
 	
 	//Check if the player play with a turntable or a keyboard
-	private void checkDevice() //TODO - ENUM : keybord or turntable
+	private void checkDevice()
 	{
 		String tamp;
 		controllers = new ArrayList<Controller>();
@@ -120,11 +130,17 @@ public class ControlManager
 		for (int i=0;i<controllers.size();i++)
 		{
 			tamp = ((Controller) controllers.get(i)).getName();
-			if (
-					tamp.compareTo("Guitar Hero5 for PlayStation (R) 3") == 0 ||
-					tamp.compareTo("Guitar Hero5 for Xbox360 ??? (R) 3") == 0
-				)
-				turnTableIndex = ((Controller) controllers.get(i)).getIndex();
+			if (tamp.compareTo("Guitar Hero5 for PlayStation (R) 3") == 0) 
+			{
+				deviceName = "Guitar Hero5 for PlayStation (R) 3";
+				deviceIndex = ((Controller) controllers.get(i)).getIndex();
+			}
+			if(tamp.compareTo("Guitar Hero5 for Xbox360 ??? (R) 3") == 0)
+			{
+				deviceName = "Guitar Hero5 for Xbox360 ??? (R) 3";
+				deviceIndex = ((Controller) controllers.get(i)).getIndex();		
+			}
+				
 		}
 	}
 	
