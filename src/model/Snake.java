@@ -18,7 +18,7 @@ public class Snake extends GameObject
 	
 	/// ATTRIBUTES
 	private dVect center;
-	private double angle = 0.0;
+	private double angle = Math.random()*360;
 	private double radius; 
 	private GameObject.Colour colour;
 	
@@ -73,7 +73,7 @@ public class Snake extends GameObject
 		super.update();
 		
 		// Reposition the snake's head around circle
-		addAngle(TURN_RATE);
+		addAngle(TURN_RATE*ControlManager.getInstance().getSnakeDelta(colour));
 		
 		// Nothing to report
 		return IDynamic.Rtn.CONTINUE;

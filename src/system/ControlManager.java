@@ -1,5 +1,7 @@
 package system;
 
+import model.GameObject;
+
 import org.lwjgl.input.Controllers;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
@@ -52,12 +54,32 @@ public class ControlManager
 	}
 	
 	// query
-	public int getSnakeDelta(int snake_number)
+	public int getSnakeDelta(GameObject.Colour snake_colour)
 	{
-		/// FIXME -- should be based on input
-		return (3-snake_number);
+		
+		switch(snake_colour)
+		{
+			case BLUE:
+				return (input.isKeyDown(Input.KEY_W)) ? arrowToDelta() : 0;
+			case RED:
+				return (input.isKeyDown(Input.KEY_X)) ? arrowToDelta() : 0;
+			case GREEN:
+				return (input.isKeyDown(Input.KEY_C)) ? arrowToDelta() : 0;
+			default:
+				return 0;
+
+		}
 	}
 	
+	private int arrowToDelta()
+	{
+		if(input.isKeyDown(Input.KEY_UP))
+			return -1;
+		else if(input.isKeyDown(Input.KEY_DOWN))
+			return 1;
+		else
+			return 0;
+	}
 	
 	
 
