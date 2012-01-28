@@ -67,7 +67,10 @@ public class Midgard extends GameObject
 					other.die();
 					// Heal if it was white
 					if(((Marble)other).getColour() == GameObject.Colour.WHITE)
+					{
 						heal(MARBLE_HEAL);
+						level.addBonus(Level.Bonus.HEAL);
+					}
 					// Take damage otherwise
 					else if(!tryResist(MARBLE_DAMAGE))
 						this.die();

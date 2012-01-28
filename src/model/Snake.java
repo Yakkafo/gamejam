@@ -120,11 +120,17 @@ public class Snake extends GameObject
 				GameObject other = ce.getOther();
 				if(other.getClass() == Marble.class)
 				{
-					// Correct colours => kill other
+					// kill other
 					other.die();
 					// Wrong colours => stun snake
 					if(((Marble)other).getColour() != colour)
+					{
+						level.addBonus(Level.Bonus.BLOCK);
 						stunned = STUN_DURATION;
+					}
+					// Right colours => bonus
+					else
+						level.addBonus(Level.Bonus.EAT);
 				}
 				break;
 		}
