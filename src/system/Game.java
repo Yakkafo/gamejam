@@ -50,8 +50,8 @@ public class Game extends BasicGame
 		dVect middle = new dVect(size.x, size.y);
 		level = new Level(middle);
 		
-
-		//Tests ;
+		// TODO : Make these tests as methods
+		///Tests ;
 		//Check controllers : index
 		ArrayList<Controller> controllers = new ArrayList<Controller>();
 
@@ -65,11 +65,19 @@ public class Game extends BasicGame
 			}
 		}
 		Log.info("Found "+controllers.size()+" controllers");
-		for (int i=0;i<controllers.size();i++) {
+		for (int i=0;i<controllers.size();i++)
 			Log.info(((Controller) controllers.get(i)).getName()+" : "+((Controller) controllers.get(i)).getIndex());
-		}
-		//Check if platine is connected :
-		//if((Controller) controllers.get(i)).getName() == )
+		
+		//Check if turntable is connected :
+		for (int i=0;i<controllers.size();i++)
+			if(((Controller) controllers.get(i)).getName().compareTo("Guitar Hero5 for PlayStation (R) 3") == 0) 
+				System.out.println("Turntable connected.");
+		
+		//Get the number of axis
+		System.out.println("Number of axis : "+container.getInput().getAxisCount(2)); //4
+		
+		
+		
 	}
 
 	@Override
@@ -86,7 +94,39 @@ public class Game extends BasicGame
 		// Update all the level objects
 		level.update();
 		
-       
+		// TODO : Make these tests as methods
+		/// TESTS
+		//Check if a button has been pressed
+		for(int i = 0; i < 20; i ++)
+				if (container.getInput().isControlPressed(i, /*get turntable id*/ 2))
+					System.out.println("Key pressed ! #"+i);
+		
+		/*
+		 * BLUE : 4
+		 * RED : 6
+		 * GREEN : 5
+		 * POWER : 7
+		 * 
+		 */
+		
+//		//Check if the turntable get down
+//		if(container.getInput().isControllerDown(/*id*/ 2))
+//			System.out.println("DOWN");
+//		
+//		//Check if the turntable get up
+//		if(container.getInput().isControllerUp(/*id*/ 2))
+//			System.out.println("UP");
+//				
+//		//Check if the turntable get down
+//		if(container.getInput().isControllerDown(/*id*/ 2))
+//			System.out.println("RIGHT");
+//						
+//		//Check if the turntable get up
+//		if(container.getInput().isControllerUp(/*id*/ 2))
+//			System.out.println("LEFT");
+
+		System.out.println("Axis 1 : "+container.getInput().getAxisValue(2, 0));
+
 		
 	}
 	
