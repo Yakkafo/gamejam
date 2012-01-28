@@ -95,28 +95,40 @@ public class ControlManager
 				switch(snake_colour)
 				{
 					case BLUE:
-						return (input.isKeyDown(Input.KEY_W)) ? arrowToDelta() : 0;
-					case RED:
-						return (input.isKeyDown(Input.KEY_X)) ? arrowToDelta() : 0;
-					case GREEN:
-						return (input.isKeyDown(Input.KEY_C)) ? arrowToDelta() : 0;
+						return (input.isButtonPressed(4, deviceIndex)) ? arrowToDelta() : 0;
+					case RED://TODO
+						return (input.isButtonPressed(6, deviceIndex)) ? arrowToDelta() : 0;
+					case GREEN://TODO
+						return (input.isButtonPressed(5, deviceIndex)) ? arrowToDelta() : 0;
 					default:
 						return 0;
 		
 				}
+			default :
+				return 0;
 		}
 	}
 	
 	private int arrowToDelta()
 	{
 		//return wheel_direction;
-		
-		if(input.isKeyDown(Input.KEY_UP))
-			return -1;
-		else if(input.isKeyDown(Input.KEY_DOWN))
-			return 1;
-		else
-			return 0;
+		switch(device)
+		{
+			case PS3Turntable :
+				if(input.getAxisValue(2, 0) < 0)
+					return -1;
+				else if(input.getAxisValue(2, 0) > 0)
+					return 1;
+				else
+					return 0;
+			default :
+				if(input.isKeyDown(Input.KEY_UP))
+					return -1;
+				else if(input.isKeyDown(Input.KEY_DOWN))
+					return 1;
+				else
+					return 0;
+		}
 	}
 
 	public void wheelEvent(int delta)
@@ -159,7 +171,7 @@ public class ControlManager
 //			{
 //				deviceName = "Guitar Hero5 for Xbox360 ??? (R) 3";
 //				deviceIndex = ((Controller) controllers.get(i)).getIndex();	
-				device = Device.XBOXTurntable;
+//				device = Device.XBOXTurntable;
 //			}
 				
 		}
