@@ -48,28 +48,27 @@ public class ControlManager
 	{
 		// Initialize variables
 		input = init_input;
-
+		controllers = new ArrayList<Controller>();
 		
 		
 		//Controllers test
 		try
 		{
 			input.initControllers();
+			//TODO : do it better
+			//Check if turntable is connected :
+			for (int i=0;i<controllers.size();i++)
+				if(((Controller) controllers.get(i)).getName().compareTo("Guitar Hero5 for PlayStation (R) 3") == 0) 
+					System.out.println("Turntable connected.");
+					
+					//Get the number of axis
+					//System.out.println("Number of axis : "+container.getInput().getAxisCount(2)); //4
 		}
 		catch (SlickException e)
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		//TODO : do it better
-		//Check if turntable is connected :
-		for (int i=0;i<controllers.size();i++)
-			if(((Controller) controllers.get(i)).getName().compareTo("Guitar Hero5 for PlayStation (R) 3") == 0) 
-				System.out.println("Turntable connected.");
-				
-				//Get the number of axis
-				//System.out.println("Number of axis : "+container.getInput().getAxisCount(2)); //4
 	}
 	
 	// query
@@ -135,14 +134,17 @@ public class ControlManager
 				deviceName = "Guitar Hero5 for PlayStation (R) 3";
 				deviceIndex = ((Controller) controllers.get(i)).getIndex();
 			}
-			if(tamp.compareTo("Guitar Hero5 for Xbox360 ??? (R) 3") == 0)
-			{
-				deviceName = "Guitar Hero5 for Xbox360 ??? (R) 3";
-				deviceIndex = ((Controller) controllers.get(i)).getIndex();		
-			}
+			//TODO : find the good string for the xbox device
+//			if(tamp.compareTo("Guitar Hero5 for Xbox360 ??? (R) 3") == 0)
+//			{
+//				deviceName = "Guitar Hero5 for Xbox360 ??? (R) 3";
+//				deviceIndex = ((Controller) controllers.get(i)).getIndex();		
+//			}
 				
 		}
 	}
+
+	
 	
 	
 

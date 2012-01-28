@@ -88,24 +88,32 @@ public class Game extends BasicGame
 		ControlManager.getInstance().wheelEvent(delta);
 	}
 	
-	//TODO Do the same thing than mouseWheelMoved but for the turntable
-	public void methodeBidon()
+	public void controllerUpPressed(int delta)
 	{
-		// TODO : Make these tests as methods
-		/// TESTS
-		//Check if a button has been pressed
+		ControlManager.getInstance().wheelEvent(delta);
+	}
+	
+	public void controllerDownPressed(int delta)
+	{
+		ControlManager.getInstance().wheelEvent(delta);
+	}
+	
+	//TODO Do the same thing than mouseWheelMoved but for the turntable
+//	public void methodeBidon()
+//	{
+//		// TODO : Make these tests as methods
+//		/// TESTS
+//		//Check if a button has been pressed
 //		for(int i = 0; i < 20; i ++)
-//				if (container.getInput().isControlPressed(i, /*get turntable id*/ 2))
-//					System.out.println("Key pressed ! #"+i);
+//				System.out.println("Key pressed ! #"+i);
+//		/*
+//		 * BLUE : 4
+//		 * RED : 6
+//		 * GREEN : 5
+//		 * POWER : 7
+//		 * 
+//		 */
 //		
-		/*
-		 * BLUE : 4
-		 * RED : 6
-		 * GREEN : 5
-		 * POWER : 7
-		 * 
-		 */
-		
 //		//Check if the turntable get down
 //		if(container.getInput().isControllerDown(/*id*/ 2))
 //			System.out.println("DOWN");
@@ -113,7 +121,7 @@ public class Game extends BasicGame
 //		//Check if the turntable get up
 //		if(container.getInput().isControllerUp(/*id*/ 2))
 //			System.out.println("UP");
-//				
+//			
 //		//Check if the turntable get down
 //		if(container.getInput().isControllerDown(/*id*/ 2))
 //			System.out.println("RIGHT");
@@ -121,8 +129,8 @@ public class Game extends BasicGame
 //		//Check if the turntable get up
 //		if(container.getInput().isControllerUp(/*id*/ 2))
 //			System.out.println("LEFT");
-
-		//System.out.println("Axis 1 : "+container.getInput().getAxisValue(2, 0));
-
-	}
+//
+//		//System.out.println("Axis 1 : "+container.getInput().getAxisValue(2, 0));
+//
+//	}
 }
