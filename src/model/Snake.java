@@ -21,11 +21,12 @@ public class Snake extends GameObject
 	
 	/// ATTRIBUTES
 	private dVect center;
-	private double angle = Math.random()*360;
+	private double angle = Math.random()*Math.PI*2;
 	private double speed = 0;
 	private double radius; 
 	private int stunned = 0;
 	private GameObject.Colour colour;
+	private Image image;
 	
 	/// METHODS
 	
@@ -43,6 +44,14 @@ public class Snake extends GameObject
 		
 		// convert polar to cartesian coordinates
 		calculateCoordinates();
+		
+		// cache image
+		switch(colour)
+		{
+			default:
+				image = ResourceManager.getInstance().getImage("snake_green");
+				break;
+		}
 	}
 	
 	// modification
@@ -50,20 +59,28 @@ public class Snake extends GameObject
 	{
 		// Reset angle and convert polar to cartesian coordinates
 		angle = new_angle;
+		float angle_deg = (float)(angle*180/Math.PI);
+		image.setRotation(angle_deg);
 		calculateCoordinates();
 	}
 	
 	public void addAngle(double addition)
 	{
 		// Reset angle and convert polar to cartesian coordinates
-		angle += addition;
-		calculateCoordinates();
+		setAngle(angle + addition);
 	}
 	
 	// interface
 	public void draw(Graphics g)
 	{
 		drawHitbox(g);
+		
+		if(colour == GameObject.Colour.GREEN)
+		{
+			g.drawString(image.getRotation() + " from "+angle, 200, 32);
+			image.drawCentered((float)center.x, (float)center.y);
+		}
+		
 		if(stunned > 0)
 			g.drawString("***STUNNED***", (float)position.x, (float)position.y);
 		else
@@ -73,7 +90,7 @@ public class Snake extends GameObject
 		// Draw the body (static, rotated)
 		//((Image)getBodyIm()).setRotation((float)angle);
 		//((Image)getBodyIm()).drawCentered((float)center.x, (float)center.y);
-		g.drawOval((float)(center.x-radius), (float)(center.y-radius), (float)radius*2, (float)radius*2);
+		//g.drawOval((float)(center.x-radius), (float)(center.y-radius), (float)radius*2, (float)radius*2);
 	}
 	
 	public IDynamic.Rtn update()
@@ -110,7 +127,10 @@ public class Snake extends GameObject
 	{
 		// If stunned, marbles aren't damaged
 		if(stunned > 0)
+		{
+			speed = 0;
 			return;
+		}
 		
 		// Otherwise destroy marbles that collide
 		switch(e.getType())

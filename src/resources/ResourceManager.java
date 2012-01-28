@@ -17,6 +17,8 @@ public class ResourceManager
 	private static final String PNG = ".png";
 	// resources
   
+	private static final String WHEEL_BACK = "wheel_back";
+	private static final String SNACK_GREEN = "snake_green";
     private static final String MARBLE_RED = "marble_red";
     private static final String MARBLE_BLUE = "marble_blue";
     private static final String MARBLE_GREEN = "marble_green";
@@ -45,6 +47,8 @@ public class ResourceManager
     private ResourceManager()
     {
 		// Images
+    	addImage(WHEEL_BACK);
+    	addImage(SNACK_GREEN);
     	addImage(MARBLE_RED);
     	addImage(MARBLE_GREEN);
     	addImage(MARBLE_BLUE);

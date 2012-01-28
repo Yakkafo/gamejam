@@ -7,6 +7,7 @@ import math.dVect;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 
+import resources.ResourceManager;
 import system.ControlManager;
 import utility.IDynamic;
 import utility.IVisible;
@@ -134,6 +135,8 @@ public class Level implements IDynamic, IVisible
 	public void draw(Graphics g)
 	{
 		// draw background
+		ResourceManager.getInstance().getImage("wheel_back")
+		.drawCentered((float)centre.x, (float)centre.y);
 		
 		// draw all objects
 		for(GameObject o : objects)
