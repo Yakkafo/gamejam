@@ -6,6 +6,9 @@ import java.awt.Point;
 
 public class iVect extends Point
 {
+	/// CONSTANTS
+	private static final long serialVersionUID = 1L;
+	
     /// METHODS
 
     // creation

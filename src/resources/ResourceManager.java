@@ -5,12 +5,16 @@ package resources;
 import java.util.HashMap;
 
 import org.newdawn.slick.Animation;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
 
 
 public class ResourceManager
 {
     /// CLASS NAMESPACE CONSTANTS
-     private static final String PLAYER_IMAGE = "fox.png";
+	private static final String RESDIR = "data/";
+    private static final String SNAKE1 = "snake1.png";
+    private static final String SNAKE2 = "snake2.png";
 
     /// CLASS NAMESPACE VARIABLES
     private static ResourceManager instance = null;
@@ -33,6 +37,18 @@ public class ResourceManager
     // creation
     private ResourceManager()
     {
+    	try
+		{
+			Image[] snake_frames = { new Image(RESDIR+SNAKE1), new Image(RESDIR+SNAKE2) };
+			int [] duration = {300, 300};
+			animations.put("snake", new Animation(snake_frames, duration, true));
+		}
+		catch (SlickException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
     }
 
     // query

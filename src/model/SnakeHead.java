@@ -4,17 +4,21 @@ import math.dVect;
 
 import org.newdawn.slick.Graphics;
 
+import resources.ResourceManager;
+import system.ControlManager;
+
 public abstract class SnakeHead extends GameObject
 {
 	/// ATTRIBUTES
 	private dVect center;
 	private double angle = 0.0;
 	private double radius; 
+	private final int snake_number;
 	
 	/// METHODS
 	
 	// creation
-	public SnakeHead(dVect init_center, double init_radius)
+	public SnakeHead(dVect init_center, double init_radius, int init_snake_number)
 	{
 		// Create position at origin 
 		super(new dVect(0, 0));
@@ -22,6 +26,7 @@ public abstract class SnakeHead extends GameObject
 		// Initialise variables
 		center = init_center;
 		radius = init_radius;
+		snake_number = init_snake_number;
 		
 		// convert polar to cartesian coordinates
 		updatePosition();
@@ -45,13 +50,13 @@ public abstract class SnakeHead extends GameObject
 	// interface
 	public void draw(Graphics g)
 	{
-		g.fillRect((int)position.x, (int)position.y, 32, 32);
+		ResourceManager.getInstance().getAnimation("snake")
+			.draw((float)position.x, (float)position.y);
 	}
 	
 	public void update()
 	{
-		// TODO Auto-generated method stub
-		
+		addAngle(0.1*ControlManager.getInstance().getSnakeDelta(snake_number));
 	}
 	
 	/// SUBROUTINES

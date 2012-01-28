@@ -6,6 +6,9 @@ import java.awt.Rectangle;
 
 public class iRect extends Rectangle
 {
+	/// CONSTANTS
+	private static final long serialVersionUID = 1L;
+	
     /// METHODS
 
     // creation

@@ -12,6 +12,6 @@ public class OuterSnake extends SnakeHead
 	// creation
 	public OuterSnake(dVect init_center)
 	{
-		super(init_center, RADIUS);
+		super(init_center, RADIUS, 2);
 	}
 }

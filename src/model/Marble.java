@@ -1,41 +1,50 @@
 package model;
 
+import java.util.Random;
+
 import math.dVect;
 
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
 import utility.ICollider;
 
 public class Marble extends GameObject
 {
 	/// NESTED DEFINITIONS
-	public enum MarbleType 
+	public static enum MarbleType 
 	{
 		RED, GREEN, BLUE
 	}
+	
+	/// CONSTANTS
+	private static double DEFAULT_SPEED = 3;
 
 	/// ATTRIBUTES
-	private Image image;
 	private dVect speed;
 	private MarbleType type;
 
 	public Marble(dVect init_position, dVect target)
 	{
 		super(init_position);
-		speed = new dVect(target.x-position.x, target.y-position.y);
+		// Set speed towards target
+		speed = new dVect(target.x-position.x, target.y-position.y)
+						.normalise().scale(DEFAULT_SPEED);
+		// Set colour randomly
+		int pick = new Random().nextInt(MarbleType.values().length);
+		type = MarbleType.values()[pick];
+
 	}
 
 	@Override
 	public void draw(Graphics g)
 	{
+		g.drawString("MARBLE", (float)position.x, (float)position.y);
 		//g.drawImage(image, (float)position.x, (float)position.y);
 	}
 
 	@Override
 	public void update()
 	{
-		// TODO Auto-generated method stub
-		
+		position.add(speed);
 	}
 
 	@Override

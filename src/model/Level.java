@@ -2,6 +2,8 @@ package model;
 
 import java.util.ArrayList;
 
+import math.dVect;
+
 import org.newdawn.slick.Graphics;
 
 import utility.IDynamic;
@@ -11,11 +13,16 @@ public class Level implements IDynamic, IVisible
 {
 	/// ATTRIBUTES
 	private ArrayList<GameObject> objects = new ArrayList<GameObject>();
+	private dVect middle;
 	
 	/// METHODS
-	Level()
+	public Level(dVect init_middle)
 	{
-		
+		// Create snakes centered on middle
+		middle = init_middle;
+		objects.add(new CenterSnake(middle));
+		objects.add(new MiddleSnake(middle));
+		objects.add(new OuterSnake(middle));
 	}
 	
 	// implementation

@@ -1,10 +1,11 @@
 package system;
  
-import java.awt.Dimension;
-import java.awt.Point;
 import java.util.ArrayList;
 
+import math.dVect;
+import math.iVect;
 import model.CenterSnake;
+import model.Level;
 import model.Marble;
 import model.MiddleSnake;
 import model.OuterSnake;
@@ -22,17 +23,16 @@ public class Game extends BasicGame
 	private static final int MAX_FPS = 30;
 	
 	/// ATTRIBUTES
-	private Dimension size;
-	private SnakeHead snakes[];
+	private iVect size;
 	private int frames_since_update = 0;
-	private Input input;
-	private ArrayList<Marble> marbleList;
+	private Level level;
 	
 	/// METHODS
 	
 	// creation
 	public Game()
 	{
+		// Window title
 		super("Snack Spin GGJ game");
 	}
 
@@ -40,26 +40,15 @@ public class Game extends BasicGame
 	@Override
 	public void init(GameContainer container) throws SlickException
 	{
-		size = new Dimension(container.getWidth(), container.getHeight());
-		input = container.getInput();
+		// Start control manager
+		ControlManager.createInstance(container.getInput());
 		
+		// Get the true size of the window (may not be what was requested)
+		size = new iVect(container.getWidth(), container.getHeight());
 		
 		// Snakes are centred on middle of screen
-		Point middle = new Point(size.width/2, size.height/2);
-		
-		// Create the snakes themselves
-		snakes = new SnakeHead[3];
-		snakes[0] = new CenterSnake(middle);
-		snakes[1] = new MiddleSnake(middle);
-		snakes[2] = new OuterSnake(middle);
-		
-		//Create marbles
-		marbleList = new ArrayList<Marble>();
-		//marbleList.add(new Marble(new Point(50, 50), middle));
-		
-		//Controllers test
-		container.getInput().initControllers();
-		System.out.println(container.getInput().getControllerCount());
+		dVect middle = new dVect(size.x/2, size.y/2);
+		level = new Level(middle);
 	}
 
 	@Override
@@ -72,37 +61,15 @@ public class Game extends BasicGame
 			return;
 		frames_since_update = 0;
 		
-		// update the snakes
-		//for(int i = 0; i < 3; i++)
-			//snakes[i].addAngle(0.1);
-		
-		//Mouse game controlling :
-		if(container.getInput().isMouseButtonDown(0))
-			snakes[0].setAngle(container.getInput().getMouseY() / 10);
-		if(container.getInput().isMouseButtonDown(2))
-			snakes[1].setAngle(container.getInput().getMouseY() / 10);
-		if(container.getInput().isMouseButtonDown(1))
-			snakes[2].setAngle(container.getInput().getMouseY() / 10);
-		
-		//Gamepad game controlling :
-		if(container.getInput().isControllerDown(2))
-			snakes[0].addAngle(-0.1);
-		if(container.getInput().isControllerUp(2))
-			snakes[0].addAngle(-0.1);
+		// Update all the level objects
+		level.update();
 	}
 
 	@Override
 	public void render(GameContainer container, Graphics g)
 			throws SlickException
 	{
-		//UPDATE TO LEVEL.DRAW !!!
-		// draw marbles
-		if(!marbleList.isEmpty()){
-			for(Marble mar : marbleList)
-				mar.draw(g);
-		}
-		// draw the snakes
-		for(int i = 0; i < 3; i++)
-			snakes[i].draw(g);
+		// Draw all the level objects
+		level.draw(g);
 	}
 }

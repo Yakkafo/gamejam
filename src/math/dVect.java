@@ -6,9 +6,12 @@ import java.awt.geom.Point2D;
 
 public class dVect extends Point2D.Double
 {
+	/// CONSTANTS
+	private static final long serialVersionUID = 1L;
+	
     /// METHODS
 
-    // creation
+	// creation
     public dVect(double init_x, double init_y)
     {
         x = init_x;
@@ -34,6 +37,20 @@ public class dVect extends Point2D.Double
         x *= amount;
         y *= amount;
         return this;
+    }
+    
+    public dVect normalise()
+    {
+    	double norm = getNorm();
+    	x /= norm;
+    	y /= norm;
+    	return this;
+    }
+    
+    // query
+    public double getNorm()
+    {
+    	return Math.sqrt(x*x + y*y);
     }
 
     // cast
