@@ -39,9 +39,9 @@ public class ResourceManager
     private ResourceManager()
     {
     		// Snakes
-    		addAnimation("snake", 2, 300);
+    		addAnimation(SNAKE, 2, 300);
 			// Marbles
-			addAnimation("red_marble", 1, 300);
+			addAnimation(RED_MARBLE, 1, 300);
     }
 
     // query
