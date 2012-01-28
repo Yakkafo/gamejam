@@ -1,10 +1,8 @@
 package system;
 
-import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
-import resources.ResourceManager;
 
 public class ControlManager
 {
@@ -19,6 +17,8 @@ public class ControlManager
 	
 	public static ControlManager getInstance()
 	{
+		if(instance == null)
+			System.out.println("ControlManager has not neen initialised!");
 		return instance;
 	}
 
