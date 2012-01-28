@@ -68,10 +68,28 @@ public class Game extends BasicGame
 		// Forget events that were received this step
 		ControlManager.getInstance().forgetEvents();
 		
+		
+		
 
 		
 	}
 	
+	/**
+	 * Check if the wheel has moved.
+	 * @param container
+	 * @param delta
+	 */
+	public void scratchCheck(GameContainer container, int delta){
+		if(container.getInput().isControllerDown(ControlManager.getInstance().getDeviceIndex()))
+		{
+			
+		}
+		if(container.getInput().isControllerUp(ControlManager.getInstance().getDeviceIndex()))
+		{
+			
+		}
+
+	}
 
 	@Override
 	public void render(GameContainer container, Graphics g)
