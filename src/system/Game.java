@@ -59,7 +59,6 @@ public class Game extends BasicGame
 		
 		//Controllers test
 		container.getInput().initControllers();
-
 		System.out.println(container.getInput().getControllerCount());
 	}
 
@@ -87,6 +86,8 @@ public class Game extends BasicGame
 		
 		//Gamepad game controlling :
 		if(container.getInput().isControllerDown(2))
+			snakes[0].addAngle(-0.1);
+		if(container.getInput().isControllerUp(2))
 			snakes[0].addAngle(-0.1);
 	}
 
