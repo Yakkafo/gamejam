@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import math.dVect;
 
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Input;
 
+import system.ControlManager;
 import utility.IDynamic;
 import utility.IVisible;
 
@@ -34,6 +36,9 @@ public class Level implements IDynamic, IVisible
 		// update all objects
 		for(GameObject o : objects)
 			o.update();
+		
+		// CONTROLLER TESTS
+		if(ControlManager.getInstance().checkController(0)) System.out.println("Controllers checked!");
 	}
 
 	@Override
