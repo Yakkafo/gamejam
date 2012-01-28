@@ -68,7 +68,8 @@ public class Game extends BasicGame
 		for (int i=0;i<controllers.size();i++) {
 			Log.info(((Controller) controllers.get(i)).getName()+" : "+((Controller) controllers.get(i)).getIndex());
 		}
-		//Check 
+		//Check if platine is connected :
+		//if((Controller) controllers.get(i)).getName() == )
 	}
 
 	@Override
