@@ -65,9 +65,6 @@ public class Game extends BasicGame
 		// Update all the level objects
 		level.update();
 		
-		// Controller test
-		if(container.getInput().isButton1Pressed(Input.ANY_CONTROLLER))
-			System.out.println("Controller detected");
 	}
 	
 
