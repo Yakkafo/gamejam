@@ -52,7 +52,18 @@ public class ResourceManager
     // query
     public Animation getAnimation(String animation_name)
     {
-        return animations.get(animation_name);
+        Animation result = animations.get(animation_name);
+        if(result == null)
+        	System.out.println("Couldn't find animation " + animation_name);
+        return result;
+    }
+    
+    public Image getImage(String image_name)
+    {
+    	Image result = images.get(image_name);
+        if(result == null)
+        	System.out.println("Couldn't find image " + image_name);
+        return result;
     }
     
     // addition

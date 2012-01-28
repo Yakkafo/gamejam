@@ -9,6 +9,9 @@ import system.ControlManager;
 
 public abstract class SnakeHead extends GameObject
 {
+	/// CONSTANTS
+	private static final double TURN_RATE = 0.1;
+	
 	/// ATTRIBUTES
 	private dVect center;
 	private double angle = 0.0;
@@ -50,13 +53,18 @@ public abstract class SnakeHead extends GameObject
 	// interface
 	public void draw(Graphics g)
 	{
+		// Draw the head (animated)
 		ResourceManager.getInstance().getAnimation("snake")
 			.draw((float)position.x, (float)position.y);
+		
+		ResourceManager.getInstance().getImage("snake_body")
 	}
 	
 	public void update()
 	{
-		addAngle(0.1*ControlManager.getInstance().getSnakeDelta(snake_number));
+		// Reposition the snake's head around circle
+		addAngle(TURN_RATE*ControlManager.getInstance()
+				.getSnakeDelta(snake_number));
 	}
 	
 	/// SUBROUTINES
