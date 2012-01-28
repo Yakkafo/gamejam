@@ -16,7 +16,7 @@ public abstract class GameObject implements IVisible, IDynamic
 	/// NESTED DEFINITIONS
 	public static enum Colour 
 	{
-		RED, GREEN, BLUE
+		RED, GREEN, BLUE;
 	}
 	
 	/// ATTRIBUTES

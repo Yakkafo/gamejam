@@ -19,9 +19,6 @@ public class Level implements IDynamic, IVisible
 	private static final int OUTER_RADIUS = 256;
 	private static final int START_MARBLE_PERIOD = 90;
 	
-	/// CLASS VARIABLES
-	private static Level instance;
-	
 	/// ATTRIBUTES
 	private ArrayList<GameObject> objects = new ArrayList<GameObject>();
 	private dVect size;

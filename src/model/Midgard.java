@@ -23,10 +23,16 @@ public class Midgard extends GameObject
 	}
 	
 	// access
-	public void takeDamage(int damage_amount)
+	public boolean tryResist(int damage_amount)
 	{
+		if(hitpoints < damage_amount)
+		{
+			hitpoints = 0;
+			return false;
+		}
+		
 		hitpoints -= damage_amount;
-		/// FIXME check for death!
+		return true;
 	}
 	
 	// implement
@@ -48,7 +54,8 @@ public class Midgard extends GameObject
 				if(other.getClass() == Marble.class)
 				{
 					other.die();
-					takeDamage(MARBLE_DAMAGE);
+					if(!tryResist(MARBLE_DAMAGE))
+						this.die();
 				}
 				break;
 		}

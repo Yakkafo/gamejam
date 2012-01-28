@@ -59,6 +59,7 @@ public class Snake extends GameObject
 	public void draw(Graphics g)
 	{
 		drawHitbox(g);
+		g.drawString(colour.toString(), (float)position.x, (float)position.y);
 		// Draw the head (animated)
 		//((Animation)getHeadIm()).getCurrentFrame().drawCentered((float)position.x, (float)position.y);
 		// Draw the body (static, rotated)
@@ -80,7 +81,19 @@ public class Snake extends GameObject
 	
 	public void treatEvent(ObjectEvent e)
 	{
-		
+		switch(e.getType())
+		{
+			case COLLISION:
+				CollisionEvent ce = (CollisionEvent)e;
+				GameObject other = ce.getOther();
+				if(other.getClass() == Marble.class)
+				{
+					if(((Marble)other).getColour() == colour)
+						other.die();
+						
+				}
+				break;
+		}
 	}
 	
 	// overriden
