@@ -13,8 +13,11 @@ public class Marble implements IVisible
 	/// ATTRIBUTES
 	private Point position;
 	private Image image;
+	private Point target; //Marbel goes to the target
+	private MarbelType type; //Marbel color
 	
-	public Marble()
+	
+	public Marble(Point target)
 	{
 		try {
 			image = new Image("marbel.PNG");
@@ -22,6 +25,7 @@ public class Marble implements IVisible
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		this.target = target;
 	}
 
 	@Override
