@@ -2,6 +2,10 @@
 
 package resources;
 
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 
 import org.newdawn.slick.Animation;
@@ -42,6 +46,7 @@ public class ResourceManager
     					= new HashMap<String, Animation>();
     private HashMap<String, Image> images 
 		= new HashMap<String, Image>();
+    private Font font;
 
     /// METHODS
     
@@ -57,9 +62,30 @@ public class ResourceManager
     	addImage(MARBLE_GREEN);
     	addImage(MARBLE_BLUE);
     	addImage(MARBLE_WHITE);
+    	
+    	// Load font
+    	try
+		{
+    		InputStream fin = 
+        		this.getClass().getResourceAsStream(RESDIR+"domisc.ttf");
+			font = Font.createFont(Font.PLAIN, fin);
+		}
+		catch (FontFormatException e)
+		{
+			e.printStackTrace();
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
     }
 
     // query
+    public Font getFont()
+    {
+    	return font;
+    }
+    
     public Animation getAnimation(String animation_name)
     {
         Animation result = animations.get(animation_name);

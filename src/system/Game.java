@@ -40,6 +40,13 @@ public class Game extends BasicGame
 	@Override
 	public void init(GameContainer container) throws SlickException
 	{
+		// Display setup
+		container.setSmoothDeltas(true);
+        container.setVSync(true);
+        container.setTargetFrameRate(MAX_FPS);
+        //container.setIcon(ref);
+        container.setShowFPS(false);
+        
 		// Start control manager
 		ControlManager.createInstance(container.getInput());
 		
@@ -55,23 +62,12 @@ public class Game extends BasicGame
 	public void update(GameContainer container, int delta)
 			throws SlickException
 	{
-		
-		// Regulate framerate
-		frames_since_update += delta;
-		if(frames_since_update < 1000/MAX_FPS)
-			return;
-		frames_since_update = 0;
-		
 		// Update all the level objects
 		level.update();
 		
 		// Forget events that were received this step
 		ControlManager.getInstance().forgetEvents();
-		
-		
-		
 
-		
 	}
 	
 	/**

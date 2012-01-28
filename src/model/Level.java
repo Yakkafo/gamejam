@@ -19,7 +19,8 @@ public class Level implements IDynamic, IVisible
 	private static final int INNER_RADIUS = 128;
 	private static final int MIDDLE_RADIUS = 196;
 	private static final int OUTER_RADIUS = 256;
-	private static final int START_MARBLE_PERIOD = 90;
+	private static final int BASE_MARBLE_PERIOD = 90;
+	private static final int MIN_MARBLE_PERIOD = 45;
 	private static final int SCORE_BLOCK_MARBLE = 5;
 	private static final int SCORE_EAT_MARBLE = 10;
 	private static final int SCORE_HEAL_MARBLE = 15;
@@ -34,7 +35,6 @@ public class Level implements IDynamic, IVisible
 	private ArrayList<GameObject> objects = new ArrayList<GameObject>();
 	private FVect size;
 	private FVect centre;
-	private int marble_period;
 	private int marble_timer;
 	private int score;
 	private FRect background_dest;
@@ -60,8 +60,7 @@ public class Level implements IDynamic, IVisible
 		// Clear any previous objects, reset score and difficult
 		objects.clear();
 		score = 0;
-		marble_period = START_MARBLE_PERIOD;
-		marble_timer = marble_period;
+		marble_timer = BASE_MARBLE_PERIOD+MIN_MARBLE_PERIOD;
 		
 		// Create snakes centered on middle, protecting home-base
 		addObject(new Midgard(centre));
@@ -106,7 +105,10 @@ public class Level implements IDynamic, IVisible
 		if(marble_timer == 0)
 		{
 			createMarble();
-			marble_timer = marble_period; /// FIXME
+			// Every 10 points, remove 1 frame (nb - 30 fps) from the delay
+			// between marbles
+			marble_timer = MIN_MARBLE_PERIOD 
+							+ Math.max(0, BASE_MARBLE_PERIOD - score/10);
 		}
 		else
 			marble_timer--;

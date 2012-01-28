@@ -6,6 +6,7 @@ import math.FVect;
 import model.GameObject.Colour;
 
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 
 import resources.ResourceManager;
 
@@ -15,9 +16,12 @@ public class Marble extends GameObject
 {
 	/// CONSTANTS
 	private static float DEFAULT_SPEED = 3;
+	private static int DEFAULT_SPIN = 3;
 
 	/// ATTRIBUTES
+	private final boolean reverse_spin;
 	private FVect speed;
+	private int angle = (int)(Math.random()*360);
 	private GameObject.Colour colour;
 
 	public Marble(FVect init_position, FVect target)
@@ -26,7 +30,8 @@ public class Marble extends GameObject
 		
 		// Set speed towards target
 		speed = new FVect(target.x-position.x, target.y-position.y)
-						.normalise().scale(DEFAULT_SPEED);
+				.normalise().scale(DEFAULT_SPEED);
+		reverse_spin = Math.random() > 0.5 ? true : false;
 		// Set colour randomly
 		int pick = new Random().nextInt(Colour.values().length);
 		colour = Colour.values()[pick];
@@ -36,8 +41,9 @@ public class Marble extends GameObject
 	@Override
 	public void draw(Graphics g)
 	{
-		ResourceManager.getInstance().getImage(ColourToImage())
-			.draw(position.x-24, position.y-24, 48, 48);
+		Image pending = ResourceManager.getInstance().getImage(ColourToImage());
+		pending.setRotation(angle);
+		pending.draw(position.x-24, position.y-24, 48, 48);
 
 	}
 
@@ -59,6 +65,7 @@ public class Marble extends GameObject
 		IDynamic.Rtn super_rtn = super.update();
 		if(super_rtn != IDynamic.Rtn.CONTINUE) return super_rtn;
 		// Move marble and continue
+		angle += (reverse_spin) ? -DEFAULT_SPEED : DEFAULT_SPEED;
 		translatePosition(speed);
 		return IDynamic.Rtn.CONTINUE;
 	}
