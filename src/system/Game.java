@@ -8,11 +8,14 @@ import model.Level;
 import model.Marble;
 import model.Snake;
 
+import org.lwjgl.input.Controller;
+import org.lwjgl.input.Controllers;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.util.Log;
  
 public class Game extends BasicGame 
 {
@@ -46,6 +49,26 @@ public class Game extends BasicGame
 		// Snakes are centred on middle of screen
 		dVect middle = new dVect(size.x/2, size.y/2);
 		level = new Level(middle);
+		
+
+		//Tests ;
+		//Check controllers : index
+		ArrayList<Controller> controllers = new ArrayList<Controller>();
+
+		for (int i = 0; i < Controllers.getControllerCount(); i++) 
+		{
+			Controller controller = Controllers.getController(i);
+
+			if ((controller.getButtonCount() >= 3) && (controller.getButtonCount() < 20))
+			{
+				controllers.add(controller);
+			}
+		}
+		Log.info("Found "+controllers.size()+" controllers");
+		for (int i=0;i<controllers.size();i++) {
+			Log.info(((Controller) controllers.get(i)).getName()+" : "+((Controller) controllers.get(i)).getIndex());
+		}
+		//Check 
 	}
 
 	@Override
@@ -62,8 +85,6 @@ public class Game extends BasicGame
 		// Update all the level objects
 		level.update();
 		
-		//Tests ;
-        
        
 		
 	}
