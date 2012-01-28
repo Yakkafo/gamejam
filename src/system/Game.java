@@ -73,6 +73,10 @@ public class Game extends BasicGame
 			if(((Controller) controllers.get(i)).getName().compareTo("Guitar Hero5 for PlayStation (R) 3") == 0) 
 				System.out.println("Turntable connected.");
 		
+		//Get the number of axis
+		System.out.println("Number of axis : "+container.getInput().getAxisCount(2)); //4
+		
+		
 		
 	}
 
@@ -90,7 +94,7 @@ public class Game extends BasicGame
 		// Update all the level objects
 		level.update();
 		
-		
+		// TODO : Make these tests as methods
 		/// TESTS
 		//Check if a button has been pressed
 		for(int i = 0; i < 20; i ++)
@@ -105,7 +109,24 @@ public class Game extends BasicGame
 		 * 
 		 */
 		
-       
+//		//Check if the turntable get down
+//		if(container.getInput().isControllerDown(/*id*/ 2))
+//			System.out.println("DOWN");
+//		
+//		//Check if the turntable get up
+//		if(container.getInput().isControllerUp(/*id*/ 2))
+//			System.out.println("UP");
+//				
+//		//Check if the turntable get down
+//		if(container.getInput().isControllerDown(/*id*/ 2))
+//			System.out.println("RIGHT");
+//						
+//		//Check if the turntable get up
+//		if(container.getInput().isControllerUp(/*id*/ 2))
+//			System.out.println("LEFT");
+
+		System.out.println("Axis 1 : "+container.getInput().getAxisValue(2, 0));
+
 		
 	}
 	
