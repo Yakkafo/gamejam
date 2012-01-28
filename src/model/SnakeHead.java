@@ -12,7 +12,7 @@ public class SnakeHead implements IVisible
 	/// ATTRIBUTES
 	private Point position;
 	private Point center;
-	private double angle;
+	private double angle = 0.0;
 	private double radius; 
 	
 	/// METHODS
@@ -34,6 +34,13 @@ public class SnakeHead implements IVisible
 	{
 		// Reset angle and convert polar to cartesian coordinates
 		angle = new_angle;
+		updatePosition();
+	}
+	
+	public void addAngle(double addition)
+	{
+		// Reset angle and convert polar to cartesian coordinates
+		angle += addition;
 		updatePosition();
 	}
 	
