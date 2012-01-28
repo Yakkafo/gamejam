@@ -13,9 +13,9 @@ public class ResourceManager
 {
     /// CLASS NAMESPACE CONSTANTS
 	private static final String RESDIR = "data/";
-    private static final String SNAKE1 = "snake1.png";
-    private static final String SNAKE2 = "snake2.png";
-    private static final String REDMARBLE = "redMarble.PNG";
+	private static final String PNG = ".png";
+    private static final String SNAKE = "snake";
+    private static final String RED_MARBLE = "red_marble";
 
     /// CLASS NAMESPACE VARIABLES
     private static ResourceManager instance = null;
@@ -38,23 +38,10 @@ public class ResourceManager
     // creation
     private ResourceManager()
     {
-    	try
-		{
     		// Snakes
-			Image[] snake_frames = { new Image(RESDIR+SNAKE1), new Image(RESDIR+SNAKE2) };
-			int [] duration = {300, 300};
-			animations.put("snake", new Animation(snake_frames, duration, true));
-			
+    		addAnimation("snake", 2, 300);
 			// Marbles
-			Image[] redMarble_frames = { new Image(RESDIR+REDMARBLE) };
-			animations.put("redMarble", new Animation(redMarble_frames, 300, true));
-		}
-		catch (SlickException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	
+			addAnimation("red_marble", 1, 300);
     }
 
     // query
@@ -64,8 +51,29 @@ public class ResourceManager
     }
     
     // addition
-    protected void addAnimation()
+    protected void addAnimation(String name, int n_frames, int frame_duration)
     {
+		try
+		{
+			Animation new_anim = new Animation();
+			
+			// Load and add each frame
+	    	Image frame_i;
+	    	for(int i = 0; i < n_frames; i++)
+	    	{
+	    		frame_i = new Image(RESDIR+name+i+PNG);
+	    		new_anim.addFrame(frame_i, frame_duration);
+	    	}
+	    	
+	    	// Save the animation
+	    	animations.put(name, new_anim);
+		}
+		catch (SlickException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    		
     }
     
 }
