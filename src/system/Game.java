@@ -47,7 +47,7 @@ public class Game extends BasicGame
 		size = new iVect(container.getWidth(), container.getHeight());
 		
 		// Snakes are centred on middle of screen
-		dVect middle = new dVect(size.x/2, size.y/2);
+		dVect middle = new dVect(size.x, size.y);
 		level = new Level(middle);
 		
 
