@@ -2,15 +2,13 @@
 
 package resources;
 
-import java.awt.Font;
-import java.awt.FontFormatException;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.HashMap;
 
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.TrueTypeFont;
+import java.awt.Font;
 
 
 public class ResourceManager
@@ -46,7 +44,7 @@ public class ResourceManager
     					= new HashMap<String, Animation>();
     private HashMap<String, Image> images 
 		= new HashMap<String, Image>();
-    private Font font;
+    private TrueTypeFont font;
 
     /// METHODS
     
@@ -63,25 +61,14 @@ public class ResourceManager
     	addImage(MARBLE_BLUE);
     	addImage(MARBLE_WHITE);
     	
-    	// Load font
-    	try
-		{
-    		InputStream fin = 
-        		this.getClass().getResourceAsStream(RESDIR+"domisc.ttf");
-			font = Font.createFont(Font.PLAIN, fin);
-		}
-		catch (FontFormatException e)
-		{
-			e.printStackTrace();
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
-		}
+    	// Font
+		Font temp = new Font("Dominican Small Caps", Font.PLAIN, 32);
+		font = new TrueTypeFont(temp, true);	
     }
 
     // query
-    public Font getFont()
+    
+    public TrueTypeFont getFont()
     {
     	return font;
     }

@@ -17,7 +17,6 @@ public class Title
 	
 	public void draw(Graphics g)
 	{
-		g.setFont((Font) ResourceManager.getInstance().getFont());
 		g.drawString("PRESS ANY KEY", 32, 32);
 		
 	}

@@ -1,5 +1,8 @@
 package system;
 
+import java.awt.Font;
+import java.awt.GraphicsEnvironment;
+
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.SlickException;
 
