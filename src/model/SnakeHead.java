@@ -57,10 +57,9 @@ public abstract class SnakeHead extends GameObject
 	// interface
 	public void draw(Graphics g)
 	{
+		drawHitbox(g);
 		// Draw the head (animated)
 		//((Animation)getHeadIm()).getCurrentFrame().drawCentered((float)position.x, (float)position.y);
-		g.drawRect((float)hitbox.x, (float)hitbox.y,
-					(float)hitbox.width, (float)hitbox.height);
 		// Draw the body (static, rotated)
 		//((Image)getBodyIm()).setRotation((float)angle);
 		//((Image)getBodyIm()).drawCentered((float)center.x, (float)center.y);
@@ -69,9 +68,16 @@ public abstract class SnakeHead extends GameObject
 	
 	public void update()
 	{
+		super.update();
+		
 		// Reposition the snake's head around circle
 		addAngle(TURN_RATE*ControlManager.getInstance()
 				.getSnakeDelta(snake_number));
+	}
+	
+	public void treatEvent(ObjectEvent e)
+	{
+		
 	}
 	
 	// overriden

@@ -9,7 +9,6 @@ class CollisionEvent extends ObjectEvent
     {
         if(a.isColliding(b))
         {
-        	System.out.println("COLLISION HAS OCCURED");
             a.addEvent(new CollisionEvent(b));
             b.addEvent(new CollisionEvent(a));
         }

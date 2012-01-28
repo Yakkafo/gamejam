@@ -3,6 +3,8 @@ package model;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import org.newdawn.slick.Graphics;
+
 import math.dRect;
 import math.dVect;
 
@@ -21,8 +23,9 @@ public abstract class GameObject implements IVisible, IDynamic
 	// creation
 	public GameObject(dVect init_position)
 	{
-		position = init_position;
 		hitbox = new dRect(0, 0, 64, 64);
+		position = init_position;
+		positionUpdated();	// move hitbox, etc to position
 	}
 	
 	// access
@@ -49,7 +52,33 @@ public abstract class GameObject implements IVisible, IDynamic
 		hitbox.centerOn(position);
 	}
 	
+	public void drawHitbox(Graphics g)
+	{
+		g.drawRect((float)hitbox.x, (float)hitbox.y,
+				(float)hitbox.width, (float)hitbox.height);
+	}
+	
 	// interface
+	
+	public void update()
+	{
+		pollEvents();
+	}
+	
+	public void pollEvents()
+	{
+        ObjectEvent e = events.poll();
+        while(e != null)
+        {
+            System.out.println(e);
+
+            // get next event
+            e = events.poll();
+        }
+	}
+	
+	public abstract void treatEvent(ObjectEvent e);
+	
 	public boolean isColliding(GameObject other)
 	{
 		return hitbox.intersects(other.hitbox);

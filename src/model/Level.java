@@ -26,6 +26,7 @@ public class Level implements IDynamic, IVisible
 		objects.add(new MiddleSnake(middle));
 		objects.add(new OuterSnake(middle));
 		objects.add(new Marble(new dVect(0,0), middle));
+		objects.add(new Midgard(middle));
 	}
 	
 	// implementation
