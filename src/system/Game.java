@@ -4,6 +4,8 @@ import java.awt.Dimension;
 import java.awt.Point;
 
 import model.CenterSnake;
+import model.MiddleSnake;
+import model.OuterSnake;
 import model.SnakeHead;
 
 import org.newdawn.slick.BasicGame;
@@ -22,24 +24,31 @@ public class Game extends BasicGame
 	
 	/// ATTRIBUTES
 	private Dimension size;
-	private SnakeHead inner_snake;
+	private SnakeHead snakes[];
 	private int frames_since_update = 0;
 	
 	/// METHODS
 	
+	// creation
 	public Game()
 	{
 		super("Snack Spin GGJ game");
 	}
 
+	// framework
 	@Override
 	public void init(GameContainer container) throws SlickException
 	{
 		size = new Dimension(container.getWidth(), container.getHeight());
 		
-		// Snakes centered on middle of screen
+		// Snakes are centred on middle of screen
 		Point middle = new Point(size.width/2, size.height/2);
-		inner_snake = new CenterSnake(middle);
+		
+		// Create the snakes themselves
+		snakes = new SnakeHead[3];
+		snakes[0] = new CenterSnake(middle);
+		snakes[1] = new MiddleSnake(middle);
+		snakes[2] = new OuterSnake(middle);
 	}
 
 	@Override
@@ -52,14 +61,16 @@ public class Game extends BasicGame
 			return;
 		frames_since_update = 0;
 		
-		inner_snake.addAngle(0.3);
+		for(int i = 0; i < 3; i++)
+			snakes[i].addAngle(0.3);
 	}
 
 	@Override
 	public void render(GameContainer container, Graphics g)
 			throws SlickException
 	{
-		inner_snake.draw(g);
+		for(int i = 0; i < 3; i++)
+			snakes[i].draw(g);
 	}
 
 	public static void main(String[] args)
