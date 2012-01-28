@@ -7,6 +7,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 
 import resources.ResourceManager;
+import system.ColourCode;
 import system.ControlManager;
 import utility.IDynamic;
 
@@ -24,14 +25,14 @@ public class Snake extends GameObject
 	private float speed = 0;
 	private float radius; 
 	private int stunned = 0;
-	private GameObject.Colour colour;
+	private ColourCode colour;
 	private Image image;
 	
 	/// METHODS
 	
 	// creation
 	public Snake(FVect init_center, float init_radius, 
-			GameObject.Colour init_colour)
+			ColourCode init_colour)
 	{
 		// Create position at origin 
 		super(new FVect(0, 0), new FVect(48,48));
@@ -42,7 +43,7 @@ public class Snake extends GameObject
 		colour = init_colour;
 		switch(ControlManager.getInstance().getDevice())
 		{
-			case keyboard :
+			case KEYBOARD :
 			{
 				ACCELERATION = 0.02;
 				FRICTION = 0.26;
@@ -50,7 +51,7 @@ public class Snake extends GameObject
 				STUN_DURATION = 90;
 				break;
 			}
-			case PS3Turntable :
+			case PS3_TURNTABLE :
 			{
 				ACCELERATION = 0.5;
 				FRICTION = 0.05;
@@ -58,7 +59,7 @@ public class Snake extends GameObject
 				STUN_DURATION = 90;
 				break;
 			}
-			case XBOXTurntable :
+			case XBOX_TURNTABLE :
 			{
 				ACCELERATION = 0.02;
 				FRICTION = 0.26;
@@ -123,8 +124,6 @@ public class Snake extends GameObject
 			g.drawString("***STUNNED***", position.x, position.y);
 		else
 			g.drawString(colour.toString(), position.x, position.y);
-		
-		g.drawOval(center.x-radius, center.y-radius, radius*2, radius*2);
 	}
 	
 	public IDynamic.Rtn update()

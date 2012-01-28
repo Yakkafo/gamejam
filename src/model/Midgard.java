@@ -4,6 +4,7 @@ import math.FVect;
 
 import org.newdawn.slick.Graphics;
 
+import system.ColourCode;
 import utility.IDynamic;
 
 public class Midgard extends GameObject
@@ -66,7 +67,7 @@ public class Midgard extends GameObject
 					// Destroy the offending marble
 					other.die();
 					// Heal if it was white
-					if(((Marble)other).getColour() == GameObject.Colour.WHITE)
+					if(((Marble)other).getColour() == ColourCode.WHITE)
 					{
 						heal(MARBLE_HEAL);
 						level.addBonus(Level.Bonus.HEAL);

@@ -9,6 +9,7 @@ import navigation.Scene;
 import org.newdawn.slick.Graphics;
 
 import resources.ResourceManager;
+import system.ColourCode;
 import utility.IDynamic;
 import utility.IVisible;
 
@@ -60,9 +61,9 @@ public class Level extends Scene
 		
 		// Create snakes centered on middle, protecting home-base
 		addObject(new Midgard(centre));
-		addObject(new Snake(centre, OUTER_RADIUS, GameObject.Colour.GREEN));
-		addObject(new Snake(centre, MIDDLE_RADIUS, GameObject.Colour.RED));
-		addObject(new Snake(centre, INNER_RADIUS, GameObject.Colour.BLUE));
+		addObject(new Snake(centre, OUTER_RADIUS, ColourCode.GREEN));
+		addObject(new Snake(centre, MIDDLE_RADIUS, ColourCode.RED));
+		addObject(new Snake(centre, INNER_RADIUS, ColourCode.BLUE));
 	}
 	
 	// access

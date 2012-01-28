@@ -1,15 +1,18 @@
 package navigation;
 
+import model.GameObject;
 import model.Level;
 
 import org.newdawn.slick.Graphics;
 
+import system.ColourCode;
 import system.ControlManager;
 import utility.IDynamic;
 
 public class Title extends Scene
 {
 	/// ATTRIBUTES
+	private Scene nextScene = null;
 	
 	/// METHODS
 	
@@ -17,18 +20,47 @@ public class Title extends Scene
 	
 	public void draw(Graphics g)
 	{
-		g.drawString("PRESS ANY KEY", 32, 32);
+		g.drawString("TITLE -- PRESS ANY KEY", 32, 32);
 	}
 
 	public IDynamic.Rtn update()
 	{
+		// The Scene can't decide when the Game changes it, but it can
+		// "suggest" a change.
+		
+		ControlManager cm = ControlManager.getInstance();
+		
+		// view Tutorial
+		if(cm.isColourKey(ColourCode.RED))
+		{
+			nextScene = new HowToPlay();
+			return IDynamic.Rtn.CHANGE_SCENE;
+		}
+		
+		// launch the game!
+		if(cm.isColourKey(ColourCode.GREEN))
+		{
+			nextScene = new Level();
+			return IDynamic.Rtn.CHANGE_SCENE;
+		}
+		
+		// view Credits
+		if(cm.isColourKey(ColourCode.BLUE))
+		{
+			nextScene = new Credits();
+			return IDynamic.Rtn.CHANGE_SCENE;
+		}
+		
+		
+		
+		
+		// Nothing to report
 		return IDynamic.Rtn.CONTINUE;
-		//if(ControlManager.getInstance());
 	}
 
 	@Override
 	public Scene getNextScene()
 	{
-		return new Level();
+		return nextScene;
 	}
 }

@@ -61,12 +61,13 @@ public class Game extends BasicGame
 			case CHANGE_SCENE:
 				current_scene = current_scene.getNextScene();
 				break;
-				
+			default:
+				break;
 		}
 		
 		// Forget events that were received this step
 		ControlManager.getInstance().forgetEvents();
-		if(ControlManager.getInstance().getDevice() == ControlManager.Device.PS3Turntable)
+		if(ControlManager.getInstance().getDevice() == ControlManager.Device.PS3_TURNTABLE)
 			for(int i = 0; i < 20; i ++)
 				if (container.getInput().isControlPressed(i, ControlManager.getInstance().getDeviceIndex()))
 					System.out.println("Key pressed ! #"+i);
@@ -97,18 +98,13 @@ public class Game extends BasicGame
 		current_scene.draw(g);
 	}
 	
+	public void keyPressed(int key, char c)
+	{
+		System.out.println("PRESSED " + key + " char " + c);
+		ControlManager.getInstance().anyKeyEvent();
+	}
 	
 	public void mouseWheelMoved(int delta) 
-	{
-		ControlManager.getInstance().wheelEvent(delta);
-	}
-	
-	public void controllerUpPressed(int delta)
-	{
-		ControlManager.getInstance().wheelEvent(delta);
-	}
-	
-	public void controllerDownPressed(int delta)
 	{
 		ControlManager.getInstance().wheelEvent(delta);
 	}

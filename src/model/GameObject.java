@@ -13,12 +13,6 @@ import utility.IVisible;
 
 public abstract class GameObject implements IVisible, IDynamic
 {
-	/// NESTED DEFINITIONS
-	public static enum Colour 
-	{
-		RED, GREEN, BLUE, WHITE;
-	}
-	
 	/// ATTRIBUTES
 	private boolean dead = false;
 	protected FVect position;

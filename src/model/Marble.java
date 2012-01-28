@@ -3,12 +3,12 @@ package model;
 import java.util.Random;
 
 import math.FVect;
-import model.GameObject.Colour;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 
 import resources.ResourceManager;
+import system.ColourCode;
 
 import utility.IDynamic;
 
@@ -22,7 +22,7 @@ public class Marble extends GameObject
 	private final boolean reverse_spin;
 	private FVect speed;
 	private int angle = (int)(Math.random()*360);
-	private GameObject.Colour colour;
+	private ColourCode colour;
 
 	public Marble(FVect init_position, FVect target)
 	{
@@ -33,8 +33,8 @@ public class Marble extends GameObject
 				.normalise().scale(DEFAULT_SPEED);
 		reverse_spin = Math.random() > 0.5 ? true : false;
 		// Set colour randomly
-		int pick = new Random().nextInt(Colour.values().length);
-		colour = Colour.values()[pick];
+		int pick = new Random().nextInt(ColourCode.values().length);
+		colour = ColourCode.values()[pick];
 
 	}
 
@@ -77,7 +77,7 @@ public class Marble extends GameObject
 		
 	}
 	
-	public Colour getColour()
+	public ColourCode getColour()
 	{
 		return colour;
 	}
