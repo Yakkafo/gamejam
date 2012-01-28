@@ -63,7 +63,6 @@ public abstract class SnakeHead extends GameObject
 	
 	public void update()
 	{
-<<<<<<< HEAD
 		// Reposition the snake's head around circle
 		addAngle(TURN_RATE*ControlManager.getInstance()
 				.getSnakeDelta(snake_number));
@@ -77,10 +76,6 @@ public abstract class SnakeHead extends GameObject
 	{
 		/// FIXME --- should be abstract, different for each snake
 		return ResourceManager.getInstance().getAnimation("snake");
-=======
-		addAngle(0.1*ControlManager.getInstance().getSnakeDelta(snake_number));
-		if(ControlManager.getInstance().checkController()) System.out.println("Controller : true");
->>>>>>> 5b04a5011fdb6bfe14c86c9e9de5b667e5532b9d
 	}
 	
 	/// SUBROUTINES
