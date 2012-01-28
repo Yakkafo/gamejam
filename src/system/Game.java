@@ -2,8 +2,10 @@ package system;
  
 import java.awt.Dimension;
 import java.awt.Point;
+import java.util.ArrayList;
 
 import model.CenterSnake;
+import model.Marble;
 import model.MiddleSnake;
 import model.OuterSnake;
 import model.SnakeHead;
@@ -11,6 +13,7 @@ import model.SnakeHead;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
  
 public class Game extends BasicGame 
@@ -22,6 +25,8 @@ public class Game extends BasicGame
 	private Dimension size;
 	private SnakeHead snakes[];
 	private int frames_since_update = 0;
+	private Input input;
+	private ArrayList<Marble> marbleList;
 	
 	/// METHODS
 	
@@ -36,6 +41,7 @@ public class Game extends BasicGame
 	public void init(GameContainer container) throws SlickException
 	{
 		size = new Dimension(container.getWidth(), container.getHeight());
+		input = container.getInput();
 		
 		// Snakes are centred on middle of screen
 		Point middle = new Point(size.width/2, size.height/2);
@@ -45,6 +51,12 @@ public class Game extends BasicGame
 		snakes[0] = new CenterSnake(middle);
 		snakes[1] = new MiddleSnake(middle);
 		snakes[2] = new OuterSnake(middle);
+		
+		//Create marbles
+		marbleList = new ArrayList<Marble>();
+		//marbleList.add(new Marble(new Point(50, 50), middle));
+		
+		
 	}
 
 	@Override
@@ -58,14 +70,26 @@ public class Game extends BasicGame
 		frames_since_update = 0;
 		
 		// update the snakes
-		for(int i = 0; i < 3; i++)
-			snakes[i].addAngle(0.1);
+		//for(int i = 0; i < 3; i++)
+			//snakes[i].addAngle(0.1);
+		if(container.getInput().isMouseButtonDown(0))
+			snakes[0].setAngle(container.getInput().getMouseY() / 10);
+		if(container.getInput().isMouseButtonDown(2))
+			snakes[1].setAngle(container.getInput().getMouseY() / 10);
+		if(container.getInput().isMouseButtonDown(1))
+			snakes[2].setAngle(container.getInput().getMouseY() / 10);
 	}
 
 	@Override
 	public void render(GameContainer container, Graphics g)
 			throws SlickException
 	{
+		
+		// draw marbles
+		if(!marbleList.isEmpty()){
+			for(Marble mar : marbleList)
+				mar.draw(g);
+		}
 		// draw the snakes
 		for(int i = 0; i < 3; i++)
 			snakes[i].draw(g);
