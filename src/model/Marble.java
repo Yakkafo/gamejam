@@ -11,7 +11,7 @@ import resources.ResourceManager;
 public class Marble extends GameObject
 {
 	/// NESTED DEFINITIONS
-	public static enum MarbleType 
+	public static enum Type 
 	{
 		RED, GREEN, BLUE
 	}
@@ -21,7 +21,7 @@ public class Marble extends GameObject
 
 	/// ATTRIBUTES
 	private dVect speed;
-	private MarbleType type;
+	private Type type;
 
 	public Marble(dVect init_position, dVect target)
 	{
@@ -30,8 +30,8 @@ public class Marble extends GameObject
 		speed = new dVect(target.x-position.x, target.y-position.y)
 						.normalise().scale(DEFAULT_SPEED);
 		// Set colour randomly
-		int pick = new Random().nextInt(MarbleType.values().length);
-		type = MarbleType.values()[pick];
+		int pick = new Random().nextInt(Type.values().length);
+		type = Type.values()[pick];
 
 	}
 
