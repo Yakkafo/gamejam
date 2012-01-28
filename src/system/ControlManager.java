@@ -56,8 +56,8 @@ public class ControlManager
 		return (3-snake_number);
 	}
 	
-	public boolean checkController(){
-		if(input.isControlPressed(0))
+	public boolean checkController(int id){
+		if(input.isControlPressed(1, id))
 			return true;
 		else
 			return false;
