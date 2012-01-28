@@ -14,7 +14,7 @@ public class Marble implements IVisible
 	private Point position;
 	private Image image;
 	private Point target; //Marbel goes to the target
-	private MarbelType type; //Marbel color
+	private MarbleType type; //Marbel color
 	
 	
 	public Marble(Point target)
