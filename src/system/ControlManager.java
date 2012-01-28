@@ -16,6 +16,7 @@ public class ControlManager
 	// / CLASS NAMESPACE VARIABLES
 	private static ControlManager instance = null;
 	private final static int AXISINDEX = 4;
+	//Mapping :
 	private final static int GREENBUTTON = 5;
 	private final static int REDBUTTON = 6;
 	private final static int BLUEBUTTON = 4;
@@ -100,11 +101,11 @@ public class ControlManager
 				switch(snake_colour)
 				{
 					case BLUE:
-						return (input.isControlPressed(4, deviceIndex)) ? arrowToDelta() : 0;
+						return (input.isControlPressed(BLUEBUTTON, deviceIndex)) ? arrowToDelta() : 0;
 					case RED:
-						return (input.isControlPressed(6, deviceIndex)) ? arrowToDelta() : 0;
+						return (input.isControlPressed(REDBUTTON, deviceIndex)) ? arrowToDelta() : 0;
 					case GREEN:
-						return (input.isControlPressed(5, deviceIndex)) ? arrowToDelta() : 0;
+						return (input.isControlPressed(GREENBUTTON, deviceIndex)) ? arrowToDelta() : 0;
 					default:
 						return 0;
 		
@@ -113,11 +114,11 @@ public class ControlManager
 				switch(snake_colour)
 				{
 					case BLUE:
-						return (input.isControlPressed(4, deviceIndex)) ? arrowToDelta() : 0;
+						return (input.isControlPressed(BLUEBUTTON, deviceIndex)) ? arrowToDelta() : 0;
 					case RED:
-						return (input.isControlPressed(6, deviceIndex)) ? arrowToDelta() : 0;
+						return (input.isControlPressed(REDBUTTON, deviceIndex)) ? arrowToDelta() : 0;
 					case GREEN:
-						return (input.isControlPressed(5, deviceIndex)) ? arrowToDelta() : 0;
+						return (input.isControlPressed(GREENBUTTON, deviceIndex)) ? arrowToDelta() : 0;
 					default:
 						return 0;
 		
