@@ -1,6 +1,6 @@
 package model;
 
-import math.dVect;
+import math.FVect;
 
 import org.newdawn.slick.Graphics;
 
@@ -21,9 +21,9 @@ public class Midgard extends GameObject
 	/// METHODS
 	
 	// creation
-	public Midgard(dVect init_position)
+	public Midgard(FVect init_position)
 	{
-		super(init_position, new dVect(32, 32));
+		super(init_position, new FVect(32, 32));
 	}
 	
 	// access
@@ -51,7 +51,7 @@ public class Midgard extends GameObject
 	public void draw(Graphics g)
 	{
 		drawHitbox(g);
-		g.drawString(""+hitpoints, (float)position.x, (float)position.y);
+		g.drawString(""+hitpoints, position.x, position.y);
 	}
 	
 	public void treatEvent(ObjectEvent e)

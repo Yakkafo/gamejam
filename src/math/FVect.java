@@ -4,7 +4,7 @@ package math;
 
 import java.awt.geom.Point2D;
 
-public class dVect extends Point2D.Double
+public class FVect extends Point2D.Float
 {
 	/// CONSTANTS
 	private static final long serialVersionUID = 1L;
@@ -12,34 +12,34 @@ public class dVect extends Point2D.Double
     /// METHODS
 
 	// creation
-    public dVect(double init_x, double init_y)
+    public FVect(float init_x, float init_y)
     {
         x = init_x;
         y = init_y;
     }
 
     // V2i2D.Double can't be translated!
-    public void translate(double dx, double dy)
+    public void translate(float dx, float dy)
     {
         x += dx;
         y += dy;
     }
 
-    public dVect add(dVect v)
+    public FVect add(FVect v)
     {
         x += v.x;
         y += v.y;
         return this;
     }
 
-    public dVect scale(double amount)
+    public FVect scale(float amount)
     {
         x *= amount;
         y *= amount;
         return this;
     }
     
-    public dVect normalise()
+    public FVect normalise()
     {
     	double norm = getNorm();
     	x /= norm;
