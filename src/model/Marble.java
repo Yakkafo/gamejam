@@ -5,7 +5,8 @@ import java.util.Random;
 import math.dVect;
 
 import org.newdawn.slick.Graphics;
-import utility.ICollider;
+
+import resources.ResourceManager;
 
 public class Marble extends GameObject
 {
@@ -37,8 +38,8 @@ public class Marble extends GameObject
 	@Override
 	public void draw(Graphics g)
 	{
-		g.drawString("MARBLE", (float)position.x, (float)position.y);
-		//g.drawImage(image, (float)position.x, (float)position.y);
+		//g.drawString("MARBLE", (float)position.x, (float)position.y);
+		ResourceManager.getInstance().getAnimation("redMarble").draw((float)position.x, (float)position.y);
 	}
 
 	@Override
@@ -47,11 +48,5 @@ public class Marble extends GameObject
 		position.add(speed);
 	}
 
-	@Override
-	public boolean isColliding(ICollider other)
-	{
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 }

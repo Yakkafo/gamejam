@@ -6,11 +6,10 @@ import java.util.Queue;
 import math.dRect;
 import math.dVect;
 
-import utility.ICollider;
 import utility.IDynamic;
 import utility.IVisible;
 
-public abstract class GameObject implements IVisible, IDynamic, ICollider
+public abstract class GameObject implements IVisible, IDynamic
 {
 	/// ATTRIBUTES
 	protected dVect position;
@@ -32,9 +31,8 @@ public abstract class GameObject implements IVisible, IDynamic, ICollider
 	}
 	
 	// interface
-	public boolean isColliding(ICollider other)
+	public boolean isColliding(GameObject other)
 	{
-		// TODO Auto-generated method stub
-		return false;
+		return hitbox.intersects(other.hitbox);
 	}
 }

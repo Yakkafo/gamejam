@@ -55,6 +55,7 @@ public class Game extends BasicGame
 	public void update(GameContainer container, int delta)
 			throws SlickException
 	{
+		
 		// Regulate framerate
 		frames_since_update += delta;
 		if(frames_since_update < 1000/MAX_FPS)
@@ -63,12 +64,18 @@ public class Game extends BasicGame
 		
 		// Update all the level objects
 		level.update();
+		
+		// Controller test
+		if(container.getInput().isButton1Pressed(Input.ANY_CONTROLLER))
+			System.out.println("Controller detected");
 	}
+	
 
 	@Override
 	public void render(GameContainer container, Graphics g)
 			throws SlickException
 	{
+		
 		// Draw all the level objects
 		level.draw(g);
 	}

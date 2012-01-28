@@ -15,6 +15,7 @@ public class ResourceManager
 	private static final String RESDIR = "data/";
     private static final String SNAKE1 = "snake1.png";
     private static final String SNAKE2 = "snake2.png";
+    private static final String REDMARBLE = "redMarble.PNG";
 
     /// CLASS NAMESPACE VARIABLES
     private static ResourceManager instance = null;
@@ -39,9 +40,14 @@ public class ResourceManager
     {
     	try
 		{
+    		// Snakes
 			Image[] snake_frames = { new Image(RESDIR+SNAKE1), new Image(RESDIR+SNAKE2) };
 			int [] duration = {300, 300};
 			animations.put("snake", new Animation(snake_frames, duration, true));
+			
+			// Marbles
+			Image[] redMarble_frames = { new Image(RESDIR+REDMARBLE) };
+			animations.put("redMarble", new Animation(redMarble_frames, 300, true));
 		}
 		catch (SlickException e)
 		{

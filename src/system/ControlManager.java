@@ -38,7 +38,9 @@ public class ControlManager
 		{
 			input.initControllers();
 			/// FIXME
-			System.out.println(input.getControllerCount());
+			System.out.println("Controller count : "+input.getControllerCount());
+			
+
 		}
 		catch (SlickException e)
 		{
@@ -53,5 +55,6 @@ public class ControlManager
 		/// FIXME -- should be based on input
 		return (3-snake_number);
 	}
+	
 
 }
