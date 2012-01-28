@@ -94,8 +94,16 @@ public class Game extends BasicGame
 		/// TESTS
 		//Check if a button has been pressed
 		for(int i = 0; i < 20; i ++)
-				if (container.getInput().isControlPressed(0, /*get turntable id*/ 2))
-					System.out.println("Key pressed !");
+				if (container.getInput().isControlPressed(i, /*get turntable id*/ 2))
+					System.out.println("Key pressed ! #"+i);
+		
+		/*
+		 * BLUE : 4
+		 * RED : 6
+		 * GREEN : 5
+		 * POWER : 7
+		 * 
+		 */
 		
        
 		
