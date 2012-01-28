@@ -74,7 +74,7 @@ public class Game extends BasicGame
 				System.out.println("Turntable connected.");
 		
 		//Get the number of axis
-		System.out.println("Number of axis : "+container.getInput().getAxisCount(2)); //4
+		//System.out.println("Number of axis : "+container.getInput().getAxisCount(2)); //4
 		
 		
 		
@@ -93,6 +93,9 @@ public class Game extends BasicGame
 		
 		// Update all the level objects
 		level.update();
+		
+		// Forget events that were received this step
+		ControlManager.getInstance().forgetEvents();
 		
 		// TODO : Make these tests as methods
 		/// TESTS
@@ -125,7 +128,7 @@ public class Game extends BasicGame
 //		if(container.getInput().isControllerUp(/*id*/ 2))
 //			System.out.println("LEFT");
 
-		System.out.println("Axis 1 : "+container.getInput().getAxisValue(2, 0));
+		//System.out.println("Axis 1 : "+container.getInput().getAxisValue(2, 0));
 
 		
 	}
@@ -138,5 +141,11 @@ public class Game extends BasicGame
 		
 		// Draw all the level objects
 		level.draw(g);
+	}
+	
+	
+	public void mouseWheelMoved(int delta) 
+	{
+		ControlManager.getInstance().wheelEvent(delta);
 	}
 }
