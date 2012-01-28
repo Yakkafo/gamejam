@@ -1,6 +1,6 @@
 package model;
 
-import java.awt.Point;
+import math.dVect;
 
 public class OuterSnake extends SnakeHead
 {
@@ -10,7 +10,7 @@ public class OuterSnake extends SnakeHead
 	/// METHODS
 	
 	// creation
-	public OuterSnake(Point init_center)
+	public OuterSnake(dVect init_center)
 	{
 		super(init_center, RADIUS);
 	}

@@ -1,24 +1,20 @@
 package model;
 
-import java.awt.Point;
-
 import math.dVect;
 
 import org.newdawn.slick.Graphics;
 
-import utility.ICollider;
-
 public abstract class SnakeHead extends GameObject
 {
 	/// ATTRIBUTES
-	private Point center;
+	private dVect center;
 	private double angle = 0.0;
 	private double radius; 
 	
 	/// METHODS
 	
 	// creation
-	public SnakeHead(Point init_center, double init_radius)
+	public SnakeHead(dVect init_center, double init_radius)
 	{
 		// Create position at origin 
 		super(new dVect(0, 0));
@@ -56,12 +52,6 @@ public abstract class SnakeHead extends GameObject
 	{
 		// TODO Auto-generated method stub
 		
-	}
-
-	public boolean isColliding(ICollider other)
-	{
-		// TODO Auto-generated method stub
-		return false;
 	}
 	
 	/// SUBROUTINES
