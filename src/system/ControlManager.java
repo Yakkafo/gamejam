@@ -94,6 +94,10 @@ public class ControlManager
 	
 	public boolean isColourKey(ColourCode key_colour)
 	{
+		// No memory - it's ALWAYS the first time (?)
+		input.clearControlPressedRecord();
+		
+		
 		switch(device)
 		{
 			case KEYBOARD:
