@@ -33,9 +33,19 @@ public class Level implements IDynamic, IVisible
 	@Override
 	public void update()
 	{
-		// update all objects
-		for(GameObject o : objects)
-			o.update();
+        
+		// for each GameObject
+        for(int i = 0; i < objects.size(); i++)
+        {
+            GameObject o = objects.get(i);
+
+            // generate collision events between actors
+            for(int j = i+1; j < objects.size(); j++)
+                CollisionEvent.generate(o, objects.get(j));
+
+            // update object
+            o.update();
+        }
 		
 		// CONTROLLER TESTS
 		if(ControlManager.getInstance().checkController(0)) System.out.println("Controllers checked!");
