@@ -31,21 +31,21 @@ public class Title extends Scene
 		ControlManager cm = ControlManager.getInstance();
 		
 		// view Tutorial
-		if(cm.isColourKey(ColourCode.RED))
+		if(cm.isColourKey(ColourCode.RED, true))
 		{
 			nextScene = new HowToPlay();
 			return IDynamic.Rtn.CHANGE_SCENE;
 		}
 		
 		// launch the game!
-		if(cm.isColourKey(ColourCode.GREEN))
+		if(cm.isColourKey(ColourCode.GREEN, true))
 		{
 			nextScene = new Level();
 			return IDynamic.Rtn.CHANGE_SCENE;
 		}
 		
 		// view Credits
-		if(cm.isColourKey(ColourCode.BLUE))
+		if(cm.isColourKey(ColourCode.BLUE, true))
 		{
 			nextScene = new Credits();
 			return IDynamic.Rtn.CHANGE_SCENE;

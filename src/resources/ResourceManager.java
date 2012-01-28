@@ -15,8 +15,8 @@ public class ResourceManager
 {
     /// CLASS NAMESPACE CONSTANTS
 	// system
-	private static final String RESDIR = "data/";
-	private static final String PNG = ".png";
+	public static final String RESDIR = "data/";
+	public static final String PNG = ".png";
 	// resources
   
 	private static final String WHEEL_BACK = "wheel_back";

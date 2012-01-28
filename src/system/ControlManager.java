@@ -92,7 +92,21 @@ public class ControlManager
 		return any_key;
 	}
 	
-	public boolean isColourKey(ColourCode key_colour)
+	public boolean isExitKey()
+	{
+		switch(device)
+		{
+			case KEYBOARD:
+				return input.isKeyDown(Input.KEY_ESCAPE);
+			default:
+				return false;
+				
+				
+				/// TODO
+		}
+	}
+	
+	public boolean isColourKey(ColourCode key_colour, boolean new_only)
 	{
 		// No memory - it's ALWAYS the first time (?)
 		input.clearControlPressedRecord();
@@ -104,16 +118,26 @@ public class ControlManager
 				switch(key_colour)
 				{
 					/// NB -- QWERTY vs AZERTY
-					case BLUE: return input.isKeyDown(Input.KEY_W)
-										|| input.isKeyDown(Input.KEY_Z);
-					case RED: return input.isKeyDown(Input.KEY_X);
-					case GREEN: return input.isKeyDown(Input.KEY_C);
+					case BLUE: 
+						if(new_only)
+							return input.isKeyPressed(Input.KEY_W) 
+									|| input.isKeyPressed(Input.KEY_Z);
+						else
+							return input.isKeyDown(Input.KEY_W) 
+									|| input.isKeyDown(Input.KEY_Z);
+					case RED:
+						return (new_only) ? input.isKeyPressed(Input.KEY_X)
+										  : input.isKeyDown(Input.KEY_X);				  				
+					case GREEN:
+						return (new_only) ? input.isKeyPressed(Input.KEY_C)
+										  : input.isKeyDown(Input.KEY_C);
+										  	  
 					default: return false;
 				} // switch(key_colour)
 				
 			case PS3_TURNTABLE:
 			case XBOX_TURNTABLE:
-				switch(key_colour)
+				switch(key_colour)	/// FIXME
 				{
 					case BLUE: 
 						return input.isControlPressed(BLUEBUTTON, deviceIndex);
@@ -132,7 +156,7 @@ public class ControlManager
 	public int getSnakeDelta(ColourCode snake_colour)
 	{
 		// if snake colour key is not pressed the snake is not controlled!
-		if(!isColourKey(snake_colour))
+		if(!isColourKey(snake_colour, false)) // input, new and only ;)
 			return 0;
 		
 		//return wheel_direction;

@@ -24,7 +24,7 @@ public class HowToPlay extends Scene
 	public IDynamic.Rtn update()
 	{
 		// Return to title screen
-		if(ControlManager.getInstance().isColourKey(ColourCode.RED))
+		if(ControlManager.getInstance().isColourKey(ColourCode.RED, true))
 			return IDynamic.Rtn.CHANGE_SCENE;
 		else
 			return IDynamic.Rtn.CONTINUE;
