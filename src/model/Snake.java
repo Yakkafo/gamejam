@@ -14,11 +14,14 @@ import utility.IDynamic;
 public class Snake extends GameObject
 {
 	/// CONSTANTS
-	private static final double TURN_RATE = 0.1;
+	private static final double ACCELERATION = 0.02;
+	private static final double FRICTION = 0.26;
+	private static final double MAX_SPEED = 0.16;
 	
 	/// ATTRIBUTES
 	private dVect center;
 	private double angle = Math.random()*360;
+	private double speed = 0;
 	private double radius; 
 	private GameObject.Colour colour;
 	
@@ -72,8 +75,20 @@ public class Snake extends GameObject
 	{
 		super.update();
 		
-		// Reposition the snake's head around circle
-		addAngle(TURN_RATE*ControlManager.getInstance().getSnakeDelta(colour));
+		// Accelerate based on input
+		int input_sign = ControlManager.getInstance().getSnakeDelta(colour);
+		speed += ACCELERATION*input_sign;
+		
+		// Apply friction if not moving in direction of input
+		if (Math.signum(speed) != input_sign)
+			speed *= (1-FRICTION);
+		
+		// Cap speed to maximum
+		if(Math.abs(speed) > MAX_SPEED)
+			speed = Math.signum(speed)*MAX_SPEED;
+		
+		// Advance angle by polar speed
+		addAngle(speed);
 		
 		// Nothing to report
 		return IDynamic.Rtn.CONTINUE;
