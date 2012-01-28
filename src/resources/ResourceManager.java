@@ -12,9 +12,12 @@ import org.newdawn.slick.SlickException;
 public class ResourceManager
 {
     /// CLASS NAMESPACE CONSTANTS
+	// system
 	private static final String RESDIR = "data/";
 	private static final String PNG = ".png";
+	// resources
     private static final String SNAKE = "snake";
+    private static final String SNAKE_BODY = "snake_body";
     private static final String RED_MARBLE = "red_marble";
 
     /// CLASS NAMESPACE VARIABLES
@@ -31,17 +34,19 @@ public class ResourceManager
     /// ATTRIBUTES
     private HashMap<String, Animation> animations 
     					= new HashMap<String, Animation>();
-
+    private HashMap<String, Image> images 
+		= new HashMap<String, Image>();
 
     /// METHODS
     
     // creation
     private ResourceManager()
     {
-    		// Snakes
-    		addAnimation(SNAKE, 2, 300);
-			// Marbles
-			addAnimation(RED_MARBLE, 1, 300);
+		// Images
+    	addImage(SNAKE_BODY);
+		// Animations
+		addAnimation(SNAKE, 2, 300);
+		addAnimation(RED_MARBLE, 1, 300);
     }
 
     // query
@@ -51,6 +56,25 @@ public class ResourceManager
     }
     
     // addition
+    protected void addImage(String name)
+    {
+    	try
+		{
+    		// Try to load the image
+    		Image new_image = new Image(RESDIR+name+PNG);
+    		// We will always rotate around the centre
+    		new_image.setCenterOfRotation(new_image.getWidth()/2, 
+										new_image.getHeight()/2);
+    		// Add to the hashmap
+			images.put(name, new_image);
+		}
+		catch (SlickException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    
     protected void addAnimation(String name, int n_frames, int frame_duration)
     {
 		try
