@@ -76,6 +76,9 @@ public class ControlManager
 	// query
 	public int getSnakeDelta(GameObject.Colour snake_colour)
 	{
+//		for(int i = 0; i < 20; i ++)
+//			if (container.getInput().isControlPressed(i, /*get turntable id*/ 2))
+//				System.out.println("Key pressed ! #"+i);
 		switch(device)
 		{
 			case keyboard :
