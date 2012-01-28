@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import math.FRect;
 import math.FVect;
+import navigation.Scene;
 
 import org.newdawn.slick.Graphics;
 
@@ -11,7 +12,7 @@ import resources.ResourceManager;
 import utility.IDynamic;
 import utility.IVisible;
 
-public class Level implements IDynamic, IVisible
+public class Level extends Scene
 {
 	/// CONSTANTS
 	private static final int INNER_RADIUS = 128;
@@ -31,8 +32,6 @@ public class Level implements IDynamic, IVisible
 	
 	/// ATTRIBUTES
 	private ArrayList<GameObject> objects = new ArrayList<GameObject>();
-	private FVect size;
-	private FVect centre;
 	private int marble_timer;
 	private int score;
 	private FRect background_dest;
@@ -40,12 +39,9 @@ public class Level implements IDynamic, IVisible
 	/// METHODS
 	
 	// creation
-	public Level(FVect init_size)
+	public Level()
 	{
 		// Initialise variables
-		size = init_size;
-		centre = ((FVect)size.clone()).scale(0.5f);
-		
 		background_dest = new FRect(centre.x-size.y/2.8f, centre.y-size.y/2.8f,
 									size.y/1.4f, size.y/1.4f);
 		
@@ -130,7 +126,7 @@ public class Level implements IDynamic, IVisible
             	case CONTINUE:
             		break;	// do nothing
             		
-            	case KILLME:
+            	case DELETE_OBJECT:
             		objects.remove(i); i--;
             }
         }
@@ -173,5 +169,12 @@ public class Level implements IDynamic, IVisible
 		// Create marble in a corner based on results
 		FVect random_corner = new FVect(coin1*size.x, coin2*size.y);
 		addObject(new Marble(random_corner, centre));
+	}
+
+	@Override
+	public Scene getNextScene()
+	{
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -6,9 +6,9 @@ public interface IDynamic
 	public static enum Rtn
 	{
 		CONTINUE,
-		KILLME,
-		LOSE,
-		EXIT
+		DELETE_OBJECT,
+		CHANGE_SCENE,
+		EXIT_GAME
 	}
 	
 	/// INTERFACE METHODS

@@ -1,13 +1,13 @@
 package navigation;
 
-import org.newdawn.slick.Font;
+import model.Level;
+
 import org.newdawn.slick.Graphics;
 
-import resources.ResourceManager;
-
+import system.ControlManager;
 import utility.IDynamic;
 
-public class Title
+public class Title extends Scene
 {
 	/// ATTRIBUTES
 	
@@ -18,12 +18,17 @@ public class Title
 	public void draw(Graphics g)
 	{
 		g.drawString("PRESS ANY KEY", 32, 32);
-		
 	}
 
 	public IDynamic.Rtn update()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return IDynamic.Rtn.CONTINUE;
+		//if(ControlManager.getInstance());
+	}
+
+	@Override
+	public Scene getNextScene()
+	{
+		return new Level();
 	}
 }

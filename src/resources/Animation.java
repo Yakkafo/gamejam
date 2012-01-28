@@ -3,7 +3,7 @@
 package resources;
 
 import java.awt.image.BufferedImage;
-import math.iRect;
+import math.IRect;
 
 public class Animation extends Graphic
 {
@@ -20,30 +20,30 @@ public class Animation extends Graphic
     // private BufferedImage image;
     // private iRect frame;
     /// ATTRIBUTES
-    private iRect strip;
+    private IRect strip;
     private int numFrames;
     private LoopType loopType;
 
     /// METHODS
 
     // creation
-    public Animation(BufferedImage init_image, iRect init_frame,
+    public Animation(BufferedImage init_image, IRect init_frame,
             int init_numFrames)
     {
         super(init_image, init_frame);
         numFrames = init_numFrames;
-        strip = new iRect(frame.x, frame.y,
+        strip = new IRect(frame.x, frame.y,
                 frame.width*numFrames, frame.height);
     }
 
-    public Animation(BufferedImage init_image, iRect init_frame,
+    public Animation(BufferedImage init_image, IRect init_frame,
             int init_numFrames, LoopType init_loopType)
     {
         this(init_image, init_frame, init_numFrames);
         loopType = init_loopType;
     }
 
-    public iRect getFrame(double frame_number)
+    public IRect getFrame(double frame_number)
     {
         if(frame_number == 0)
             return getFrame();
@@ -54,7 +54,7 @@ public class Animation extends Graphic
             return frame;
 
         // return a translated version of the frame
-        iRect result = (iRect)frame.clone();
+        IRect result = (IRect)frame.clone();
         result.translate(offset, 0);
         return result;
     }

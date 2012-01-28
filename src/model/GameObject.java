@@ -75,7 +75,7 @@ public abstract class GameObject implements IVisible, IDynamic
 	public IDynamic.Rtn update()
 	{
 		pollEvents();
-		return (dead) ? IDynamic.Rtn.KILLME : IDynamic.Rtn.CONTINUE;
+		return (dead) ? IDynamic.Rtn.DELETE_OBJECT : IDynamic.Rtn.CONTINUE;
 	}
 	
 	public void pollEvents()

@@ -54,8 +54,8 @@ public class FVect extends Point2D.Float
     }
 
     // cast
-    public iVect iVect()
+    public IVect iVect()
     {
-        return new iVect((int)x, (int)y);
+        return new IVect((int)x, (int)y);
     }
 }

@@ -3,18 +3,18 @@
 package resources;
 
 import java.awt.image.BufferedImage;
-import math.iRect;
+import math.IRect;
 
 public class Graphic
 {
     /// ATTRIBUTES
     protected BufferedImage image;
-    protected iRect frame;
+    protected IRect frame;
 
     /// METHODS
 
     // creation
-    public Graphic(BufferedImage init_image, iRect init_frame)
+    public Graphic(BufferedImage init_image, IRect init_frame)
     {
         image = init_image;
         frame = init_frame;
@@ -26,7 +26,7 @@ public class Graphic
         return image;
     }
 
-    public iRect getFrame()
+    public IRect getFrame()
     {
         return frame;
     }
