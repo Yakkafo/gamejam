@@ -36,7 +36,7 @@ public abstract class SnakeHead extends GameObject
 		snake_number = init_snake_number;
 		
 		// convert polar to cartesian coordinates
-		updatePosition();
+		calculateCoordinates();
 	}
 	
 	// modification
@@ -44,14 +44,14 @@ public abstract class SnakeHead extends GameObject
 	{
 		// Reset angle and convert polar to cartesian coordinates
 		angle = new_angle;
-		updatePosition();
+		calculateCoordinates();
 	}
 	
 	public void addAngle(double addition)
 	{
 		// Reset angle and convert polar to cartesian coordinates
 		angle += addition;
-		updatePosition();
+		calculateCoordinates();
 	}
 	
 	// interface
@@ -59,7 +59,8 @@ public abstract class SnakeHead extends GameObject
 	{
 		// Draw the head (animated)
 		//((Animation)getHeadIm()).getCurrentFrame().drawCentered((float)position.x, (float)position.y);
-		g.drawRect((float)position.x-16, (float)position.y-16, 32,32);
+		g.drawRect((float)hitbox.x, (float)hitbox.y,
+					(float)hitbox.width, (float)hitbox.height);
 		// Draw the body (static, rotated)
 		//((Image)getBodyIm()).setRotation((float)angle);
 		//((Image)getBodyIm()).drawCentered((float)center.x, (float)center.y);
@@ -85,12 +86,13 @@ public abstract class SnakeHead extends GameObject
 	
 	/// SUBROUTINES
 	
-	private void updatePosition()
+	private void calculateCoordinates()
 	{
 		// Cache the position in cartesian coordinates
 		// this prevents trigonometry calculations each time we render!
 		position.x = center.x + (int)(Math.cos(angle)*radius);
 		position.y = center.y + (int)(Math.sin(angle)*radius);
+		positionUpdated();
 	}
 	
 }

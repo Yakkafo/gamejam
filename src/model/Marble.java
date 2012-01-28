@@ -38,7 +38,8 @@ public class Marble extends GameObject
 	@Override
 	public void draw(Graphics g)
 	{
-		g.drawRect((float)position.x-16, (float)position.y-16, 32, 32);
+		g.drawRect((float)hitbox.x, (float)hitbox.y,
+				(float)hitbox.width, (float)hitbox.height);
 		//ResourceManager.getInstance().getAnimation("red_marble")
 			//.draw((float)position.x, (float)position.y);
 	}
@@ -46,7 +47,7 @@ public class Marble extends GameObject
 	@Override
 	public void update()
 	{
-		position.add(speed);
+		translatePosition(speed);
 	}
 
 
