@@ -3,6 +3,8 @@ package model;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import org.newdawn.slick.Graphics;
+
 import math.dRect;
 import math.dVect;
 
@@ -11,6 +13,12 @@ import utility.IVisible;
 
 public abstract class GameObject implements IVisible, IDynamic
 {
+	/// NESTED DEFINITIONS
+	public static enum Colour 
+	{
+		RED, GREEN, BLUE
+	}
+	
 	/// ATTRIBUTES
 	protected dVect position;
 	protected dRect hitbox;
@@ -19,10 +27,11 @@ public abstract class GameObject implements IVisible, IDynamic
 	/// METHODS
 	
 	// creation
-	public GameObject(dVect init_position)
+	public GameObject(dVect init_position, dVect hitbox_size)
 	{
+		hitbox = new dRect(0, 0, hitbox_size.x, hitbox_size.y);
 		position = init_position;
-		hitbox = new dRect(0, 0, 64, 64);
+		positionUpdated();	// move hitbox, etc to position
 	}
 	
 	// access
@@ -49,7 +58,34 @@ public abstract class GameObject implements IVisible, IDynamic
 		hitbox.centerOn(position);
 	}
 	
+	public void drawHitbox(Graphics g)
+	{
+		g.drawRect((float)hitbox.x, (float)hitbox.y,
+				(float)hitbox.width, (float)hitbox.height);
+	}
+	
 	// interface
+	
+	public IDynamic.Rtn update()
+	{
+		pollEvents();
+		return IDynamic.Rtn.CONTINUE;
+	}
+	
+	public void pollEvents()
+	{
+        ObjectEvent e = events.poll();
+        while(e != null)
+        {
+        	// pass the event to the specific object to treat
+            treatEvent(e);
+            // get next event
+            e = events.poll();
+        }
+	}
+	
+	public abstract void treatEvent(ObjectEvent e);
+	
 	public boolean isColliding(GameObject other)
 	{
 		return hitbox.intersects(other.hitbox);

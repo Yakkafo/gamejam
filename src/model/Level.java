@@ -13,6 +13,11 @@ import utility.IVisible;
 
 public class Level implements IDynamic, IVisible
 {
+	/// CONSTANTS
+	private static final int INNER_RADIUS = 128;
+	private static final int MIDDLE_RADIUS = 196;
+	private static final int OUTER_RADIUS = 256;
+	
 	/// ATTRIBUTES
 	private ArrayList<GameObject> objects = new ArrayList<GameObject>();
 	private dVect middle;
@@ -22,18 +27,18 @@ public class Level implements IDynamic, IVisible
 	{
 		// Create snakes centered on middle
 		middle = init_middle;
-		objects.add(new InnerSnake(middle));
-		objects.add(new MiddleSnake(middle));
-		objects.add(new OuterSnake(middle));
+		objects.add(new Snake(middle, INNER_RADIUS, GameObject.Colour.BLUE));
+		objects.add(new Snake(middle, MIDDLE_RADIUS, GameObject.Colour.RED));
+		objects.add(new Snake(middle, OUTER_RADIUS, GameObject.Colour.GREEN));
 		objects.add(new Marble(new dVect(0,0), middle));
+		objects.add(new Midgard(middle));
 	}
 	
 	// implementation
 
 	@Override
-	public void update()
+	public IDynamic.Rtn update()
 	{
-        
 		// for each GameObject
         for(int i = 0; i < objects.size(); i++)
         {
@@ -47,7 +52,7 @@ public class Level implements IDynamic, IVisible
             o.update();
         }
 		
-		// CONTROLLER TESTS
+		return IDynamic.Rtn.CONTINUE;
 	}
 
 	@Override

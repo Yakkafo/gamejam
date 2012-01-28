@@ -9,8 +9,9 @@ import org.newdawn.slick.Renderable;
 
 import resources.ResourceManager;
 import system.ControlManager;
+import utility.IDynamic;
 
-public abstract class SnakeHead extends GameObject
+public class Snake extends GameObject
 {
 	/// CONSTANTS
 	private static final double TURN_RATE = 0.1;
@@ -19,21 +20,21 @@ public abstract class SnakeHead extends GameObject
 	private dVect center;
 	private double angle = 0.0;
 	private double radius; 
-	private final int snake_number;
+	private GameObject.Colour colour;
 	
 	/// METHODS
 	
 	// creation
-	public SnakeHead(dVect init_center, double init_radius, 
-			int init_snake_number)
+	public Snake(dVect init_center, double init_radius, 
+			GameObject.Colour init_colour)
 	{
 		// Create position at origin 
-		super(new dVect(0, 0));
+		super(new dVect(0, 0), new dVect(48,48));
 		
 		// Initialise variables
 		center = init_center;
 		radius = init_radius;
-		snake_number = init_snake_number;
+		colour = init_colour;
 		
 		// convert polar to cartesian coordinates
 		calculateCoordinates();
@@ -66,13 +67,15 @@ public abstract class SnakeHead extends GameObject
 		g.drawOval((float)(center.x-radius), (float)(center.y-radius), (float)radius*2, (float)radius*2);
 	}
 	
-	public void update()
+	public IDynamic.Rtn update()
 	{
 		super.update();
 		
 		// Reposition the snake's head around circle
-		addAngle(TURN_RATE*ControlManager.getInstance()
-				.getSnakeDelta(snake_number));
+		addAngle(TURN_RATE);
+		
+		// Nothing to report
+		return IDynamic.Rtn.CONTINUE;
 	}
 	
 	public void treatEvent(ObjectEvent e)
@@ -82,7 +85,11 @@ public abstract class SnakeHead extends GameObject
 	
 	// overriden
 	
-	protected abstract Renderable getBodyIm();
+	protected Renderable getBodyIm()
+	{
+		/// FIXME
+		return null;
+	}
 	
 	protected Renderable getHeadIm()
 	{

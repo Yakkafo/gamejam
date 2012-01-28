@@ -9,7 +9,6 @@ class CollisionEvent extends ObjectEvent
     {
         if(a.isColliding(b))
         {
-        	System.out.println("COLLISION HAS OCCURED");
             a.addEvent(new CollisionEvent(b));
             b.addEvent(new CollisionEvent(a));
         }
@@ -23,7 +22,7 @@ class CollisionEvent extends ObjectEvent
     // creation
     public CollisionEvent(GameObject init_other)
     {
-        super("actor_collision");
+        super(ObjectEvent.Type.COLLISION);
         other = init_other;
     }
 

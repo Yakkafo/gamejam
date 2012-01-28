@@ -4,19 +4,25 @@ package model;
 
 public class ObjectEvent
 {
+	/// NESTED DEFINITIONS
+	public static enum Type
+	{
+		COLLISION
+	}
+	
     /// ATTRIBUTES
-    private String type;
+    private Type type;
 
     /// METHODS
 
     // creation
-    public ObjectEvent(String init_type)
+    public ObjectEvent(Type init_type)
     {
         type = init_type;
     }
 
     // query
-    public String getType()
+    public Type getType()
     {
         return type;
     }
