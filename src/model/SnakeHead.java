@@ -57,6 +57,7 @@ public abstract class SnakeHead extends GameObject
 	public void update()
 	{
 		addAngle(0.1*ControlManager.getInstance().getSnakeDelta(snake_number));
+		if(ControlManager.getInstance().checkController()) System.out.println("Controller : true");
 	}
 	
 	/// SUBROUTINES
