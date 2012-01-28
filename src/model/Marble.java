@@ -6,6 +6,8 @@ import math.dVect;
 
 import org.newdawn.slick.Graphics;
 
+import utility.IDynamic;
+
 public class Marble extends GameObject
 {
 	/// CONSTANTS
@@ -36,10 +38,11 @@ public class Marble extends GameObject
 	}
 
 	@Override
-	public void update()
+	public IDynamic.Rtn update()
 	{
 		super.update();
 		translatePosition(speed);
+		return IDynamic.Rtn.CONTINUE;
 	}
 
 	@Override

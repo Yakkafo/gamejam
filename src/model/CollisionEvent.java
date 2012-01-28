@@ -22,7 +22,7 @@ class CollisionEvent extends ObjectEvent
     // creation
     public CollisionEvent(GameObject init_other)
     {
-        super("actor_collision");
+        super(ObjectEvent.Type.COLLISION);
         other = init_other;
     }
 

@@ -9,6 +9,7 @@ import org.newdawn.slick.Renderable;
 
 import resources.ResourceManager;
 import system.ControlManager;
+import utility.IDynamic;
 
 public class Snake extends GameObject
 {
@@ -66,12 +67,15 @@ public class Snake extends GameObject
 		g.drawOval((float)(center.x-radius), (float)(center.y-radius), (float)radius*2, (float)radius*2);
 	}
 	
-	public void update()
+	public IDynamic.Rtn update()
 	{
 		super.update();
 		
 		// Reposition the snake's head around circle
 		addAngle(TURN_RATE);
+		
+		// Nothing to report
+		return IDynamic.Rtn.CONTINUE;
 	}
 	
 	public void treatEvent(ObjectEvent e)

@@ -37,9 +37,8 @@ public class Level implements IDynamic, IVisible
 	// implementation
 
 	@Override
-	public void update()
+	public IDynamic.Rtn update()
 	{
-        
 		// for each GameObject
         for(int i = 0; i < objects.size(); i++)
         {
@@ -53,7 +52,7 @@ public class Level implements IDynamic, IVisible
             o.update();
         }
 		
-		// CONTROLLER TESTS
+		return IDynamic.Rtn.CONTINUE;
 	}
 
 	@Override

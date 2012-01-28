@@ -4,6 +4,8 @@ import math.dVect;
 
 import org.newdawn.slick.Graphics;
 
+import utility.IDynamic;
+
 public class Midgard extends GameObject
 {
 	/// ATTRIBUTES
@@ -28,13 +30,23 @@ public class Midgard extends GameObject
 	
 	public void treatEvent(ObjectEvent e)
 	{
+		switch(e.getType())
+		{
+			case COLLISION:
+				CollisionEvent ce = (CollisionEvent)e;
+				if(ce.getOther().getClass() == Marble.class)
+					;
+					//other.die();
+				break;
+		}
 		
 	}
 
 	@Override
-	public void update()
+	public IDynamic.Rtn update()
 	{
-		// TODO Auto-generated method stub
+		super.update();
+		return IDynamic.Rtn.CONTINUE;
 		
 	}
 

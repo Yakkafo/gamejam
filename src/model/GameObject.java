@@ -66,9 +66,10 @@ public abstract class GameObject implements IVisible, IDynamic
 	
 	// interface
 	
-	public void update()
+	public IDynamic.Rtn update()
 	{
 		pollEvents();
+		return IDynamic.Rtn.CONTINUE;
 	}
 	
 	public void pollEvents()
@@ -76,8 +77,8 @@ public abstract class GameObject implements IVisible, IDynamic
         ObjectEvent e = events.poll();
         while(e != null)
         {
-            System.out.println(e);
-
+        	// pass the event to the specific object to treat
+            treatEvent(e);
             // get next event
             e = events.poll();
         }
