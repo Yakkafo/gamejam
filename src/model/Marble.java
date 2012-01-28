@@ -39,7 +39,7 @@ public class Marble extends GameObject
 	public void draw(Graphics g)
 	{
 		//g.drawString("MARBLE", (float)position.x, (float)position.y);
-		ResourceManager.getInstance().getAnimation("redMarble").draw((float)position.x, (float)position.y);
+		ResourceManager.getInstance().getAnimation("red_marble").draw((float)position.x, (float)position.y);
 	}
 
 	@Override
