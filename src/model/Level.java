@@ -23,7 +23,9 @@ public class Level implements IDynamic, IVisible
 	private ArrayList<GameObject> objects = new ArrayList<GameObject>();
 	private dVect size;
 	private dVect centre;
-	private int marble_timer = START_MARBLE_PERIOD;
+	private int marble_period;
+	private int marble_timer;
+	private int score;
 	
 	/// METHODS
 	public Level(dVect init_size)
@@ -32,11 +34,23 @@ public class Level implements IDynamic, IVisible
 		size = init_size;
 		centre = ((dVect)size.clone()).scale(0.5);
 		
+		// Start first instance!
+		restart();
+	}
+	
+	public void restart()
+	{
+		// Clear any previous objects, reset score and difficult
+		objects.clear();
+		score = 0;
+		marble_period = START_MARBLE_PERIOD;
+		marble_timer = marble_period;
+		
 		// Create snakes centered on middle, protecting home-base
-		objects.add(new Snake(centre, INNER_RADIUS, GameObject.Colour.BLUE));
-		objects.add(new Snake(centre, MIDDLE_RADIUS, GameObject.Colour.RED));
-		objects.add(new Snake(centre, OUTER_RADIUS, GameObject.Colour.GREEN));
-		objects.add(new Midgard(centre));
+		addObject(new Snake(centre, INNER_RADIUS, GameObject.Colour.BLUE));
+		addObject(new Snake(centre, MIDDLE_RADIUS, GameObject.Colour.RED));
+		addObject(new Snake(centre, OUTER_RADIUS, GameObject.Colour.GREEN));
+		addObject(new Midgard(centre));
 	}
 	
 	// implementation
@@ -48,7 +62,7 @@ public class Level implements IDynamic, IVisible
 		if(marble_timer == 0)
 		{
 			createMarble();
-			marble_timer = START_MARBLE_PERIOD; /// FIXME
+			marble_timer = marble_period; /// FIXME
 		}
 		else
 			marble_timer--;
@@ -78,6 +92,22 @@ public class Level implements IDynamic, IVisible
 		return IDynamic.Rtn.CONTINUE;
 	}
 
+	@Override
+	public void draw(Graphics g)
+	{
+		// draw all objects
+		for(GameObject o : objects)
+			o.draw(g);
+	}
+	
+	/// SUBROUTINES
+	
+	private void addObject(GameObject new_object)
+	{
+		objects.add(new_object);
+		new_object.setLevel(this);
+	}
+
 	private void createMarble()
 	{
 		// Flip two coins
@@ -86,14 +116,6 @@ public class Level implements IDynamic, IVisible
 		
 		// Create marble in a corner based on results
 		dVect random_corner = new dVect(coin1*size.x, coin2*size.y);
-		objects.add(new Marble(random_corner, centre));
-	}
-
-	@Override
-	public void draw(Graphics g)
-	{
-		// draw all objects
-		for(GameObject o : objects)
-			o.draw(g);
+		addObject(new Marble(random_corner, centre));
 	}
 }

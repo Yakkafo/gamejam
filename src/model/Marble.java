@@ -7,6 +7,8 @@ import model.GameObject.Colour;
 
 import org.newdawn.slick.Graphics;
 
+import resources.ResourceManager;
+
 import utility.IDynamic;
 
 public class Marble extends GameObject
@@ -34,10 +36,20 @@ public class Marble extends GameObject
 	@Override
 	public void draw(Graphics g)
 	{
-		drawHitbox(g);
-		g.drawString(colour.toString(), (float)position.x, (float)position.y);
-		//ResourceManager.getInstance().getAnimation("red_marble")
-			//.draw((float)position.x, (float)position.y);
+		ResourceManager.getInstance().getImage(ColourToImage())
+			.draw((float)position.x-24, (float)position.y-24, 48, 48);
+
+	}
+
+	private String ColourToImage()
+	{
+		switch(colour)
+		{
+			case RED: return "marble_red";
+			case GREEN: return "marble_green";
+			case BLUE: return "marble_blue";
+			case WHITE: default: return "marble_white";
+		}
 	}
 
 	@Override
