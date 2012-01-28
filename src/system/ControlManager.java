@@ -1,10 +1,14 @@
 package system;
 
+import java.util.ArrayList;
+
 import model.GameObject;
 
+import org.lwjgl.input.Controller;
 import org.lwjgl.input.Controllers;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.util.Log;
 
 
 public class ControlManager
@@ -26,26 +30,30 @@ public class ControlManager
 	}
 
 	// / ATTRIBUTES
+	private enum Device 
+	{
+		PS3Turntable, XBOXTurntable, keyboard;
+	}
+	private Device device;
 	private Input input;
 	private int wheel_direction = 0;
+	private int turnTableIndex = -1;
+	private ArrayList<Controller> controllers;
 
 	/// METHODS
 	
 	// creation
 	public ControlManager(Input init_input)
 	{
-		// Initialise variables
+		// Initialize variables
 		input = init_input;
+
+		
 		
 		//Controllers test
 		try
 		{
 			input.initControllers();
-			
-			/// FIXME
-			System.out.println("Controller count : "+input.getControllerCount());
-			
-
 		}
 		catch (SlickException e)
 		{
@@ -94,6 +102,30 @@ public class ControlManager
 	{
 		// Forget the mouse wheel direction the update after it occurs
 		wheel_direction = 0;
+	}
+	
+	//Check if the player play with a turntable or a keyboard
+	private void checkDevice() //TODO - ENUM : keybord or turntable
+	{
+		String tamp;
+		controllers = new ArrayList<Controller>();
+		for (int i = 0; i < Controllers.getControllerCount(); i++) 
+		{
+			Controller controller = Controllers.getController(i);
+			if ((controller.getButtonCount() >= 3) && (controller.getButtonCount() < 20))
+			{
+				controllers.add(controller);
+			}
+		}
+		for (int i=0;i<controllers.size();i++)
+		{
+			tamp = ((Controller) controllers.get(i)).getName();
+			if (
+					tamp.compareTo("Guitar Hero5 for PlayStation (R) 3") == 0 ||
+					tamp.compareTo("Guitar Hero5 for Xbox360 ??? (R) 3") == 0
+				)
+				turnTableIndex = ((Controller) controllers.get(i)).getIndex();
+		}
 	}
 	
 	

@@ -52,21 +52,7 @@ public class Game extends BasicGame
 		
 		// TODO : Make these tests as methods
 		///Tests ;
-		//Check controllers : index
-		ArrayList<Controller> controllers = new ArrayList<Controller>();
-
-		for (int i = 0; i < Controllers.getControllerCount(); i++) 
-		{
-			Controller controller = Controllers.getController(i);
-
-			if ((controller.getButtonCount() >= 3) && (controller.getButtonCount() < 20))
-			{
-				controllers.add(controller);
-			}
-		}
-		Log.info("Found "+controllers.size()+" controllers");
-		for (int i=0;i<controllers.size();i++)
-			Log.info(((Controller) controllers.get(i)).getName()+" : "+((Controller) controllers.get(i)).getIndex());
+		
 		
 		//Check if turntable is connected :
 		for (int i=0;i<controllers.size();i++)
