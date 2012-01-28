@@ -1,16 +1,16 @@
 package model;
 
 import java.awt.Point;
-import java.awt.geom.Point2D;
+
+import math.dVect;
 
 import org.newdawn.slick.Graphics;
 
-import utility.IVisible;
+import utility.ICollider;
 
-public class SnakeHead implements IVisible
+public abstract class SnakeHead extends GameObject
 {
 	/// ATTRIBUTES
-	private Point position;
 	private Point center;
 	private double angle = 0.0;
 	private double radius; 
@@ -20,12 +20,14 @@ public class SnakeHead implements IVisible
 	// creation
 	public SnakeHead(Point init_center, double init_radius)
 	{
+		// Create position at origin 
+		super(new dVect(0, 0));
+		
 		// Initialise variables
 		center = init_center;
 		radius = init_radius;
 		
-		// Create position and convert polar to cartesian coordinates
-		position = new Point();
+		// convert polar to cartesian coordinates
 		updatePosition();
 	}
 	
@@ -47,7 +49,19 @@ public class SnakeHead implements IVisible
 	// interface
 	public void draw(Graphics g)
 	{
-		g.drawString("SNAKE HEAD", position.x, position.y);
+		g.fillRect((int)position.x, (int)position.y, 32, 32);
+	}
+	
+	public void update()
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	public boolean isColliding(ICollider other)
+	{
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 	/// SUBROUTINES

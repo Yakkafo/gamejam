@@ -1,37 +1,48 @@
 package model;
 
-import java.awt.Point;
+import math.dVect;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
+import utility.ICollider;
 
-import utility.IVisible;
-
-public class Marble implements IVisible
+public class Marble extends GameObject
 {
-	/// ATTRIBUTES
-	private Point position;
-	private Image image;
-	private Point target; //Marbel goes to the target
-	private MarbleType type; //Marbel color
-	
-	
-	public Marble(Point target)
+	/// NESTED DEFINITIONS
+	public enum MarbleType 
 	{
-		try {
-			image = new Image("marbel.PNG");
-		} catch (SlickException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		this.target = target;
+		RED, GREEN, BLUE
+	}
+
+	/// ATTRIBUTES
+	private Image image;
+	private dVect speed;
+	private MarbleType type;
+
+	public Marble(dVect init_position, dVect target)
+	{
+		super(init_position);
+		speed = new dVect(target.x-position.x, target.y-position.y);
 	}
 
 	@Override
-	public void draw(Graphics g) {
-		g.drawImage(image, position.x, position.y);
+	public void draw(Graphics g)
+	{
+		//g.drawImage(image, (float)position.x, (float)position.y);
+	}
+
+	@Override
+	public void update()
+	{
+		// TODO Auto-generated method stub
 		
 	}
-	
+
+	@Override
+	public boolean isColliding(ICollider other)
+	{
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

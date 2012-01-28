@@ -14,5 +14,4 @@ public class CenterSnake extends SnakeHead
 	{
 		super(init_center, RADIUS);
 	}
-
 }
