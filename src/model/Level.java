@@ -6,10 +6,8 @@ import math.FRect;
 import math.FVect;
 
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Input;
 
 import resources.ResourceManager;
-import system.ControlManager;
 import utility.IDynamic;
 import utility.IVisible;
 
@@ -53,6 +51,8 @@ public class Level implements IDynamic, IVisible
 		
 		// Start first instance!
 		restart();
+		
+		
 	}
 	
 	public void restart()
@@ -141,9 +141,10 @@ public class Level implements IDynamic, IVisible
 	@Override
 	public void draw(Graphics g)
 	{
+		ResourceManager rm = ResourceManager.getInstance();
+		
 		// draw background
-		ResourceManager.getInstance().getImage("wheel_back")
-		.draw(background_dest.x, background_dest.y, 
+		rm.getImage("wheel_back").draw(background_dest.x, background_dest.y, 
 				background_dest.width, background_dest.height);
 		
 		// draw all objects
@@ -151,6 +152,7 @@ public class Level implements IDynamic, IVisible
 			o.draw(g);
 		
 		// draw score
+		g.setFont(rm.getFont());
 		g.drawString("Score : " + score, 32, 32);
 	}
 	
