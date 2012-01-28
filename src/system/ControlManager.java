@@ -15,7 +15,12 @@ public class ControlManager
 {
 	// / CLASS NAMESPACE VARIABLES
 	private static ControlManager instance = null;
-	private final static int axisIndex = 4;
+	private final static int AXISINDEX = 4;
+	private final static int GREENBUTTON = 5;
+	private final static int REDBUTTON = 6;
+	private final static int BLUEBUTTON = 4;
+	private final static int POWERBUTTON = 7;
+
 
 	// / CLASS NAMESPACE FUNCTIONS
 	public static void createInstance(Input init_input)
@@ -76,9 +81,6 @@ public class ControlManager
 	// query
 	public int getSnakeDelta(GameObject.Colour snake_colour)
 	{
-//		for(int i = 0; i < 20; i ++)
-//			if (container.getInput().isControlPressed(i, /*get turntable id*/ 2))
-//				System.out.println("Key pressed ! #"+i);
 		switch(device)
 		{
 			case keyboard :
@@ -133,12 +135,10 @@ public class ControlManager
 			case PS3Turntable :
 				if(input.getAxisValue(2, 0) < 0)
 				{
-					System.out.println("down !");
 					return -1;
 				}
 				else if(input.getAxisValue(2, 0) > 0)
 				{
-					System.out.println("up !");
 					return 1;
 				}
 				else

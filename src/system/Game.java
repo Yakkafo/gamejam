@@ -67,6 +67,10 @@ public class Game extends BasicGame
 		
 		// Forget events that were received this step
 		ControlManager.getInstance().forgetEvents();
+		if(ControlManager.getInstance().getDevice() == ControlManager.Device.PS3Turntable)
+			for(int i = 0; i < 20; i ++)
+				if (container.getInput().isControlPressed(i, ControlManager.getInstance().getDeviceIndex()))
+					System.out.println("Key pressed ! #"+i);
 
 	}
 	
@@ -111,40 +115,4 @@ public class Game extends BasicGame
 	{
 		ControlManager.getInstance().wheelEvent(delta);
 	}
-	
-	//TODO Do the same thing than mouseWheelMoved but for the turntable
-//	public void methodeBidon()
-//	{
-//		// TODO : Make these tests as methods
-//		/// TESTS
-//		//Check if a button has been pressed
-//		for(int i = 0; i < 20; i ++)
-//				System.out.println("Key pressed ! #"+i);
-//		/*
-//		 * BLUE : 4
-//		 * RED : 6
-//		 * GREEN : 5
-//		 * POWER : 7
-//		 * 
-//		 */
-//		
-//		//Check if the turntable get down
-//		if(container.getInput().isControllerDown(/*id*/ 2))
-//			System.out.println("DOWN");
-//		
-//		//Check if the turntable get up
-//		if(container.getInput().isControllerUp(/*id*/ 2))
-//			System.out.println("UP");
-//			
-//		//Check if the turntable get down
-//		if(container.getInput().isControllerDown(/*id*/ 2))
-//			System.out.println("RIGHT");
-//						
-//		//Check if the turntable get up
-//		if(container.getInput().isControllerUp(/*id*/ 2))
-//			System.out.println("LEFT");
-//
-//		//System.out.println("Axis 1 : "+container.getInput().getAxisValue(2, 0));
-//
-//	}
 }
