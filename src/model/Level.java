@@ -18,6 +18,15 @@ public class Level implements IDynamic, IVisible
 	private static final int MIDDLE_RADIUS = 196;
 	private static final int OUTER_RADIUS = 256;
 	private static final int START_MARBLE_PERIOD = 90;
+	private static final int SCORE_BLOCK_MARBLE = 5;
+	private static final int SCORE_EAT_MARBLE = 10;
+	private static final int SCORE_HEAL_MARBLE = 15;
+	
+	// NESTED DECLARATIONS
+	public static enum Bonus
+	{
+		BLOCK, EAT, HEAL
+	}
 	
 	/// ATTRIBUTES
 	private ArrayList<GameObject> objects = new ArrayList<GameObject>();
@@ -28,6 +37,8 @@ public class Level implements IDynamic, IVisible
 	private int score;
 	
 	/// METHODS
+	
+	// creation
 	public Level(dVect init_size)
 	{
 		// Initialise variables
@@ -53,6 +64,33 @@ public class Level implements IDynamic, IVisible
 		addObject(new Midgard(centre));
 	}
 	
+	// access
+	
+	public int getScore()
+	{
+		return score;
+	}
+	
+
+	public void addBonus(Bonus bonus)
+	{
+		switch(bonus)
+		{
+			case BLOCK:
+				score += SCORE_BLOCK_MARBLE;
+				break;
+			case EAT:
+				score += SCORE_EAT_MARBLE;
+				break;
+			case HEAL:
+				score += SCORE_HEAL_MARBLE;
+				break;
+			default:
+				break;
+		}
+		
+	}
+
 	// implementation
 
 	@Override
@@ -95,9 +133,14 @@ public class Level implements IDynamic, IVisible
 	@Override
 	public void draw(Graphics g)
 	{
+		// draw background
+		
 		// draw all objects
 		for(GameObject o : objects)
 			o.draw(g);
+		
+		// draw score
+		g.drawString("Score : " + score, 32, 32);
 	}
 	
 	/// SUBROUTINES

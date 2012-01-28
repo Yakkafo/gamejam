@@ -16,11 +16,7 @@ public class ResourceManager
 	private static final String RESDIR = "data/";
 	private static final String PNG = ".png";
 	// resources
-    private static final String SNAKE = "snake";
-    private static final String SNAKE_BODY_IN = "snake_body_in";
-    private static final String SNAKE_BODY_MID = "snake_body_mid";
-    private static final String SNAKE_BODY_OUT = "snake_body_out";
-    
+  
     private static final String MARBLE_RED = "marble_red";
     private static final String MARBLE_BLUE = "marble_blue";
     private static final String MARBLE_GREEN = "marble_green";
@@ -53,8 +49,6 @@ public class ResourceManager
     	addImage(MARBLE_GREEN);
     	addImage(MARBLE_BLUE);
     	addImage(MARBLE_WHITE);
-		// Animations
-		addAnimation(SNAKE, 2, 300);
     }
 
     // query
