@@ -22,12 +22,31 @@ public abstract class GameObject implements IVisible, IDynamic
 	public GameObject(dVect init_position)
 	{
 		position = init_position;
+		hitbox = new dRect(0, 0, 64, 64);
 	}
 	
 	// access
 	public void addEvent(ObjectEvent e)
 	{
 		events.add(e);
+	}
+	
+	public void translatePosition(dVect translation)
+	{
+		position.add(translation);
+		positionUpdated();
+	}
+	
+	public void setPosition(dVect new_position)
+	{
+		position = new_position;
+		positionUpdated();
+	}
+	
+	// should be called each time position is modified
+	public void positionUpdated()
+	{
+		hitbox.centerOn(position);
 	}
 	
 	// interface

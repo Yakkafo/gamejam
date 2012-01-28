@@ -48,7 +48,6 @@ public class Level implements IDynamic, IVisible
         }
 		
 		// CONTROLLER TESTS
-		if(ControlManager.getInstance().checkController(0)) System.out.println("Controllers checked!");
 	}
 
 	@Override
