@@ -38,6 +38,7 @@ public class ControlManager
 		try
 		{
 			input.initControllers();
+			
 			/// FIXME
 			System.out.println("Controller count : "+input.getControllerCount());
 			

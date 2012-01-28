@@ -17,21 +17,29 @@ public class Level implements IDynamic, IVisible
 	private static final int INNER_RADIUS = 128;
 	private static final int MIDDLE_RADIUS = 196;
 	private static final int OUTER_RADIUS = 256;
+	private static final int START_MARBLE_PERIOD = 90;
+	
+	/// CLASS VARIABLES
+	private static Level instance;
 	
 	/// ATTRIBUTES
 	private ArrayList<GameObject> objects = new ArrayList<GameObject>();
-	private dVect middle;
+	private dVect size;
+	private dVect centre;
+	private int marble_timer = START_MARBLE_PERIOD;
 	
 	/// METHODS
-	public Level(dVect init_middle)
+	public Level(dVect init_size)
 	{
-		// Create snakes centered on middle
-		middle = init_middle;
-		objects.add(new Snake(middle, INNER_RADIUS, GameObject.Colour.BLUE));
-		objects.add(new Snake(middle, MIDDLE_RADIUS, GameObject.Colour.RED));
-		objects.add(new Snake(middle, OUTER_RADIUS, GameObject.Colour.GREEN));
-		objects.add(new Marble(new dVect(0,0), middle));
-		objects.add(new Midgard(middle));
+		// Initialise variables
+		size = init_size;
+		centre = ((dVect)size.clone()).scale(0.5);
+		
+		// Create snakes centered on middle, protecting home-base
+		objects.add(new Snake(centre, INNER_RADIUS, GameObject.Colour.BLUE));
+		objects.add(new Snake(centre, MIDDLE_RADIUS, GameObject.Colour.RED));
+		objects.add(new Snake(centre, OUTER_RADIUS, GameObject.Colour.GREEN));
+		objects.add(new Midgard(centre));
 	}
 	
 	// implementation
@@ -39,6 +47,15 @@ public class Level implements IDynamic, IVisible
 	@Override
 	public IDynamic.Rtn update()
 	{
+		// create new marbles or decrement timer
+		if(marble_timer == 0)
+		{
+			createMarble();
+			marble_timer = START_MARBLE_PERIOD; /// FIXME
+		}
+		else
+			marble_timer--;
+		
 		// for each GameObject
         for(int i = 0; i < objects.size(); i++)
         {
@@ -62,6 +79,17 @@ public class Level implements IDynamic, IVisible
         }
 		
 		return IDynamic.Rtn.CONTINUE;
+	}
+
+	private void createMarble()
+	{
+		// Flip two coins
+		int coin1 = Math.round((float)Math.random());
+		int coin2 = Math.round((float)Math.random());
+		
+		// Create marble in a corner based on results
+		dVect random_corner = new dVect(coin1*size.x, coin2*size.y);
+		objects.add(new Marble(random_corner, centre));
 	}
 
 	@Override

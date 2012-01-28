@@ -20,6 +20,7 @@ public class Marble extends GameObject
 	public Marble(dVect init_position, dVect target)
 	{
 		super(init_position, new dVect(32,32));
+		
 		// Set speed towards target
 		speed = new dVect(target.x-position.x, target.y-position.y)
 						.normalise().scale(DEFAULT_SPEED);
