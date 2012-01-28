@@ -13,10 +13,10 @@ import utility.IDynamic;
 public class Snake extends GameObject
 {
 	/// CONSTANTS
-	private static final double ACCELERATION = 0.02;
-	private static final double FRICTION = 0.26;
-	private static final double MAX_SPEED = 0.16;
-	private static final int STUN_DURATION = 90; // 3 seconds
+	private static double ACCELERATION = 0.02;
+	private static double FRICTION = 0.26;
+	private static double MAX_SPEED = 0.16;
+	private static int STUN_DURATION = 90; // 3 seconds
 	
 	/// ATTRIBUTES
 	private FVect center;
@@ -40,6 +40,41 @@ public class Snake extends GameObject
 		center = init_center;
 		radius = init_radius;
 		colour = init_colour;
+		switch(ControlManager.getInstance().getDevice())
+		{
+			case keyboard :
+			{
+				ACCELERATION = 0.02;
+				FRICTION = 0.26;
+				MAX_SPEED = 0.16;
+				STUN_DURATION = 90;
+				break;
+			}
+			case PS3Turntable :
+			{
+				ACCELERATION = 0.5;
+				FRICTION = 0.05;
+				MAX_SPEED = 0.16;
+				STUN_DURATION = 90;
+				break;
+			}
+			case XBOXTurntable :
+			{
+				ACCELERATION = 0.02;
+				FRICTION = 0.26;
+				MAX_SPEED = 0.16;
+				STUN_DURATION = 90;
+				break;
+			}
+			default :
+			{
+				ACCELERATION = 0.02;
+				FRICTION = 0.26;
+				MAX_SPEED = 0.16;
+				STUN_DURATION = 90;
+				break;
+			}
+		}
 		
 		// convert polar to cartesian coordinates
 		calculateCoordinates();

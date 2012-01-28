@@ -31,7 +31,7 @@ public class ControlManager
 	}
 
 	// / ATTRIBUTES
-	private enum Device 
+	public enum Device 
 	{
 		PS3Turntable, XBOXTurntable, keyboard;
 	}
@@ -92,6 +92,19 @@ public class ControlManager
 		
 				}
 			case PS3Turntable :
+				switch(snake_colour)
+				{
+					case BLUE:
+						return (input.isControlPressed(4, deviceIndex)) ? arrowToDelta() : 0;
+					case RED:
+						return (input.isControlPressed(6, deviceIndex)) ? arrowToDelta() : 0;
+					case GREEN:
+						return (input.isControlPressed(5, deviceIndex)) ? arrowToDelta() : 0;
+					default:
+						return 0;
+		
+				}
+			case XBOXTurntable :
 				switch(snake_colour)
 				{
 					case BLUE:
@@ -186,6 +199,10 @@ public class ControlManager
 
 	public int getDeviceIndex() {
 		return deviceIndex;
+	}
+
+	public Device getDevice() {
+		return device;
 	}
 
 	
