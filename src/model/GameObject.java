@@ -20,6 +20,7 @@ public abstract class GameObject implements IVisible, IDynamic
 	}
 	
 	/// ATTRIBUTES
+	private boolean dead = false;
 	protected dVect position;
 	protected dRect hitbox;
 	protected Queue<ObjectEvent> events = new LinkedList<ObjectEvent>();
@@ -35,6 +36,11 @@ public abstract class GameObject implements IVisible, IDynamic
 	}
 	
 	// access
+	public void die()
+	{
+		dead = true;
+	}
+	
 	public void addEvent(ObjectEvent e)
 	{
 		events.add(e);
@@ -69,7 +75,7 @@ public abstract class GameObject implements IVisible, IDynamic
 	public IDynamic.Rtn update()
 	{
 		pollEvents();
-		return IDynamic.Rtn.CONTINUE;
+		return (dead) ? IDynamic.Rtn.KILLME : IDynamic.Rtn.CONTINUE;
 	}
 	
 	public void pollEvents()
@@ -88,6 +94,6 @@ public abstract class GameObject implements IVisible, IDynamic
 	
 	public boolean isColliding(GameObject other)
 	{
-		return hitbox.intersects(other.hitbox);
+		return (!dead && hitbox.intersects(other.hitbox));
 	}
 }

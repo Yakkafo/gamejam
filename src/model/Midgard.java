@@ -8,6 +8,9 @@ import utility.IDynamic;
 
 public class Midgard extends GameObject
 {
+	/// CONSTANTS
+	public static final int MARBLE_DAMAGE = 10;
+	
 	/// ATTRIBUTES
 	private int hitpoints = 100;
 	
@@ -19,13 +22,20 @@ public class Midgard extends GameObject
 		super(init_position, new dVect(32, 32));
 	}
 	
+	// access
+	public void takeDamage(int damage_amount)
+	{
+		hitpoints -= damage_amount;
+		/// FIXME check for death!
+	}
+	
 	// implement
 
 	@Override
 	public void draw(Graphics g)
 	{
 		drawHitbox(g);
-		
+		g.drawString(""+hitpoints, (float)position.x, (float)position.y);
 	}
 	
 	public void treatEvent(ObjectEvent e)
@@ -34,9 +44,12 @@ public class Midgard extends GameObject
 		{
 			case COLLISION:
 				CollisionEvent ce = (CollisionEvent)e;
-				if(ce.getOther().getClass() == Marble.class)
-					;
-					//other.die();
+				GameObject other = ce.getOther();
+				if(other.getClass() == Marble.class)
+				{
+					other.die();
+					takeDamage(MARBLE_DAMAGE);
+				}
 				break;
 		}
 		

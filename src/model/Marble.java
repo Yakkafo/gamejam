@@ -40,7 +40,10 @@ public class Marble extends GameObject
 	@Override
 	public IDynamic.Rtn update()
 	{
-		super.update();
+		// Check for interrupts
+		IDynamic.Rtn super_rtn = super.update();
+		if(super_rtn != IDynamic.Rtn.CONTINUE) return super_rtn;
+		// Move marble and continue
 		translatePosition(speed);
 		return IDynamic.Rtn.CONTINUE;
 	}

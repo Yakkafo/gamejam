@@ -49,7 +49,16 @@ public class Level implements IDynamic, IVisible
                 CollisionEvent.generate(o, objects.get(j));
 
             // update object
-            o.update();
+            IDynamic.Rtn update_rtn = o.update();
+            // react according to result of update
+            switch(update_rtn)
+            {
+            	case CONTINUE:
+            		break;	// do nothing
+            		
+            	case KILLME:
+            		objects.remove(i); i--;
+            }
         }
 		
 		return IDynamic.Rtn.CONTINUE;
