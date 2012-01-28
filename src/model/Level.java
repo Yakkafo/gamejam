@@ -2,7 +2,8 @@ package model;
 
 import java.util.ArrayList;
 
-import math.dVect;
+import math.FRect;
+import math.FVect;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -31,20 +32,24 @@ public class Level implements IDynamic, IVisible
 	
 	/// ATTRIBUTES
 	private ArrayList<GameObject> objects = new ArrayList<GameObject>();
-	private dVect size;
-	private dVect centre;
+	private FVect size;
+	private FVect centre;
 	private int marble_period;
 	private int marble_timer;
 	private int score;
+	private FRect background_dest;
 	
 	/// METHODS
 	
 	// creation
-	public Level(dVect init_size)
+	public Level(FVect init_size)
 	{
 		// Initialise variables
 		size = init_size;
-		centre = ((dVect)size.clone()).scale(0.5);
+		centre = ((FVect)size.clone()).scale(0.5f);
+		
+		background_dest = new FRect(centre.x-size.y/2.8f, centre.y-size.y/2.8f,
+									size.y/1.4f, size.y/1.4f);
 		
 		// Start first instance!
 		restart();
@@ -59,10 +64,10 @@ public class Level implements IDynamic, IVisible
 		marble_timer = marble_period;
 		
 		// Create snakes centered on middle, protecting home-base
-		addObject(new Snake(centre, INNER_RADIUS, GameObject.Colour.BLUE));
-		addObject(new Snake(centre, MIDDLE_RADIUS, GameObject.Colour.RED));
-		addObject(new Snake(centre, OUTER_RADIUS, GameObject.Colour.GREEN));
 		addObject(new Midgard(centre));
+		addObject(new Snake(centre, OUTER_RADIUS, GameObject.Colour.GREEN));
+		addObject(new Snake(centre, MIDDLE_RADIUS, GameObject.Colour.RED));
+		addObject(new Snake(centre, INNER_RADIUS, GameObject.Colour.BLUE));
 	}
 	
 	// access
@@ -136,7 +141,8 @@ public class Level implements IDynamic, IVisible
 	{
 		// draw background
 		ResourceManager.getInstance().getImage("wheel_back")
-		.drawCentered((float)centre.x, (float)centre.y);
+		.draw(background_dest.x, background_dest.y, 
+				background_dest.width, background_dest.height);
 		
 		// draw all objects
 		for(GameObject o : objects)
@@ -161,7 +167,7 @@ public class Level implements IDynamic, IVisible
 		int coin2 = Math.round((float)Math.random());
 		
 		// Create marble in a corner based on results
-		dVect random_corner = new dVect(coin1*size.x, coin2*size.y);
+		FVect random_corner = new FVect(coin1*size.x, coin2*size.y);
 		addObject(new Marble(random_corner, centre));
 	}
 }

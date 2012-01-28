@@ -5,8 +5,8 @@ import java.util.Queue;
 
 import org.newdawn.slick.Graphics;
 
-import math.dRect;
-import math.dVect;
+import math.FRect;
+import math.FVect;
 
 import utility.IDynamic;
 import utility.IVisible;
@@ -21,17 +21,17 @@ public abstract class GameObject implements IVisible, IDynamic
 	
 	/// ATTRIBUTES
 	private boolean dead = false;
-	protected dVect position;
-	protected dRect hitbox;
+	protected FVect position;
+	protected FRect hitbox;
 	protected Queue<ObjectEvent> events = new LinkedList<ObjectEvent>();
 	protected Level level;
 	
 	/// METHODS
 	
 	// creation
-	public GameObject(dVect init_position, dVect hitbox_size)
+	public GameObject(FVect init_position, FVect hitbox_size)
 	{
-		hitbox = new dRect(0, 0, hitbox_size.x, hitbox_size.y);
+		hitbox = new FRect(0, 0, hitbox_size.x, hitbox_size.y);
 		position = init_position;
 		positionUpdated();	// move hitbox, etc to position
 	}
@@ -47,13 +47,13 @@ public abstract class GameObject implements IVisible, IDynamic
 		events.add(e);
 	}
 	
-	public void translatePosition(dVect translation)
+	public void translatePosition(FVect translation)
 	{
 		position.add(translation);
 		positionUpdated();
 	}
 	
-	public void setPosition(dVect new_position)
+	public void setPosition(FVect new_position)
 	{
 		position = new_position;
 		positionUpdated();
@@ -67,8 +67,7 @@ public abstract class GameObject implements IVisible, IDynamic
 	
 	public void drawHitbox(Graphics g)
 	{
-		g.drawRect((float)hitbox.x, (float)hitbox.y,
-				(float)hitbox.width, (float)hitbox.height);
+		g.drawRect(hitbox.x, hitbox.y,hitbox.width, hitbox.height);
 	}
 	
 	// interface

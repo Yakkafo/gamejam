@@ -2,7 +2,7 @@ package system;
  
 import java.util.ArrayList;
 
-import math.dVect;
+import math.FVect;
 import math.iVect;
 import model.Level;
 import model.Marble;
@@ -47,7 +47,7 @@ public class Game extends BasicGame
 		size = new iVect(container.getWidth(), container.getHeight());
 		
 		// Snakes are centred on middle of screen
-		dVect middle = new dVect(size.x, size.y);
+		FVect middle = new FVect(size.x, size.y);
 		level = new Level(middle);		
 	}
 

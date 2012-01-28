@@ -19,9 +19,9 @@ public class iVect extends Point
     }
 
     // cast
-    public dVect dVect()
+    public FVect FVect()
     {
-        return new dVect((double)x, (double)y);
+        return new FVect((float)x, (float)y);
     }
 
 }

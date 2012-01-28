@@ -2,7 +2,7 @@ package model;
 
 import java.util.Random;
 
-import math.dVect;
+import math.FVect;
 import model.GameObject.Colour;
 
 import org.newdawn.slick.Graphics;
@@ -14,18 +14,18 @@ import utility.IDynamic;
 public class Marble extends GameObject
 {
 	/// CONSTANTS
-	private static double DEFAULT_SPEED = 3;
+	private static float DEFAULT_SPEED = 3;
 
 	/// ATTRIBUTES
-	private dVect speed;
+	private FVect speed;
 	private GameObject.Colour colour;
 
-	public Marble(dVect init_position, dVect target)
+	public Marble(FVect init_position, FVect target)
 	{
-		super(init_position, new dVect(32,32));
+		super(init_position, new FVect(32,32));
 		
 		// Set speed towards target
-		speed = new dVect(target.x-position.x, target.y-position.y)
+		speed = new FVect(target.x-position.x, target.y-position.y)
 						.normalise().scale(DEFAULT_SPEED);
 		// Set colour randomly
 		int pick = new Random().nextInt(Colour.values().length);
@@ -37,7 +37,7 @@ public class Marble extends GameObject
 	public void draw(Graphics g)
 	{
 		ResourceManager.getInstance().getImage(ColourToImage())
-			.draw((float)position.x-24, (float)position.y-24, 48, 48);
+			.draw(position.x-24, position.y-24, 48, 48);
 
 	}
 

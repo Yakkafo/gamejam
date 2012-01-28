@@ -64,9 +64,9 @@ public class ControlManager
 		
 		//TODO : do it better
 		//Check if turntable is connected :
-		for (int i=0;i<controllers.size();i++)
+		/*for (int i=0;i<controllers.size();i++)
 			if(((Controller) controllers.get(i)).getName().compareTo("Guitar Hero5 for PlayStation (R) 3") == 0) 
-				System.out.println("Turntable connected.");
+				System.out.println("Turntable connected.");*/
 				
 				//Get the number of axis
 				//System.out.println("Number of axis : "+container.getInput().getAxisCount(2)); //4
@@ -75,7 +75,6 @@ public class ControlManager
 	// query
 	public int getSnakeDelta(GameObject.Colour snake_colour)
 	{
-		
 		switch(snake_colour)
 		{
 			case BLUE:
