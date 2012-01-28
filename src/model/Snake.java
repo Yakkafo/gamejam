@@ -17,12 +17,14 @@ public class Snake extends GameObject
 	private static final double ACCELERATION = 0.02;
 	private static final double FRICTION = 0.26;
 	private static final double MAX_SPEED = 0.16;
+	private static final int STUN_DURATION = 90; // 3 seconds
 	
 	/// ATTRIBUTES
 	private dVect center;
 	private double angle = Math.random()*360;
 	private double speed = 0;
 	private double radius; 
+	private int stunned = 0;
 	private GameObject.Colour colour;
 	
 	/// METHODS
@@ -62,7 +64,10 @@ public class Snake extends GameObject
 	public void draw(Graphics g)
 	{
 		drawHitbox(g);
-		g.drawString(colour.toString(), (float)position.x, (float)position.y);
+		if(stunned > 0)
+			g.drawString("***STUNNED***", (float)position.x, (float)position.y);
+		else
+			g.drawString(colour.toString(), (float)position.x, (float)position.y);
 		// Draw the head (animated)
 		//((Animation)getHeadIm()).getCurrentFrame().drawCentered((float)position.x, (float)position.y);
 		// Draw the body (static, rotated)
@@ -74,6 +79,13 @@ public class Snake extends GameObject
 	public IDynamic.Rtn update()
 	{
 		super.update();
+		
+		// Stay still if stunned
+		if(stunned > 0)
+		{
+			stunned--;
+			return IDynamic.Rtn.CONTINUE;
+		}
 		
 		// Accelerate based on input
 		int input_sign = ControlManager.getInstance().getSnakeDelta(colour);
@@ -96,6 +108,11 @@ public class Snake extends GameObject
 	
 	public void treatEvent(ObjectEvent e)
 	{
+		// If stunned, marbles aren't damaged
+		if(stunned > 0)
+			return;
+		
+		// Otherwise destroy marbles that collide
 		switch(e.getType())
 		{
 			case COLLISION:
@@ -103,9 +120,11 @@ public class Snake extends GameObject
 				GameObject other = ce.getOther();
 				if(other.getClass() == Marble.class)
 				{
-					if(((Marble)other).getColour() == colour)
-						other.die();
-						
+					// Correct colours => kill other
+					other.die();
+					// Wrong colours => stun snake
+					if(((Marble)other).getColour() != colour)
+						stunned = STUN_DURATION;
 				}
 				break;
 		}

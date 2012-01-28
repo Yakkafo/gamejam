@@ -16,7 +16,7 @@ public abstract class GameObject implements IVisible, IDynamic
 	/// NESTED DEFINITIONS
 	public static enum Colour 
 	{
-		RED, GREEN, BLUE;
+		RED, GREEN, BLUE, WHITE;
 	}
 	
 	/// ATTRIBUTES
@@ -24,6 +24,7 @@ public abstract class GameObject implements IVisible, IDynamic
 	protected dVect position;
 	protected dRect hitbox;
 	protected Queue<ObjectEvent> events = new LinkedList<ObjectEvent>();
+	protected Level level;
 	
 	/// METHODS
 	
@@ -95,5 +96,10 @@ public abstract class GameObject implements IVisible, IDynamic
 	public boolean isColliding(GameObject other)
 	{
 		return (!dead && hitbox.intersects(other.hitbox));
+	}
+
+	public void setLevel(Level init_level)
+	{
+		level = init_level;
 	}
 }
