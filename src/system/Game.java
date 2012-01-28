@@ -50,8 +50,8 @@ public class Game extends BasicGame
 		dVect middle = new dVect(size.x, size.y);
 		level = new Level(middle);
 		
-
-		//Tests ;
+		// TODO : Make these tests as methods
+		///Tests ;
 		//Check controllers : index
 		ArrayList<Controller> controllers = new ArrayList<Controller>();
 
@@ -65,11 +65,15 @@ public class Game extends BasicGame
 			}
 		}
 		Log.info("Found "+controllers.size()+" controllers");
-		for (int i=0;i<controllers.size();i++) {
+		for (int i=0;i<controllers.size();i++)
 			Log.info(((Controller) controllers.get(i)).getName()+" : "+((Controller) controllers.get(i)).getIndex());
-		}
-		//Check if platine is connected :
-		//if((Controller) controllers.get(i)).getName() == )
+		
+		//Check if turntable is connected :
+		for (int i=0;i<controllers.size();i++)
+			if(((Controller) controllers.get(i)).getName().compareTo("Guitar Hero5 for PlayStation (R) 3") == 0) 
+				System.out.println("Turntable connected.");
+		
+		
 	}
 
 	@Override
@@ -85,6 +89,13 @@ public class Game extends BasicGame
 		
 		// Update all the level objects
 		level.update();
+		
+		
+		/// TESTS
+		//Check if a button has been pressed
+		for(int i = 0; i < 20; i ++)
+				if (container.getInput().isControlPressed(0, /*get turntable id*/ 2))
+					System.out.println("Key pressed !");
 		
        
 		
