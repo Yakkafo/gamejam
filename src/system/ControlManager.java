@@ -1,5 +1,6 @@
 package system;
 
+import org.lwjgl.input.Controllers;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
@@ -56,12 +57,7 @@ public class ControlManager
 		return (3-snake_number);
 	}
 	
-	public boolean checkController(int id){
-		if(input.isControlPressed(1, id))
-			return true;
-		else
-			return false;
-	}
+	
 	
 
 }

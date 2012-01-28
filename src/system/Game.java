@@ -65,6 +65,10 @@ public class Game extends BasicGame
 		// Update all the level objects
 		level.update();
 		
+		//Tests ;
+        
+       
+		
 	}
 	
 
