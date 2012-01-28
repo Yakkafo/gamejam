@@ -3,6 +3,7 @@ package model;
 import java.util.Random;
 
 import math.dVect;
+import model.GameObject.Colour;
 
 import org.newdawn.slick.Graphics;
 
@@ -34,6 +35,7 @@ public class Marble extends GameObject
 	public void draw(Graphics g)
 	{
 		drawHitbox(g);
+		g.drawString(colour.toString(), (float)position.x, (float)position.y);
 		//ResourceManager.getInstance().getAnimation("red_marble")
 			//.draw((float)position.x, (float)position.y);
 	}
@@ -54,6 +56,11 @@ public class Marble extends GameObject
 	{
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public Colour getColour()
+	{
+		return colour;
 	}
 
 

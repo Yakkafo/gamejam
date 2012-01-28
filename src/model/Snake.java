@@ -18,7 +18,7 @@ public class Snake extends GameObject
 	
 	/// ATTRIBUTES
 	private dVect center;
-	private double angle = 0.0;
+	private double angle = Math.random()*360;
 	private double radius; 
 	private GameObject.Colour colour;
 	
@@ -59,6 +59,7 @@ public class Snake extends GameObject
 	public void draw(Graphics g)
 	{
 		drawHitbox(g);
+		g.drawString(colour.toString(), (float)position.x, (float)position.y);
 		// Draw the head (animated)
 		//((Animation)getHeadIm()).getCurrentFrame().drawCentered((float)position.x, (float)position.y);
 		// Draw the body (static, rotated)
@@ -72,7 +73,7 @@ public class Snake extends GameObject
 		super.update();
 		
 		// Reposition the snake's head around circle
-		addAngle(TURN_RATE);
+		addAngle(TURN_RATE*ControlManager.getInstance().getSnakeDelta(colour));
 		
 		// Nothing to report
 		return IDynamic.Rtn.CONTINUE;
@@ -80,7 +81,19 @@ public class Snake extends GameObject
 	
 	public void treatEvent(ObjectEvent e)
 	{
-		
+		switch(e.getType())
+		{
+			case COLLISION:
+				CollisionEvent ce = (CollisionEvent)e;
+				GameObject other = ce.getOther();
+				if(other.getClass() == Marble.class)
+				{
+					if(((Marble)other).getColour() == colour)
+						other.die();
+						
+				}
+				break;
+		}
 	}
 	
 	// overriden
