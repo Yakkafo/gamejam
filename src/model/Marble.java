@@ -29,8 +29,8 @@ public class Marble extends GameObject
 		super(init_position, new FVect(32,32));
 		
 		// Randomise
-		float rand_x = (float)(Math.random()*64-32);
-		float rand_y = (float)(Math.random()*64-32);
+		float rand_x = (float)(Math.random()*64-31);
+		float rand_y = (float)(Math.random()*64-31);
 		
 		// Set speed towards target
 		speed = new FVect(target.x+rand_x-position.x, 
