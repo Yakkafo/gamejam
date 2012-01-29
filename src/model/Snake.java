@@ -277,6 +277,7 @@ public class Snake extends GameObject
 		// Overflow backwards => move forwards
 		if(current_frame < 0)
 		{
+			randChew();
 			current_frame = 0;
 			anim_speed = ABS_ANIM_SPEED;
 			
@@ -285,10 +286,17 @@ public class Snake extends GameObject
 		// Overflow forwards => move backwards
 		else if(current_frame > 3)
 		{
+			randChew();
 			current_frame = 2;
 			anim_speed = -ABS_ANIM_SPEED;
 		}
 		
+	}
+	
+	private void randChew()
+	{
+		int rand = Math.round((float)(Math.random()*2));
+		ResourceManager.getInstance().getSound("snd_chew"+rand).play();
 	}
 	
 }

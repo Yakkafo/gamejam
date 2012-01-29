@@ -37,7 +37,8 @@ public class Midgard extends GameObject
 	// access
 	public void heal(int heal_amount)
 	{
-		
+		ResourceManager.getInstance()
+			.getSound(ResourceManager.SND_HEAL).play();
 		hitpoints = Math.min(hitpoints+heal_amount,MAX_HITPOINTS);
 	}
 	
