@@ -280,6 +280,7 @@ public class ControlManager implements ControllerListener
 		switch(button)
 		{
 			case GREENBUTTON :
+				System.out.println("Green is pressed !");
 				greenDown = true;
 				break;
 			case BLUEBUTTON :
