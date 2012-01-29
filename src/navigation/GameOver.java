@@ -25,7 +25,7 @@ public class GameOver extends Scene
 	
 	public void draw(Graphics g)
 	{
-		g.drawString("GAME OVER", 32, 32);
+		g.drawString("GAME OVER -- you scored: " + final_score, 32, 32);
 	}
 
 	public IDynamic.Rtn update()
