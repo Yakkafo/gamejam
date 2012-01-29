@@ -161,11 +161,11 @@ public class ControlManager implements ControllerListener
 				switch(key_colour)	/// FIXME
 				{
 					case BLUE: 
-						return inputController.isControlPressed(BLUEBUTTON, deviceIndex);
+						return blueDown;
 					case RED: 
-						return inputController.isControlPressed(REDBUTTON, deviceIndex);
+						return redDown;
 					case GREEN: 
-						return inputController.isControlPressed(GREENBUTTON, deviceIndex);
+						return greenDown;
 					default:
 						return false;
 				}	// switch(key_colour)
@@ -277,13 +277,32 @@ public class ControlManager implements ControllerListener
 	public void controllerButtonPressed(int controller, int button)
 	{
 		// TODO Auto-generated method stub
-		
+		switch(button)
+		{
+			case GREENBUTTON :
+				greenDown = true;
+				break;
+			case BLUEBUTTON :
+				blueDown = true;
+			case REDBUTTON :
+				redDown = true;
+		}
 	}
 
 	@Override
 	public void controllerButtonReleased(int controller, int button)
 	{
 		// TODO Auto-generated method stub
+		switch(button)
+		{
+			case GREENBUTTON :
+				greenDown = false;
+				break;
+			case BLUEBUTTON :
+				blueDown = false;
+			case REDBUTTON :
+				redDown = false;
+		}
 		
 	}
 
