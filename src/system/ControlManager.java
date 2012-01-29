@@ -6,6 +6,7 @@ import model.GameObject;
 
 import org.lwjgl.input.Controller;
 import org.lwjgl.input.Controllers;
+import org.newdawn.slick.ControllerListener;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.util.Log;
@@ -44,10 +45,15 @@ public class ControlManager
 	}
 	private Device device = Device.KEYBOARD;
 	private Input input;
+	private Input inputController; //For controllers only
+	private ControllerListener controllerListener;
 	
 	// ------- input state --------
 	private int wheel_direction = 0;
 	private boolean any_key = false;
+	private boolean blueDown = false;
+	private boolean redDown = false;
+	private boolean greenDown = false;
 	// -------		-------
 	
 	private int deviceIndex = -1;
@@ -61,8 +67,10 @@ public class ControlManager
 	{
 		// Initialize variables
 		input = init_input;
+		inputController = init_input;
 		controllers = new ArrayList<Controller>();
 		checkDevice();
+		inputController.addControllerListener(controllerListener);
 		
 		
 		//Controllers test
@@ -140,11 +148,11 @@ public class ControlManager
 				switch(key_colour)	/// FIXME
 				{
 					case BLUE: 
-						return input.isControlPressed(BLUEBUTTON, deviceIndex);
+						return inputController.isControlPressed(BLUEBUTTON, deviceIndex);
 					case RED: 
-						return input.isControlPressed(REDBUTTON, deviceIndex);
+						return inputController.isControlPressed(REDBUTTON, deviceIndex);
 					case GREEN: 
-						return input.isControlPressed(GREENBUTTON, deviceIndex);
+						return inputController.isControlPressed(GREENBUTTON, deviceIndex);
 					default:
 						return false;
 				}	// switch(key_colour)
