@@ -61,6 +61,11 @@ public class Game extends BasicGame
 			case CHANGE_SCENE:
 				current_scene = current_scene.getNextScene();
 				break;
+			
+			case EXIT_GAME:
+				container.exit();
+				break;
+			
 			default:
 				break;
 		}
@@ -100,7 +105,6 @@ public class Game extends BasicGame
 	
 	public void keyPressed(int key, char c)
 	{
-		System.out.println("PRESSED " + key + " char " + c);
 		ControlManager.getInstance().anyKeyEvent();
 	}
 	

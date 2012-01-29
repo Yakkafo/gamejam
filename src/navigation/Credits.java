@@ -41,8 +41,10 @@ public class Credits extends Scene
 
 	public IDynamic.Rtn update()
 	{
+		ControlManager cm = ControlManager.getInstance();
+		
 		// Return to title screen
-		if(ControlManager.getInstance().isColourKey(ColourCode.RED, true))
+		if(cm.isColourKey(ColourCode.RED, true) || cm.isExitKey())
 			return IDynamic.Rtn.CHANGE_SCENE;
 		else
 			return IDynamic.Rtn.CONTINUE;

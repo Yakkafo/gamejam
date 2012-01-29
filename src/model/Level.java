@@ -4,12 +4,14 @@ import java.util.ArrayList;
 
 import math.FRect;
 import math.FVect;
+import navigation.GameOver;
 import navigation.Scene;
 
 import org.newdawn.slick.Graphics;
 
 import resources.ResourceManager;
 import system.ColourCode;
+import system.ControlManager;
 import utility.IDynamic;
 import utility.IVisible;
 
@@ -36,6 +38,7 @@ public class Level extends Scene
 	private int marble_timer;
 	private int score;
 	private FRect background_dest;
+	private Scene nextScene;
 	
 	/// METHODS
 	
@@ -98,6 +101,13 @@ public class Level extends Scene
 	@Override
 	public IDynamic.Rtn update()
 	{
+		// check for exit events
+		if(ControlManager.getInstance().isExitKey())
+		{
+			nextScene = new GameOver(score);
+			return IDynamic.Rtn.CHANGE_SCENE;
+		}
+		
 		// create new marbles or decrement timer
 		if(marble_timer == 0)
 		{
@@ -129,6 +139,11 @@ public class Level extends Scene
             		
             	case DELETE_OBJECT:
             		objects.remove(i); i--;
+            		break;
+            		
+            	case CHANGE_SCENE:
+            		nextScene = new GameOver(score);
+            		return IDynamic.Rtn.CHANGE_SCENE;
             }
         }
 		
@@ -157,6 +172,7 @@ public class Level extends Scene
 	
 	private void addObject(GameObject new_object)
 	{
+		// add and connect object to its container
 		objects.add(new_object);
 		new_object.setLevel(this);
 	}
@@ -175,7 +191,6 @@ public class Level extends Scene
 	@Override
 	public Scene getNextScene()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return nextScene;
 	}
 }

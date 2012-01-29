@@ -114,16 +114,11 @@ public class Snake extends GameObject
 	
 	// interface
 	public void draw(Graphics g)
-	{
-		drawHitbox(g);
-		
-		/// FIXME
+	{	
 		image.drawCentered(center.x, center.y);
 		
 		if(stunned > 0)
 			g.drawString("***STUNNED***", position.x, position.y);
-		else
-			g.drawString(colour.toString(), position.x, position.y);
 	}
 	
 	public IDynamic.Rtn update()
