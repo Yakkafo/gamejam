@@ -21,15 +21,7 @@ public class HowToPlay extends Scene
 	// creation
 	public HowToPlay()
 	{
-		try
-		{
-			background = new Image(ResourceManager.RESDIR+"how_to_play.jpg");
-		}
-		catch (SlickException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		background = ResourceManager.getInstance().getImage("how_to_play");
 	}
 	
 	// implementation

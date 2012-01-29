@@ -17,8 +17,13 @@ public class ResourceManager
 	// system
 	public static final String RESDIR = "data/";
 	public static final String PNG = ".png";
-	// resources
-  
+	public static final String JPG = ".jpg";
+	// title
+	private static final String CREDITS = "credits";
+	private static final String GAMEOVER = "game_over";
+	private static final String HOWTO = "how_to_play";
+	private static final String TITLE = "title";
+	// game
 	private static final String WHEEL_BACK = "wheel_back";
 	private static final String SNAKE_GREEN = "snake_green";
 	private static final String SNAKE_RED = "snake_red";
@@ -52,14 +57,20 @@ public class ResourceManager
     private ResourceManager()
     {
 		// Images
-    	addImage(WHEEL_BACK);
-    	addImage(SNAKE_BLUE);
-    	addImage(SNAKE_RED);
-    	addImage(SNAKE_GREEN);
-    	addImage(MARBLE_RED);
-    	addImage(MARBLE_GREEN);
-    	addImage(MARBLE_BLUE);
-    	addImage(MARBLE_WHITE);
+    	// menu
+    	addImage(TITLE, PNG);
+    	addImage(CREDITS, PNG);
+    	addImage(HOWTO, JPG);
+    	addImage(GAMEOVER, JPG);
+    	// game
+    	addImage(WHEEL_BACK, PNG);
+    	addImage(SNAKE_BLUE, PNG);
+    	addImage(SNAKE_RED, PNG);
+    	addImage(SNAKE_GREEN, PNG);
+    	addImage(MARBLE_RED, PNG);
+    	addImage(MARBLE_GREEN, PNG);
+    	addImage(MARBLE_BLUE, PNG);
+    	addImage(MARBLE_WHITE, PNG);
     	
     	// Font
 		Font temp = new Font("Dominican Small Caps", Font.PLAIN, 32);
@@ -90,12 +101,12 @@ public class ResourceManager
     }
     
     // addition
-    protected void addImage(String name)
+    protected void addImage(String name, String ext)
     {
     	try
 		{
     		// Try to load the image
-    		Image new_image = new Image(RESDIR+name+PNG);
+    		Image new_image = new Image(RESDIR+name+ext);
     		// We will always rotate around the centre
     		new_image.setCenterOfRotation(new_image.getWidth()/2, 
 										new_image.getHeight()/2);

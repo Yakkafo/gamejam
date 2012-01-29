@@ -21,15 +21,7 @@ public class Credits extends Scene
 	// creation
 	public Credits()
 	{
-		try
-		{
-			background = new Image(ResourceManager.RESDIR+"credits.jpg");
-		}
-		catch (SlickException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		background = ResourceManager.getInstance().getImage("credits");
 	}
 	
 	// implementation
