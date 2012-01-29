@@ -8,6 +8,7 @@ import navigation.GameOver;
 import navigation.Scene;
 
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 
 import resources.ResourceManager;
 import system.ColourCode;
@@ -26,6 +27,7 @@ public class Level extends Scene
 	private static final int SCORE_BLOCK_MARBLE = 5;
 	private static final int SCORE_EAT_MARBLE = 10;
 	private static final int SCORE_HEAL_MARBLE = 15;
+	private static final int DELAY_BEFORE_LOSE = 90;
 	
 	// NESTED DECLARATIONS
 	public static enum Bonus
@@ -36,9 +38,12 @@ public class Level extends Scene
 	/// ATTRIBUTES
 	private ArrayList<GameObject> objects = new ArrayList<GameObject>();
 	private int marble_timer;
+	private int lose_timer = -1;
 	private int score;
-	private FRect background_dest;
+	private FRect wheel_dest;
+	private FRect bg_src;
 	private Scene nextScene;
+	private Image background, wheel;
 	
 	/// METHODS
 	
@@ -46,8 +51,13 @@ public class Level extends Scene
 	public Level()
 	{
 		// Initialise variables
-		background_dest = new FRect(centre.x-size.y/2.8f, centre.y-size.y/2.8f,
+		wheel_dest = new FRect(centre.x-size.y/2.8f, centre.y-size.y/2.8f,
 									size.y/1.4f, size.y/1.4f);
+		
+		ResourceManager rm = ResourceManager.getInstance();
+		background = rm.getImage("background");
+		wheel = rm.getImage("wheel_back");
+		bg_src = new FRect(0,0,background.getWidth(), background.getHeight());
 		
 		// Start first instance!
 		restart();
@@ -70,6 +80,11 @@ public class Level extends Scene
 	}
 	
 	// access
+	
+	public boolean isGameOver()
+	{
+		return lose_timer >= 0;
+	}
 	
 	public int getScore()
 	{
@@ -103,6 +118,18 @@ public class Level extends Scene
 	{
 		// check for exit events
 		if(ControlManager.getInstance().isExitKey())
+		{
+			nextScene = new GameOver(score);
+			return IDynamic.Rtn.CHANGE_SCENE;
+		}
+		
+		// pause if game over, wait a while, then change
+		if(lose_timer > 0)
+		{
+			lose_timer--;
+			return IDynamic.Rtn.CONTINUE;
+		}
+		else if (lose_timer == 0)
 		{
 			nextScene = new GameOver(score);
 			return IDynamic.Rtn.CHANGE_SCENE;
@@ -142,8 +169,11 @@ public class Level extends Scene
             		break;
             		
             	case CHANGE_SCENE:
-            		nextScene = new GameOver(score);
-            		return IDynamic.Rtn.CHANGE_SCENE;
+            		lose_timer = DELAY_BEFORE_LOSE;
+            		break;
+            		
+            	default:
+            		break;
             }
         }
 		
@@ -156,8 +186,14 @@ public class Level extends Scene
 		ResourceManager rm = ResourceManager.getInstance();
 		
 		// draw background
-		rm.getImage("wheel_back").draw(background_dest.x, background_dest.y, 
-				background_dest.width, background_dest.height);
+		background.draw(0, 0, size.x, size.y, 
+				bg_src.x, bg_src.y,
+				bg_src.x + bg_src.width,
+				bg_src.y + bg_src.height);
+		
+		// draw wheel
+		wheel.draw(wheel_dest.x, wheel_dest.y, 
+				wheel_dest.width, wheel_dest.height);
 		
 		// draw all objects
 		for(GameObject o : objects)

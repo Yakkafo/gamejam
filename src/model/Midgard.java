@@ -3,35 +3,42 @@ package model;
 import math.FVect;
 
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 
+import resources.ResourceManager;
 import system.ColourCode;
 import utility.IDynamic;
 
 public class Midgard extends GameObject
 {
 	/// CONSTANTS
-	public static final int MAX_HITPOINTS = 50;
-	public static final int MARBLE_DAMAGE = 10;
-	public static final int MARBLE_HEAL = 5;
-	public static final int HEALTH_LOSS_PERIOD = 60;
+	public static final int MAX_HITPOINTS = 5;
+	public static final int MARBLE_DAMAGE = 1;
+	public static final int MARBLE_HEAL = 1;
+	public static final int N_IMAGES = 5;
 	
 	/// ATTRIBUTES
 	private int hitpoints = MAX_HITPOINTS;
-	private int bleed_timer = HEALTH_LOSS_PERIOD;
+	private Image[] images;
 	
 	/// METHODS
 	
 	// creation
 	public Midgard(FVect init_position)
 	{
-		super(init_position, new FVect(32, 32));
+		super(init_position, new FVect(96, 96));
+		
+		ResourceManager rm = ResourceManager.getInstance();
+		images = new Image[5];
+		for(int i = 0; i < 5; i++)
+			images[i] = rm.getImage("earth"+i);
 	}
 	
 	// access
 	public void heal(int heal_amount)
 	{
 		
-		hitpoints += heal_amount;
+		hitpoints = Math.min(hitpoints+heal_amount,MAX_HITPOINTS);
 	}
 	
 	public boolean tryResist(int damage_amount)
@@ -51,8 +58,8 @@ public class Midgard extends GameObject
 	@Override
 	public void draw(Graphics g)
 	{
-		drawHitbox(g);
-		g.drawString(""+hitpoints, position.x, position.y);
+		int sub_image = (hitpoints <= 0) ? 0 : hitpoints-1;
+		images[sub_image].drawCentered(position.x, position.y);
 	}
 	
 	public void treatEvent(ObjectEvent e)
@@ -90,19 +97,6 @@ public class Midgard extends GameObject
 			return IDynamic.Rtn.CHANGE_SCENE;
 		else if(super_rtn != IDynamic.Rtn.CONTINUE) 
 			return super_rtn;
-		
-		// decrease health slowly if over maximum
-		if(hitpoints > MAX_HITPOINTS)
-		{
-			if(bleed_timer == 0)
-			{
-				hitpoints--;
-				bleed_timer = HEALTH_LOSS_PERIOD;
-			}
-			else
-				bleed_timer--;
-				
-		}
 		
 		return IDynamic.Rtn.CONTINUE;
 		

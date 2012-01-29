@@ -23,6 +23,7 @@ public class ResourceManager
 	private static final String GAMEOVER = "menu_lose";
 	private static final String HOWTO = "menu_howto";
 	private static final String TITLE = "menu_title";
+	
 	// game
 	private static final String WHEEL_BACK = "wheel_back";
 	private static final String SNAKE_GREEN = "snake_green";
@@ -35,6 +36,8 @@ public class ResourceManager
     private static final String MARBLE_BLUE = "marble_blue";
     private static final String MARBLE_GREEN = "marble_green";
     private static final String MARBLE_WHITE = "marble_white";
+    private static final String BACKGROUND = "background";
+    private static final String EARTH = "earth";
 
     /// CLASS NAMESPACE VARIABLES
     private static ResourceManager instance = null;
@@ -67,6 +70,7 @@ public class ResourceManager
     	//addImage(HOWTO, JPG);
     	//addImage(GAMEOVER, JPG);
     	// game
+    	addImage(BACKGROUND, JPG);
     	addImage(WHEEL_BACK, PNG);
     	addImage(SNAKE_BLUE, PNG);
     	addImage(SNAKE_RED, PNG);
@@ -80,6 +84,7 @@ public class ResourceManager
     	addImages(HEAD_RED, 3);
     	addImages(HEAD_GREEN, 3);
     	addImages(HEAD_BLUE, 3);
+    	addImages(EARTH, 5);
     	
     	// Font
 		Font temp = new Font("Dominican Small Caps", Font.PLAIN, 32);

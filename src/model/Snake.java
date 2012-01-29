@@ -129,6 +129,8 @@ public class Snake extends GameObject
 		// Draw snake body
 		tail.drawCentered(center.x, center.y);
 		// Draw snake tail
+		if(level.isGameOver())
+			current_frame = 2;
 		head[(int)current_frame].drawCentered(head_position.x, head_position.y);
 	}
 	
@@ -232,6 +234,8 @@ public class Snake extends GameObject
 		{
 			case IDLE:
 				state_timer = -1;	// turn off
+				if(state == State.STUNNED)
+					current_frame = 1;
 				break;
 				
 			case EATING:
