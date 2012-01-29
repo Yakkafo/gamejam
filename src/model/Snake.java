@@ -58,8 +58,8 @@ public class Snake extends GameObject
 			case XBOX_TURNTABLE :
 			case PS3_TURNTABLE :
 			{
-				ACCELERATION = 0.02;
-				FRICTION = 0.26;
+				ACCELERATION = 0.1;
+				FRICTION = 0.2;
 				MAX_SPEED = 0.16;
 				STUN_DURATION = 90;
 				break;
