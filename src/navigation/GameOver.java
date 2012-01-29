@@ -50,6 +50,7 @@ public class GameOver extends Scene
 		// back to menu
 		if(cm.isColourKey(ColourCode.RED, true) || cm.isExitKey())
 		{
+			buttonSound();
 			nextScene = new Title();
 			return IDynamic.Rtn.CHANGE_SCENE;
 		}
@@ -57,6 +58,7 @@ public class GameOver extends Scene
 		// try again!
 		if(cm.isColourKey(ColourCode.GREEN, true))
 		{
+			buttonSound();
 			nextScene = new Level();
 			return IDynamic.Rtn.CHANGE_SCENE;
 		}

@@ -1,5 +1,6 @@
 package navigation;
 
+import resources.ResourceManager;
 import math.FVect;
 import utility.IDynamic;
 import utility.IVisible;
@@ -20,4 +21,10 @@ public abstract class Scene implements IDynamic, IVisible
 	
 	/// METHODS
 	public abstract Scene getNextScene();
+	
+	public void buttonSound()
+	{
+		ResourceManager.getInstance().
+			getSound(ResourceManager.SND_BUTTON).play();
+	}
 }
