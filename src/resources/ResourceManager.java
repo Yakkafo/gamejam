@@ -6,7 +6,9 @@ import java.util.HashMap;
 
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 import org.newdawn.slick.TrueTypeFont;
 import java.awt.Font;
 
@@ -18,6 +20,7 @@ public class ResourceManager
 	public static final String RESDIR = "data/";
 	public static final String PNG = ".png";
 	public static final String JPG = ".jpg";
+	public static final String OGG = ".ogg";
 	// menu
 	private static final String CREDITS = "menu_credits";
 	private static final String GAMEOVER = "menu_lose";
@@ -53,10 +56,9 @@ public class ResourceManager
 
     /// ATTRIBUTES
     private boolean loaded = false;
-    private HashMap<String, Animation> animations 
-    					= new HashMap<String, Animation>();
-    private HashMap<String, Image> images 
-		= new HashMap<String, Image>();
+    private HashMap<String, Image> images = new HashMap<String, Image>();
+    private HashMap<String, Sound> sounds = new HashMap<String, Sound>();
+    private HashMap<String, Music> musics = new HashMap<String, Music>();
     private TrueTypeFont font;
     private TrueTypeFont fontBig;
 
@@ -74,6 +76,8 @@ public class ResourceManager
     	if(loaded)
     		return;
     	loaded = true;
+    	
+    	// Sounds
     	
 		// Images
     	// menu
@@ -117,11 +121,19 @@ public class ResourceManager
     	return fontBig;
     }
     
-    public Animation getAnimation(String animation_name)
+    public Sound getSound(String sound_name)
     {
-        Animation result = animations.get(animation_name);
+    	Sound result = sounds.get(sound_name);
         if(result == null)
-        	System.out.println("Couldn't find animation " + animation_name);
+        	System.out.println("Couldn't find sound " + sound_name);
+        return result;
+    }
+    
+    public Music getMusic(String music_name)
+    {
+    	Music result = musics.get(music_name);
+        if(result == null)
+        	System.out.println("Couldn't find music " + music_name);
         return result;
     }
     
@@ -134,6 +146,35 @@ public class ResourceManager
     }
     
     // addition
+    
+    protected void addSound(String name, String ext)
+    {
+    	try
+		{
+			Sound new_sound = new Sound(RESDIR+name+ext);
+			sounds.put(name, new_sound);
+		}
+		catch (SlickException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    
+    protected void addMusic(String name, String ext)
+    {
+    	try
+		{
+			Music new_music = new Music(RESDIR+name+ext);
+			musics.put(name, new_music);
+		}
+		catch (SlickException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    
     protected void addImage(String name, String ext)
     {
     	try
@@ -164,31 +205,6 @@ public class ResourceManager
 	    		image_i = new Image(RESDIR+name+i+PNG);
 	    		images.put(name+i, image_i);
 	    	}
-		}
-		catch (SlickException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    		
-    }
-    
-    protected void addAnimation(String name, int n_frames, int frame_duration)
-    {
-		try
-		{
-			Animation new_anim = new Animation();
-			
-			// Load and add each frame
-	    	Image frame_i;
-	    	for(int i = 0; i < n_frames; i++)
-	    	{
-	    		frame_i = new Image(RESDIR+name+i+PNG);
-	    		new_anim.addFrame(frame_i, frame_duration);
-	    	}
-	    	
-	    	// Save the animation
-	    	animations.put(name, new_anim);
 		}
 		catch (SlickException e)
 		{
