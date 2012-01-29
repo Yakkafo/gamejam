@@ -2,6 +2,7 @@ package system;
 
 import math.FVect;
 import math.IVect;
+import navigation.Loading;
 import navigation.Scene;
 import navigation.Title;
 
@@ -47,7 +48,7 @@ public class Game extends BasicGame
 		// Get the true size of the window (may not be what was requested)
 		size = new IVect(container.getWidth(), container.getHeight());
 		Scene.init(size.FVect());
-		current_scene = new Title();	
+		current_scene = new Loading();	
 	}
 
 	@Override

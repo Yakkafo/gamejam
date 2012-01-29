@@ -18,11 +18,12 @@ public class ResourceManager
 	public static final String RESDIR = "data/";
 	public static final String PNG = ".png";
 	public static final String JPG = ".jpg";
-	// title
+	// menu
 	private static final String CREDITS = "menu_credits";
 	private static final String GAMEOVER = "menu_lose";
 	private static final String HOWTO = "menu_howto";
 	private static final String TITLE = "menu_title";
+	private static final String LOADING = "menu_loading";
 	
 	// game
 	private static final String WHEEL_BACK = "wheel_back";
@@ -51,6 +52,7 @@ public class ResourceManager
     }
 
     /// ATTRIBUTES
+    private boolean loaded = false;
     private HashMap<String, Animation> animations 
     					= new HashMap<String, Animation>();
     private HashMap<String, Image> images 
@@ -63,6 +65,16 @@ public class ResourceManager
     // creation
     private ResourceManager()
     {
+    	// Load the loading image to display while loading ;)
+    	addImage(LOADING, JPG);
+    }
+    
+    public void load()
+    {
+    	if(loaded)
+    		return;
+    	loaded = true;
+    	
 		// Images
     	// menu
     	addImage(TITLE, JPG);
