@@ -43,6 +43,8 @@ public class Midgard extends GameObject
 	
 	public boolean tryResist(int damage_amount)
 	{
+		ResourceManager.getInstance()
+			.getSound(ResourceManager.SND_SHATTER).play();
 		if(hitpoints <= damage_amount)
 		{
 			hitpoints = 0;

@@ -22,28 +22,33 @@ public class ResourceManager
 	public static final String JPG = ".jpg";
 	public static final String OGG = ".ogg";
 	// menu
-	private static final String CREDITS = "menu_credits";
-	private static final String GAMEOVER = "menu_lose";
-	private static final String HOWTO = "menu_howto";
-	private static final String TITLE = "menu_title";
-	private static final String LOADING = "menu_loading";
+	public static final String CREDITS = "menu_credits";
+	public static final String GAMEOVER = "menu_lose";
+	public static final String HOWTO = "menu_howto";
+	public static final String TITLE = "menu_title";
+	public static final String LOADING = "menu_loading";
 	// music, sound
-	private static final String MUSIC_LEVEL = "music_level";
-	private static final String MUSIC_MENU = "music_menu";
+	public static final String MUSIC_LEVEL = "music_level";
+	public static final String MUSIC_MENU = "music_menu";
+	public static final String SND_CHEW = "snd_chew";
+	public static final String SND_BUTTON = "snd_button";
+	public static final String SND_GRIND = "snd_grind";
+	public static final String SND_SHATTER = "snd_shatter";
+	public static final String SND_SMASH = "snd_smash";
 	// game
-	private static final String WHEEL_BACK = "wheel_back";
-	private static final String SNAKE_GREEN = "snake_green";
-	private static final String SNAKE_RED = "snake_red";
-	private static final String SNAKE_BLUE = "snake_blue";
-	private static final String HEAD_GREEN = "head_green";
-	private static final String HEAD_RED = "head_red";
-	private static final String HEAD_BLUE = "head_blue";
-    private static final String MARBLE_RED = "marble_red";
-    private static final String MARBLE_BLUE = "marble_blue";
-    private static final String MARBLE_GREEN = "marble_green";
-    private static final String MARBLE_WHITE = "marble_white";
-    private static final String BACKGROUND = "background";
-    private static final String EARTH = "earth";
+	public static final String WHEEL_BACK = "wheel_back";
+	public static final String SNAKE_GREEN = "snake_green";
+	public static final String SNAKE_RED = "snake_red";
+	public static final String SNAKE_BLUE = "snake_blue";
+	public static final String HEAD_GREEN = "head_green";
+	public static final String HEAD_RED = "head_red";
+	public static final String HEAD_BLUE = "head_blue";
+	public static final String MARBLE_RED = "marble_red";
+	public static final String MARBLE_BLUE = "marble_blue";
+	public static final String MARBLE_GREEN = "marble_green";
+	public static final String MARBLE_WHITE = "marble_white";
+	public static final String BACKGROUND = "background";
+	public static final String EARTH = "earth";
 
     /// CLASS NAMESPACE VARIABLES
     private static ResourceManager instance = null;
@@ -84,6 +89,12 @@ public class ResourceManager
     	addMusic(MUSIC_LEVEL, OGG);
     	
     	// Sounds
+    	//addSounds(SND_CHEW, OGG, 4);
+    	//addSound(SND_CHEW+0, OGG);
+    	addSound(SND_BUTTON, OGG);
+    	addSound(SND_GRIND, OGG);
+    	addSound(SND_SHATTER, OGG);
+    	addSound(SND_SMASH, OGG);
     	
 		// Images
     	// menu
@@ -167,6 +178,12 @@ public class ResourceManager
 		}
     }
     
+    protected void addSounds(String name, String ext, int number)
+    {
+		for(int i = 0; i<number; i++)
+			addSound(name+i,ext);
+    }
+    
     protected void addMusic(String name, String ext)
     {
     	try
@@ -202,22 +219,8 @@ public class ResourceManager
     
     protected void addImages(String name, int n_images)
     {
-		try
-		{
-			// Load and add each image
-	    	Image image_i;
 	    	for(int i = 0; i < n_images; i++)
-	    	{
-	    		image_i = new Image(RESDIR+name+i+PNG);
-	    		images.put(name+i, image_i);
-	    	}
-		}
-		catch (SlickException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    		
+	    		addImage(name+i, PNG);
     }
     
 }
