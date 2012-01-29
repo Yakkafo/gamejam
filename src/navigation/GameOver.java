@@ -28,7 +28,7 @@ public class GameOver extends Scene
 		background = rm.getImage("menu_lose");
 		// music
 		rm.getMusic("music_level").stop();
-		rm.getMusic("music_menu").loop();
+		rm.getSound("snd_fail").play();
 	}
 	
 	// implementation
@@ -52,6 +52,7 @@ public class GameOver extends Scene
 		{
 			buttonSound();
 			nextScene = new Title();
+			ResourceManager.getInstance().getMusic("music_menu").loop();
 			return IDynamic.Rtn.CHANGE_SCENE;
 		}
 		

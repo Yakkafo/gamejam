@@ -36,6 +36,7 @@ public class ResourceManager
 	public static final String SND_SHATTER = "snd_shatter";
 	public static final String SND_SMASH = "snd_smash";
 	public static final String SND_HEAL = "snd_heal";
+	public static final String SND_FAIL = "snd_fail";
 	// game
 	public static final String WHEEL_BACK = "wheel_back";
 	public static final String SNAKE_GREEN = "snake_green";
@@ -97,6 +98,7 @@ public class ResourceManager
     	addSound(SND_SHATTER, OGG);
     	addSound(SND_SMASH, OGG);
     	addSound(SND_HEAL, OGG);
+    	addSound(SND_FAIL, OGG);
     	
 		// Images
     	// menu
