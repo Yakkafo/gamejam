@@ -4,7 +4,10 @@ import model.GameObject;
 import model.Level;
 
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
 
+import resources.ResourceManager;
 import system.ColourCode;
 import system.ControlManager;
 import utility.IDynamic;
@@ -13,14 +16,28 @@ public class Title extends Scene
 {
 	/// ATTRIBUTES
 	private Scene nextScene = null;
+	private Image background;
 	
 	/// METHODS
 	
+	// creation
+	public Title()
+	{
+		try
+		{
+			background = new Image(ResourceManager.RESDIR+"title.png");
+		}
+		catch (SlickException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	// implementation
 	
 	public void draw(Graphics g)
 	{
-		g.drawString("TITLE -- PRESS ANY KEY", 32, 32);
+		background.drawCentered(centre.x, centre.y);
 	}
 
 	public IDynamic.Rtn update()

@@ -139,7 +139,7 @@ public class ControlManager implements ControllerListener
 				switch(key_colour)
 				{
 					/// NB -- QWERTY vs AZERTY
-					case BLUE: 
+					case GREEN: 
 						if(new_only)
 							return input.isKeyPressed(Input.KEY_W) 
 									|| input.isKeyPressed(Input.KEY_Z);
@@ -149,7 +149,7 @@ public class ControlManager implements ControllerListener
 					case RED:
 						return (new_only) ? input.isKeyPressed(Input.KEY_X)
 										  : input.isKeyDown(Input.KEY_X);				  				
-					case GREEN:
+					case BLUE:
 						return (new_only) ? input.isKeyPressed(Input.KEY_C)
 										  : input.isKeyDown(Input.KEY_C);
 										  	  
