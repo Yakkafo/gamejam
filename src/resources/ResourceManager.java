@@ -92,7 +92,6 @@ public class ResourceManager
     	
     	// Sounds
     	addSounds(SND_CHEW, OGG, 3);
-    	addSound(SND_CHEW+1, OGG);
     	addSound(SND_BUTTON, OGG);
     	addSound(SND_GRIND, OGG);
     	addSound(SND_SHATTER, OGG);
