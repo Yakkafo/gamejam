@@ -28,8 +28,13 @@ public class Marble extends GameObject
 	{
 		super(init_position, new FVect(32,32));
 		
+		// Randomise
+		float rand_x = (float)(Math.random()*64-32);
+		float rand_y = (float)(Math.random()*64-32);
+		
 		// Set speed towards target
-		speed = new FVect(target.x-position.x, target.y-position.y)
+		speed = new FVect(target.x+rand_x-position.x, 
+						target.y+rand_y-position.y)
 				.normalise().scale(DEFAULT_SPEED);
 		reverse_spin = Math.random() > 0.5 ? true : false;
 		// Set colour randomly

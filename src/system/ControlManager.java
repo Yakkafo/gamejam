@@ -117,15 +117,22 @@ public class ControlManager
 	
 	public void clearInputQueue()
 	{
-		input.clearKeyPressedRecord();
+		switch(device)
+		{
+			case KEYBOARD: 
+				input.clearKeyPressedRecord();
+				break;
+			case PS3_TURNTABLE:
+			case XBOX_TURNTABLE:
+				input.clearControlPressedRecord();
+				break;
+			default:
+				break;
+		}
 	}
 	
 	public boolean isColourKey(ColourCode key_colour, boolean new_only)
 	{
-		// No memory - it's ALWAYS the first time (?)
-		input.clearControlPressedRecord();
-		
-		
 		switch(device)
 		{
 			case KEYBOARD:
