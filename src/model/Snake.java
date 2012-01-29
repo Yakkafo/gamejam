@@ -45,30 +45,16 @@ public class Snake extends GameObject
 		colour = init_colour;
 		switch(ControlManager.getInstance().getDevice())
 		{
-			case KEYBOARD :
-			{
-				ACCELERATION = 0.02;
-				FRICTION = 0.26;
-				MAX_SPEED = 0.16;
-				STUN_DURATION = 90;
-				break;
-			}
+			case XBOX_TURNTABLE :
 			case PS3_TURNTABLE :
 			{
-				ACCELERATION = 0.5;
-				FRICTION = 0.05;
-				MAX_SPEED = 0.16;
-				STUN_DURATION = 90;
-				break;
-			}
-			case XBOX_TURNTABLE :
-			{
 				ACCELERATION = 0.02;
 				FRICTION = 0.26;
 				MAX_SPEED = 0.16;
 				STUN_DURATION = 90;
 				break;
 			}
+			case KEYBOARD :
 			default :
 			{
 				ACCELERATION = 0.02;

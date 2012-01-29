@@ -67,6 +67,7 @@ public class ControlManager implements ControllerListener
 	{
 		// Initialize variables
 		input = init_input;
+		input.addControllerListener(this);
 		inputController = init_input;
 		input.disableKeyRepeat();
 		controllers = new ArrayList<Controller>();
@@ -81,7 +82,7 @@ public class ControlManager implements ControllerListener
 			//TODO : do it better
 			//Check if turntable is connected :
 			for (int i=0;i<controllers.size();i++)
-				if(((Controller) controllers.get(i)).getName().compareTo("Guitar Hero5 for PlayStation (R) 3") == 0) 
+				if(device == Device.PS3_TURNTABLE || device == Device.XBOX_TURNTABLE) 
 					System.out.println("Turntable connected.");
 					
 					//Get the number of axis
@@ -133,46 +134,40 @@ public class ControlManager implements ControllerListener
 	
 	public boolean isColourKey(ColourCode key_colour, boolean new_only)
 	{
-		switch(device)
+		switch(key_colour)
 		{
-			case KEYBOARD:
-				switch(key_colour)
-				{
-					/// NB -- QWERTY vs AZERTY
-					case GREEN: 
-						if(new_only)
-							return input.isKeyPressed(Input.KEY_W) 
-									|| input.isKeyPressed(Input.KEY_Z);
-						else
-							return input.isKeyDown(Input.KEY_W) 
-									|| input.isKeyDown(Input.KEY_Z);
-					case RED:
-						return (new_only) ? input.isKeyPressed(Input.KEY_X)
-										  : input.isKeyDown(Input.KEY_X);				  				
-					case BLUE:
-						return (new_only) ? input.isKeyPressed(Input.KEY_C)
-										  : input.isKeyDown(Input.KEY_C);
-										  	  
-					default: return false;
-				} // switch(key_colour)
-				
-			case PS3_TURNTABLE:
-			case XBOX_TURNTABLE:
-				switch(key_colour)	/// FIXME
-				{
-					case BLUE: 
-						return blueDown;
-					case RED: 
-						return redDown;
-					case GREEN: 
-						return greenDown;
-					default:
-						return false;
-				}	// switch(key_colour)
-			default:
-				return false;
-		}	// switch(device)
-	}
+			/// NB -- QWERTY vs AZERTY
+			case GREEN: 
+				if(new_only)
+					return input.isKeyPressed(Input.KEY_W) 
+							|| input.isKeyPressed(Input.KEY_Z);
+				else
+					return input.isKeyDown(Input.KEY_W) 
+							|| input.isKeyDown(Input.KEY_Z);
+			case RED:
+				return (new_only) ? input.isKeyPressed(Input.KEY_X)
+								  : input.isKeyDown(Input.KEY_X);				  				
+			case BLUE:
+				return (new_only) ? input.isKeyPressed(Input.KEY_C)
+								  : input.isKeyDown(Input.KEY_C);
+		} // switch(key_colour)
+		if(device == Device.PS3_TURNTABLE || device == Device.XBOX_TURNTABLE)
+		{
+			switch(key_colour)	/// FIXME
+			{
+				case BLUE:
+					blueDown = true;
+					return blueDown;
+				case RED: 
+					redDown = true;
+					return redDown;
+				case GREEN: 
+					greenDown = true;
+					return greenDown;
+			}	// switch(key_colour)
+		}
+		return false;
+	}	// switch(device)
 	
 	public int getSnakeDelta(ColourCode snake_colour)
 	{
@@ -183,6 +178,7 @@ public class ControlManager implements ControllerListener
 		//return wheel_direction;
 		switch(device)
 		{
+			case XBOX_TURNTABLE:
 			case PS3_TURNTABLE :
 				if(input.getAxisValue(2, 0) < 0)
 					return -1;
@@ -190,8 +186,6 @@ public class ControlManager implements ControllerListener
 					return 1;
 				else
 					return 0;
-			
-			case XBOX_TURNTABLE:
 			case KEYBOARD:
 			default :
 				if(input.isKeyDown(Input.KEY_UP) 
@@ -271,6 +265,10 @@ public class ControlManager implements ControllerListener
 
 	public Device getDevice() {
 		return device;
+	}
+
+	public Input getInputController() {
+		return inputController;
 	}
 
 	@Override
