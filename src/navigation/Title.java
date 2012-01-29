@@ -42,6 +42,7 @@ public class Title extends Scene
 		// view Tutorial
 		if(cm.isColourKey(ColourCode.RED, true))
 		{
+			buttonSound();
 			nextScene = new HowToPlay();
 			return IDynamic.Rtn.CHANGE_SCENE;
 		}
@@ -49,6 +50,7 @@ public class Title extends Scene
 		// launch the game!
 		if(cm.isColourKey(ColourCode.GREEN, true))
 		{
+			buttonSound();
 			nextScene = new Level();
 			return IDynamic.Rtn.CHANGE_SCENE;
 		}
@@ -56,6 +58,7 @@ public class Title extends Scene
 		// view Credits
 		if(cm.isColourKey(ColourCode.BLUE, true))
 		{
+			buttonSound();
 			nextScene = new Credits();
 			return IDynamic.Rtn.CHANGE_SCENE;
 		}

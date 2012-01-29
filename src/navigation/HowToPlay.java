@@ -37,7 +37,10 @@ public class HowToPlay extends Scene
 		
 		// Return to title screen on red or exit
 		if(cm.isColourKey(ColourCode.RED, true) || cm.isExitKey())
+		{
+			buttonSound();
 			return IDynamic.Rtn.CHANGE_SCENE;
+		}
 		else
 			return IDynamic.Rtn.CONTINUE;
 	}
