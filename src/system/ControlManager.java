@@ -12,7 +12,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.util.Log;
 
 
-public class ControlManager
+public class ControlManager implements ControllerListener
 {
 	// / CLASS NAMESPACE VARIABLES
 	private static ControlManager instance = null;
@@ -71,7 +71,7 @@ public class ControlManager
 		input.disableKeyRepeat();
 		controllers = new ArrayList<Controller>();
 		checkDevice();
-		inputController.addControllerListener(controllerListener);
+		inputController.addControllerListener(this);
 		
 		
 		//Controllers test
@@ -271,6 +271,104 @@ public class ControlManager
 
 	public Device getDevice() {
 		return device;
+	}
+
+	@Override
+	public void controllerButtonPressed(int controller, int button)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void controllerButtonReleased(int controller, int button)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void controllerDownPressed(int controller)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void controllerDownReleased(int controller)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void controllerLeftPressed(int controller)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void controllerLeftReleased(int controller)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void controllerRightPressed(int controller)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void controllerRightReleased(int controller)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void controllerUpPressed(int controller)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void controllerUpReleased(int controller)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void inputEnded()
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void inputStarted()
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean isAcceptingInput()
+	{
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void setInput(Input input)
+	{
+		// TODO Auto-generated method stub
+		
 	}
 
 	
