@@ -27,7 +27,9 @@ public class ResourceManager
 	private static final String HOWTO = "menu_howto";
 	private static final String TITLE = "menu_title";
 	private static final String LOADING = "menu_loading";
-	
+	// music, sound
+	private static final String MUSIC_LEVEL = "music_level";
+	private static final String MUSIC_MENU = "music_menu";
 	// game
 	private static final String WHEEL_BACK = "wheel_back";
 	private static final String SNAKE_GREEN = "snake_green";
@@ -67,8 +69,8 @@ public class ResourceManager
     // creation
     private ResourceManager()
     {
-    	// Load the loading image to display while loading ;)
-    	addImage(LOADING, JPG);
+    	// Load the loading image+music to display while loading ;)
+    	addImage(LOADING, JPG);    	
     }
     
     public void load()
@@ -76,6 +78,10 @@ public class ResourceManager
     	if(loaded)
     		return;
     	loaded = true;
+    	
+    	// Music
+    	addMusic(MUSIC_MENU, OGG);
+    	addMusic(MUSIC_LEVEL, OGG);
     	
     	// Sounds
     	

@@ -36,7 +36,11 @@ public class Loading extends Scene
 	@Override
 	public Rtn update()
 	{
-		ResourceManager.getInstance().load();
+		ResourceManager rm = ResourceManager.getInstance();
+		
+		rm.load();
+		rm.getMusic("music_level").loop();
+		
 		return IDynamic.Rtn.CHANGE_SCENE;
 	}
 
