@@ -36,7 +36,7 @@ public class Midgard extends GameObject
 	
 	public boolean tryResist(int damage_amount)
 	{
-		if(hitpoints < damage_amount)
+		if(hitpoints <= damage_amount)
 		{
 			hitpoints = 0;
 			return false;
@@ -84,7 +84,12 @@ public class Midgard extends GameObject
 	@Override
 	public IDynamic.Rtn update()
 	{
-		super.update();
+		// Check for interrupts
+		IDynamic.Rtn super_rtn = super.update();
+		if(super_rtn == IDynamic.Rtn.DELETE_OBJECT)
+			return IDynamic.Rtn.CHANGE_SCENE;
+		else if(super_rtn != IDynamic.Rtn.CONTINUE) 
+			return super_rtn;
 		
 		// decrease health slowly if over maximum
 		if(hitpoints > MAX_HITPOINTS)

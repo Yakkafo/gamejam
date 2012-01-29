@@ -3,7 +3,9 @@ package navigation;
 import model.Level;
 
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 
+import resources.ResourceManager;
 import system.ColourCode;
 import system.ControlManager;
 import utility.IDynamic;
@@ -13,19 +15,23 @@ public class GameOver extends Scene
 	/// ATTRIBUTES
 	private Scene nextScene = null;
 	private int final_score;
+	private Image background;
 	
 	/// METHODS
 	
 	public GameOver(int init_final_score)
 	{
 		final_score = init_final_score;
+		background = ResourceManager.getInstance().getImage("menu_lose");
 	}
 	
 	// implementation
 	
 	public void draw(Graphics g)
 	{
-		g.drawString("GAME OVER -- you scored: " + final_score, 32, 32);
+		background.drawCentered(centre.x, centre.y);
+		g.setFont(ResourceManager.getInstance().getFontBig());
+		g.drawString("Final Score : " + final_score, 396, 396);
 	}
 
 	public IDynamic.Rtn update()

@@ -24,9 +24,11 @@ public class Snake extends GameObject
 	private float angle = (float) (Math.random()*Math.PI*2);
 	private float speed = 0;
 	private float radius; 
+	private float current_frame = 0;
 	private int stunned = 0;
 	private ColourCode colour;
-	private Image image;
+	private Image tail;
+	private Image[] head;
 	
 	/// METHODS
 	
@@ -80,17 +82,25 @@ public class Snake extends GameObject
 		// convert polar to cartesian coordinates
 		calculateCoordinates();
 		
-		// cache image
+		// cache images
+		ResourceManager rm = ResourceManager.getInstance();
+		head = new Image[3];
 		switch(colour)
 		{
 			case RED:
-				image = ResourceManager.getInstance().getImage("snake_red");
+				tail = rm.getImage("snake_red");
+				for(int i = 0; i < 3; i++) 
+					head[i] = rm.getImage("head_red"+i);
 				break;
 			case BLUE:
-				image = ResourceManager.getInstance().getImage("snake_blue");
+				tail = rm.getImage("snake_blue");
+				for(int i = 0; i < 3; i++) 
+					head[i] = rm.getImage("head_blue"+i);
 				break;
 			case GREEN:
-				image = ResourceManager.getInstance().getImage("snake_green");
+				tail = rm.getImage("snake_green");
+				for(int i = 0; i < 3; i++) 
+					head[i] = rm.getImage("head_green"+i);
 				break;
 			default:
 				break;
@@ -102,7 +112,12 @@ public class Snake extends GameObject
 	{
 		// Reset angle and convert polar to cartesian coordinates
 		angle = new_angle;
-		image.setRotation((float)(angle*180/Math.PI) + 15);
+		// Set aesthetic angle
+		float deg_angle = (float)(angle*180/Math.PI);
+		tail.setRotation(deg_angle + 15);
+		for(int i = 0; i<3; i++) 
+			head[i].setRotation(deg_angle + 145);
+		// Move body
 		calculateCoordinates();
 	}
 	
@@ -115,10 +130,13 @@ public class Snake extends GameObject
 	// interface
 	public void draw(Graphics g)
 	{	
-		image.drawCentered(center.x, center.y);
+		tail.drawCentered(center.x, center.y);
+		head[0].drawCentered(position.x, position.y);
 		
 		if(stunned > 0)
 			g.drawString("***STUNNED***", position.x, position.y);
+		
+		drawHitbox(g);
 	}
 	
 	public IDynamic.Rtn update()

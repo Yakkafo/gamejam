@@ -21,7 +21,7 @@ public class HowToPlay extends Scene
 	// creation
 	public HowToPlay()
 	{
-		background = ResourceManager.getInstance().getImage("how_to_play");
+		background = ResourceManager.getInstance().getImage("menu_howto");
 	}
 	
 	// implementation

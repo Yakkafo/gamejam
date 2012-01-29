@@ -21,7 +21,7 @@ public class Credits extends Scene
 	// creation
 	public Credits()
 	{
-		background = ResourceManager.getInstance().getImage("credits");
+		background = ResourceManager.getInstance().getImage("menu_credits");
 	}
 	
 	// implementation

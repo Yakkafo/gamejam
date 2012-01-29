@@ -19,15 +19,18 @@ public class ResourceManager
 	public static final String PNG = ".png";
 	public static final String JPG = ".jpg";
 	// title
-	private static final String CREDITS = "credits";
-	private static final String GAMEOVER = "game_over";
-	private static final String HOWTO = "how_to_play";
-	private static final String TITLE = "title";
+	private static final String CREDITS = "menu_credits";
+	private static final String GAMEOVER = "menu_lose";
+	private static final String HOWTO = "menu_howto";
+	private static final String TITLE = "menu_title";
 	// game
 	private static final String WHEEL_BACK = "wheel_back";
 	private static final String SNAKE_GREEN = "snake_green";
 	private static final String SNAKE_RED = "snake_red";
 	private static final String SNAKE_BLUE = "snake_blue";
+	private static final String HEAD_GREEN = "head_green";
+	private static final String HEAD_RED = "head_red";
+	private static final String HEAD_BLUE = "head_blue";
     private static final String MARBLE_RED = "marble_red";
     private static final String MARBLE_BLUE = "marble_blue";
     private static final String MARBLE_GREEN = "marble_green";
@@ -50,6 +53,7 @@ public class ResourceManager
     private HashMap<String, Image> images 
 		= new HashMap<String, Image>();
     private TrueTypeFont font;
+    private TrueTypeFont fontBig;
 
     /// METHODS
     
@@ -58,10 +62,10 @@ public class ResourceManager
     {
 		// Images
     	// menu
-    	addImage(TITLE, PNG);
-    	addImage(CREDITS, PNG);
-    	addImage(HOWTO, JPG);
-    	addImage(GAMEOVER, JPG);
+    	addImage(TITLE, JPG);
+    	//addImage(CREDITS, JPG);
+    	//addImage(HOWTO, JPG);
+    	//addImage(GAMEOVER, JPG);
     	// game
     	addImage(WHEEL_BACK, PNG);
     	addImage(SNAKE_BLUE, PNG);
@@ -72,9 +76,16 @@ public class ResourceManager
     	addImage(MARBLE_BLUE, PNG);
     	addImage(MARBLE_WHITE, PNG);
     	
+    	// Animations
+    	addImages(HEAD_RED, 3);
+    	addImages(HEAD_GREEN, 3);
+    	addImages(HEAD_BLUE, 3);
+    	
     	// Font
 		Font temp = new Font("Dominican Small Caps", Font.PLAIN, 32);
 		font = new TrueTypeFont(temp, true);	
+		temp = new Font("Dominican Small Caps", Font.PLAIN, 36);
+		fontBig = new TrueTypeFont(temp, true);
     }
 
     // query
@@ -82,6 +93,11 @@ public class ResourceManager
     public TrueTypeFont getFont()
     {
     	return font;
+    }
+    
+    public TrueTypeFont getFontBig()
+    {
+    	return fontBig;
     }
     
     public Animation getAnimation(String animation_name)
@@ -118,6 +134,26 @@ public class ResourceManager
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+    }
+    
+    protected void addImages(String name, int n_images)
+    {
+		try
+		{
+			// Load and add each image
+	    	Image image_i;
+	    	for(int i = 0; i < n_images; i++)
+	    	{
+	    		image_i = new Image(RESDIR+name+i+PNG);
+	    		images.put(name+i, image_i);
+	    	}
+		}
+		catch (SlickException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    		
     }
     
     protected void addAnimation(String name, int n_frames, int frame_duration)

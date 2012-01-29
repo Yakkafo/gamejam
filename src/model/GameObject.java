@@ -31,6 +31,12 @@ public abstract class GameObject implements IVisible, IDynamic
 	}
 	
 	// access
+	
+	public boolean isDead()
+	{
+		return dead;
+	}
+	
 	public void die()
 	{
 		dead = true;
