@@ -43,13 +43,25 @@ public class Game extends BasicGame
         
 		// Start control manager
 		ControlManager.createInstance(container.getInput());
-		
+
 		// Get the true size of the window (may not be what was requested)
 		size = new IVect(container.getWidth(), container.getHeight());
 		Scene.init(size.FVect());
 		current_scene = new Title();	
 	}
 
+	@Override
+	public void controllerButtonPressed(int controller, int button)
+	{
+		ControlManager.getInstance().controllerButtonPressed(controller, button);
+	}
+	
+	@Override
+	public void controllerButtonReleased(int controller, int button)
+	{
+		ControlManager.getInstance().controllerButtonReleased(controller, button);
+	}
+	
 	@Override
 	public void update(GameContainer container, int delta)
 			throws SlickException
@@ -73,10 +85,10 @@ public class Game extends BasicGame
 		
 		// Forget events that were received this step
 		ControlManager.getInstance().forgetEvents();
-		if(ControlManager.getInstance().getDevice() == ControlManager.Device.PS3_TURNTABLE)
-			for(int i = 0; i < 20; i ++)
-				if (container.getInput().isControlPressed(i, ControlManager.getInstance().getDeviceIndex()))
-					System.out.println("Key pressed ! #"+i);
+//		if(ControlManager.getInstance().getDevice() == ControlManager.Device.PS3_TURNTABLE)
+//			for(int i = 0; i < 20; i ++)
+//				if (container.getInput().isControlPressed(i, ControlManager.getInstance().getDeviceIndex()))
+//					System.out.println("Key pressed ! #"+i);
 
 	}
 	
