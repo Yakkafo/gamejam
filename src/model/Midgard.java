@@ -10,7 +10,7 @@ import utility.IDynamic;
 public class Midgard extends GameObject
 {
 	/// CONSTANTS
-	public static final int MAX_HITPOINTS = 100;
+	public static final int MAX_HITPOINTS = 50;
 	public static final int MARBLE_DAMAGE = 10;
 	public static final int MARBLE_HEAL = 5;
 	public static final int HEALTH_LOSS_PERIOD = 60;

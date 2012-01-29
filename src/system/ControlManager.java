@@ -68,6 +68,7 @@ public class ControlManager
 		// Initialize variables
 		input = init_input;
 		inputController = init_input;
+		input.disableKeyRepeat();
 		controllers = new ArrayList<Controller>();
 		checkDevice();
 		inputController.addControllerListener(controllerListener);
@@ -105,13 +106,18 @@ public class ControlManager
 		switch(device)
 		{
 			case KEYBOARD:
-				return input.isKeyDown(Input.KEY_ESCAPE);
+				return input.isKeyPressed(Input.KEY_ESCAPE);
 			default:
 				return false;
 				
 				
 				/// TODO
 		}
+	}
+	
+	public void clearInputQueue()
+	{
+		input.clearKeyPressedRecord();
 	}
 	
 	public boolean isColourKey(ColourCode key_colour, boolean new_only)

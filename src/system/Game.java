@@ -60,6 +60,7 @@ public class Game extends BasicGame
 		{
 			case CHANGE_SCENE:
 				current_scene = current_scene.getNextScene();
+				ControlManager.getInstance().clearInputQueue();
 				break;
 			
 			case EXIT_GAME:
