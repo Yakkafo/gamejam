@@ -275,7 +275,6 @@ public class ControlManager implements ControllerListener
 	public void controllerButtonPressed(int controller, int button)
 	{
 		// TODO Auto-generated method stub
-		System.out.println("The button is..."+button);
 
 		switch(button)
 		{

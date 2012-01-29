@@ -53,14 +53,12 @@ public class Game extends BasicGame
 	@Override
 	public void controllerButtonPressed(int controller, int button)
 	{
-		System.out.println("Bah !");
 		ControlManager.getInstance().controllerButtonPressed(controller, button);
 	}
 	
 	@Override
 	public void controllerButtonReleased(int controller, int button)
 	{
-		System.out.println("Bouh !");
 		ControlManager.getInstance().controllerButtonReleased(controller, button);
 	}
 	
@@ -87,10 +85,10 @@ public class Game extends BasicGame
 		
 		// Forget events that were received this step
 		ControlManager.getInstance().forgetEvents();
-		if(ControlManager.getInstance().getDevice() == ControlManager.Device.PS3_TURNTABLE)
-			for(int i = 0; i < 20; i ++)
-				if (container.getInput().isControlPressed(i, ControlManager.getInstance().getDeviceIndex()))
-					System.out.println("Key pressed ! #"+i);
+//		if(ControlManager.getInstance().getDevice() == ControlManager.Device.PS3_TURNTABLE)
+//			for(int i = 0; i < 20; i ++)
+//				if (container.getInput().isControlPressed(i, ControlManager.getInstance().getDeviceIndex()))
+//					System.out.println("Key pressed ! #"+i);
 
 	}
 	
