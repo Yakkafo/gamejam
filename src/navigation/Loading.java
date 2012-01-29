@@ -39,7 +39,7 @@ public class Loading extends Scene
 		ResourceManager rm = ResourceManager.getInstance();
 		
 		rm.load();
-		rm.getMusic("music_level").loop();
+		rm.getMusic("music_menu").loop();
 		
 		return IDynamic.Rtn.CHANGE_SCENE;
 	}

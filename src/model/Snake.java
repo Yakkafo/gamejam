@@ -183,6 +183,7 @@ public class Snake extends GameObject
 		}
 		
 		// Otherwise destroy marbles that collide
+		ResourceManager rm = ResourceManager.getInstance();
 		switch(e.getType())
 		{
 			case COLLISION:
@@ -196,8 +197,10 @@ public class Snake extends GameObject
 					if(((Marble)other).getColour() != colour)
 					{
 						level.addBonus(Level.Bonus.BLOCK);
-						// Stun animation
+						// Stun animation, sound
 						setState(State.STUNNED, STUN_DURATION);
+						rm.getSound(ResourceManager.SND_SMASH).play();
+						
 					}
 					// Right colours => bonus
 					else

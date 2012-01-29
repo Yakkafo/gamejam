@@ -55,9 +55,13 @@ public class Level extends Scene
 									size.y/1.4f, size.y/1.4f);
 		
 		ResourceManager rm = ResourceManager.getInstance();
+		// images
 		background = rm.getImage("background");
 		wheel = rm.getImage("wheel_back");
 		bg_src = new FRect(0,0,background.getWidth(), background.getHeight());
+		// music
+		rm.getMusic("music_menu").stop();
+		rm.getMusic("music_level").loop();
 		
 		// Start first instance!
 		restart();

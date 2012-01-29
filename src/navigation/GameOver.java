@@ -22,7 +22,13 @@ public class GameOver extends Scene
 	public GameOver(int init_final_score)
 	{
 		final_score = init_final_score;
-		background = ResourceManager.getInstance().getImage("menu_lose");
+		
+		ResourceManager rm = ResourceManager.getInstance();
+		// image
+		background = rm.getImage("menu_lose");
+		// music
+		rm.getMusic("music_level").stop();
+		rm.getMusic("music_menu").loop();
 	}
 	
 	// implementation
