@@ -25,7 +25,6 @@ public class Loading extends Scene
 	public void draw(Graphics g)
 	{
 		background.draw(0, 0, size.x, size.y);
-		
 	}
 
 	@Override

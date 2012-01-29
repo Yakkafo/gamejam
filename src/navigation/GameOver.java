@@ -31,7 +31,7 @@ public class GameOver extends Scene
 	{
 		background.drawCentered(centre.x, centre.y);
 		g.setFont(ResourceManager.getInstance().getFontBig());
-		g.drawString("Final Score : " + final_score, 396, 396);
+		g.drawString("Final Score : " + final_score, 412, 332);
 	}
 
 	public IDynamic.Rtn update()

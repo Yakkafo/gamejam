@@ -140,18 +140,14 @@ public class ControlManager implements ControllerListener
 			{
 				/// NB -- QWERTY vs AZERTY
 				case GREEN: 
-					if(new_only)
-						return input.isKeyPressed(Input.KEY_W) 
-								|| input.isKeyPressed(Input.KEY_Z);
-					else
-						return input.isKeyDown(Input.KEY_W) 
-								|| input.isKeyDown(Input.KEY_Z);
+					return (new_only) ? input.isKeyPressed(Input.KEY_D)
+									  : input.isKeyDown(Input.KEY_D);
 				case RED:
-					return (new_only) ? input.isKeyPressed(Input.KEY_X)
-									  : input.isKeyDown(Input.KEY_X);				  				
+					return (new_only) ? input.isKeyPressed(Input.KEY_F)
+									  : input.isKeyDown(Input.KEY_F);				  				
 				case BLUE:
-					return (new_only) ? input.isKeyPressed(Input.KEY_C)
-									  : input.isKeyDown(Input.KEY_C);
+					return (new_only) ? input.isKeyPressed(Input.KEY_G)
+									  : input.isKeyDown(Input.KEY_G);
 			} // switch(key_colour)
 		}
 		if(device == Device.PS3_TURNTABLE || device == Device.XBOX_TURNTABLE)

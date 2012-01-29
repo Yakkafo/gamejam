@@ -78,9 +78,9 @@ public class ResourceManager
 		// Images
     	// menu
     	addImage(TITLE, JPG);
-    	//addImage(CREDITS, JPG);
-    	//addImage(HOWTO, JPG);
-    	//addImage(GAMEOVER, JPG);
+    	addImage(CREDITS, JPG);
+    	addImage(HOWTO, JPG);
+    	addImage(GAMEOVER, JPG);
     	// game
     	addImage(BACKGROUND, JPG);
     	addImage(WHEEL_BACK, PNG);
@@ -101,7 +101,7 @@ public class ResourceManager
     	// Font
 		Font temp = new Font("Dominican Small Caps", Font.PLAIN, 32);
 		font = new TrueTypeFont(temp, true);	
-		temp = new Font("Dominican Small Caps", Font.PLAIN, 36);
+		temp = new Font("Dominican Small Caps", Font.PLAIN, 48);
 		fontBig = new TrueTypeFont(temp, true);
     }
 
