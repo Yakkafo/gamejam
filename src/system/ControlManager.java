@@ -19,10 +19,10 @@ public class ControlManager implements ControllerListener
 	
 	/// CONSTANTS
 	private final static int AXISINDEX = 4;
-	private final static int GREENBUTTON = 5;
-	private final static int REDBUTTON = 6;
-	private final static int BLUEBUTTON = 4;
-	private final static int POWERBUTTON = 7;
+	final static int GREENBUTTON = 5;
+	final static int REDBUTTON = 6;
+	final static int BLUEBUTTON = 4;
+	final static int POWERBUTTON = 7;
 
 
 	// / CLASS NAMESPACE FUNCTIONS
@@ -72,7 +72,7 @@ public class ControlManager implements ControllerListener
 		input.disableKeyRepeat();
 		controllers = new ArrayList<Controller>();
 		checkDevice();
-		inputController.addControllerListener(this);
+		//inputController.addControllerListener(this);
 		
 		
 		//Controllers test
@@ -134,36 +134,44 @@ public class ControlManager implements ControllerListener
 	
 	public boolean isColourKey(ColourCode key_colour, boolean new_only)
 	{
-		switch(key_colour)
+		if(device == Device.KEYBOARD) 
 		{
-			/// NB -- QWERTY vs AZERTY
-			case GREEN: 
-				if(new_only)
-					return input.isKeyPressed(Input.KEY_W) 
-							|| input.isKeyPressed(Input.KEY_Z);
-				else
-					return input.isKeyDown(Input.KEY_W) 
-							|| input.isKeyDown(Input.KEY_Z);
-			case RED:
-				return (new_only) ? input.isKeyPressed(Input.KEY_X)
-								  : input.isKeyDown(Input.KEY_X);				  				
-			case BLUE:
-				return (new_only) ? input.isKeyPressed(Input.KEY_C)
-								  : input.isKeyDown(Input.KEY_C);
-		} // switch(key_colour)
+			switch(key_colour)
+			{
+				/// NB -- QWERTY vs AZERTY
+				case GREEN: 
+					if(new_only)
+						return input.isKeyPressed(Input.KEY_W) 
+								|| input.isKeyPressed(Input.KEY_Z);
+					else
+						return input.isKeyDown(Input.KEY_W) 
+								|| input.isKeyDown(Input.KEY_Z);
+				case RED:
+					return (new_only) ? input.isKeyPressed(Input.KEY_X)
+									  : input.isKeyDown(Input.KEY_X);				  				
+				case BLUE:
+					return (new_only) ? input.isKeyPressed(Input.KEY_C)
+									  : input.isKeyDown(Input.KEY_C);
+			} // switch(key_colour)
+		}
 		if(device == Device.PS3_TURNTABLE || device == Device.XBOX_TURNTABLE)
 		{
-			switch(key_colour)	/// FIXME
+			switch(key_colour)
 			{
 				case BLUE:
-					blueDown = true;
-					return blueDown;
+					//blueDown = true;
+					return blueDown && new_only;
 				case RED: 
-					redDown = true;
-					return redDown;
+					//redDown = true;
+					return redDown && new_only;
 				case GREEN: 
-					greenDown = true;
-					return greenDown;
+					//greenDown = true;
+					
+					if(greenDown)
+						System.out.println("Green is down");
+					else
+						System.out.println("Green is up");
+					return greenDown && new_only;
 			}	// switch(key_colour)
 		}
 		return false;
@@ -275,16 +283,23 @@ public class ControlManager implements ControllerListener
 	public void controllerButtonPressed(int controller, int button)
 	{
 		// TODO Auto-generated method stub
+		System.out.println("The button is..."+button);
+
 		switch(button)
 		{
-			case GREENBUTTON :
-				System.out.println("Green is pressed !");
+			case 2 :
+				System.out.println("Green is pressed !"+button);
 				greenDown = true;
 				break;
-			case BLUEBUTTON :
+			case 1 :
 				blueDown = true;
-			case REDBUTTON :
+				break;
+			case 3 :
 				redDown = true;
+				break;
+			default :
+				System.out.println("Huh ?");
+				break;
 		}
 	}
 
@@ -294,13 +309,16 @@ public class ControlManager implements ControllerListener
 		// TODO Auto-generated method stub
 		switch(button)
 		{
-			case GREENBUTTON :
+			case 2 :
+				System.out.println("Green is released !");
 				greenDown = false;
 				break;
-			case BLUEBUTTON :
+			case 1 :
 				blueDown = false;
-			case REDBUTTON :
+				break;
+			case 3 :
 				redDown = false;
+				break;
 		}
 		
 	}
@@ -387,6 +405,18 @@ public class ControlManager implements ControllerListener
 	{
 		// TODO Auto-generated method stub
 		
+	}
+
+	public void setBlueDown(boolean blueDown) {
+		this.blueDown = blueDown;
+	}
+
+	public void setRedDown(boolean redDown) {
+		this.redDown = redDown;
+	}
+
+	public void setGreenDown(boolean greenDown) {
+		this.greenDown = greenDown;
 	}
 
 	

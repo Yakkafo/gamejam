@@ -43,13 +43,27 @@ public class Game extends BasicGame
         
 		// Start control manager
 		ControlManager.createInstance(container.getInput());
-		
+
 		// Get the true size of the window (may not be what was requested)
 		size = new IVect(container.getWidth(), container.getHeight());
 		Scene.init(size.FVect());
 		current_scene = new Title();	
 	}
 
+	@Override
+	public void controllerButtonPressed(int controller, int button)
+	{
+		System.out.println("Bah !");
+		ControlManager.getInstance().controllerButtonPressed(controller, button);
+	}
+	
+	@Override
+	public void controllerButtonReleased(int controller, int button)
+	{
+		System.out.println("Bouh !");
+		ControlManager.getInstance().controllerButtonReleased(controller, button);
+	}
+	
 	@Override
 	public void update(GameContainer container, int delta)
 			throws SlickException
