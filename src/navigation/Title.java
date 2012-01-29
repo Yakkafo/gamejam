@@ -23,15 +23,7 @@ public class Title extends Scene
 	// creation
 	public Title()
 	{
-		try
-		{
-			background = new Image(ResourceManager.RESDIR+"title.png");
-		}
-		catch (SlickException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		background = ResourceManager.getInstance().getImage("title");
 	}
 	// implementation
 	
