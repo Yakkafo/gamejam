@@ -159,19 +159,11 @@ public class ControlManager implements ControllerListener
 			switch(key_colour)
 			{
 				case BLUE:
-					//blueDown = true;
-					return blueDown && new_only;
+					return blueDown;
 				case RED: 
-					//redDown = true;
-					return redDown && new_only;
+					return redDown;
 				case GREEN: 
-					//greenDown = true;
-					
-					if(greenDown)
-						System.out.println("Green is down");
-					else
-						System.out.println("Green is up");
-					return greenDown && new_only;
+					return greenDown;
 			}	// switch(key_colour)
 		}
 		return false;
@@ -179,10 +171,10 @@ public class ControlManager implements ControllerListener
 	
 	public int getSnakeDelta(ColourCode snake_colour)
 	{
+
 		// if snake colour key is not pressed the snake is not controlled!
 		if(!isColourKey(snake_colour, false)) // input, new and only ;)
 			return 0;
-		
 		//return wheel_direction;
 		switch(device)
 		{
