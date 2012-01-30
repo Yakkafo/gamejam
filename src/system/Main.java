@@ -8,7 +8,7 @@ abstract class Main
 	/// CONSTANTS
 	private static final int DESIRED_W = 1280;
 	private static final int DESIRED_H = 800;
-	private static boolean USE_FULLSCREEN = false;
+	private static boolean USE_FULLSCREEN = true;
 	
 	/// FUNCTIONS
 	public static void main(String[] args)

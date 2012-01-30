@@ -5,6 +5,7 @@ import math.FVect;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.Sound;
 
 import resources.ResourceManager;
 import system.ColourCode;
@@ -38,6 +39,8 @@ public class Snake extends GameObject
 	private State state = State.IDLE;
 	private float current_frame = 1;
 	private float anim_speed = 0;
+	// sounds
+	private Sound snd_grind;
 	
 	/// METHODS
 	
@@ -78,8 +81,11 @@ public class Snake extends GameObject
 		// convert polar to cartesian coordinates
 		calculateCoordinates();
 		
-		// cache images
+		// cache sounds
 		ResourceManager rm = ResourceManager.getInstance();
+		snd_grind = rm.getSound(ResourceManager.SND_GRIND);
+		
+		// cache images
 		head = new Image[3];
 		switch(colour)
 		{
@@ -156,6 +162,12 @@ public class Snake extends GameObject
 			// Accelerate based on input
 			int input_sign = ControlManager.getInstance().getSnakeDelta(colour);
 			speed += ACCELERATION*input_sign;
+			
+			// Play sound if moving
+			//if(input_sign != 0 && !snd_grind.playing())
+				//snd_grind.loop();
+			//else if(input_sign == 0)
+				//snd_grind.stop();
 			
 			// Apply friction if not moving in direction of input
 			if (Math.signum(speed) != input_sign)
