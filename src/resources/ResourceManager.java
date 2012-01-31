@@ -21,6 +21,7 @@ public class ResourceManager
 	public static final String PNG = ".png";
 	public static final String JPG = ".jpg";
 	public static final String OGG = ".ogg";
+	public static final String ICON = RESDIR+"icon.png";
 	// menu
 	public static final String CREDITS = "menu_credits";
 	public static final String GAMEOVER = "menu_lose";
@@ -127,6 +128,9 @@ public class ResourceManager
 		font = new TrueTypeFont(temp, true);	
 		temp = new Font("Dominican Small Caps", Font.PLAIN, 48);
 		fontBig = new TrueTypeFont(temp, true);
+		
+		// Clear the loading image, it is no longer needed
+		images.put(LOADING, null);
     }
 
     // query

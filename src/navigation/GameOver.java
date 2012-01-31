@@ -52,6 +52,7 @@ public class GameOver extends Scene
 		{
 			buttonSound();
 			nextScene = new Title();
+			ResourceManager.getInstance().getSound("snd_fail").stop();
 			ResourceManager.getInstance().getMusic("music_menu").loop();
 			return IDynamic.Rtn.CHANGE_SCENE;
 		}
@@ -60,6 +61,7 @@ public class GameOver extends Scene
 		if(cm.isColourKey(ColourCode.GREEN, true))
 		{
 			buttonSound();
+			ResourceManager.getInstance().getSound("snd_fail").stop();
 			nextScene = new Level();
 			return IDynamic.Rtn.CHANGE_SCENE;
 		}

@@ -6,28 +6,36 @@ import org.newdawn.slick.SlickException;
 public abstract class Main
 {
 	/// CONSTANTS
-	/*private static final int DESIRED_W = 1280;
-	private static final int DESIRED_H = 800;*/
-	private static boolean USE_FULLSCREEN = true;
+	/*private static final int DEFAULT_W = 1280;
+	private static final int DEFAULT_H = 800;
+	private static boolean USE_FULLSCREEN = true;*/
 	
 	/// FUNCTIONS
 	public static void main(String[] args)
 	{
+		AppGameContainer app;
 		try
 		{
-			AppGameContainer app = new AppGameContainer(new Game());
-			app.setDisplayMode(app.getScreenWidth(), app.getScreenHeight(),
-							USE_FULLSCREEN);
+			// Try full-screen
+			app = new AppGameContainer(new Game());
+			app.setDisplayMode(app.getScreenWidth(), app.getScreenHeight(), true);
+			// Start the game
 			app.start();
 		}
 		catch (SlickException e)
 		{
-			USE_FULLSCREEN = false;
-			try {
-				AppGameContainer app = new AppGameContainer(new Game());
-				app.setDisplayMode(DESIRED_W, DESIRED_H, USE_FULLSCREEN);
+			try 
+			{
+				// If full-screen fails, try again in windowed mode
+				System.gc();
+				app = new AppGameContainer(new Game());
+				app.setDisplayMode(app.getScreenWidth(), app.getScreenHeight(),
+									false);
+				// Start the game
 				app.start();
-			} catch (SlickException e1) {
+			} 
+			catch (SlickException e1) 
+			{
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}

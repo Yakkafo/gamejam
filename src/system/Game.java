@@ -9,6 +9,8 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
+import resources.ResourceManager;
+
 import utility.IDynamic;
  
 public class Game extends BasicGame 
@@ -37,8 +39,9 @@ public class Game extends BasicGame
 		container.setSmoothDeltas(true);
         container.setVSync(true);
         container.setTargetFrameRate(MAX_FPS);
-        //container.setIcon(ref);
+        container.setIcon(ResourceManager.ICON);
         container.setShowFPS(false);
+        container.setMouseGrabbed(true);
         
 		// Start control manager
 		ControlManager.createInstance(container.getInput());
@@ -72,6 +75,7 @@ public class Game extends BasicGame
 			case CHANGE_SCENE:
 				current_scene = current_scene.getNextScene();
 				ControlManager.getInstance().clearInputQueue();
+				System.gc();
 				break;
 			
 			case EXIT_GAME:

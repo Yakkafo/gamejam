@@ -21,7 +21,8 @@ public class Title extends Scene
 	// creation
 	public Title()
 	{
-		background = ResourceManager.getInstance().getImage("menu_title");
+		ResourceManager rm = ResourceManager.getInstance();
+		background = rm.getImage("menu_title");
 	}
 	// implementation
 	
