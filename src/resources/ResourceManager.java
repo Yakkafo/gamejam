@@ -4,7 +4,6 @@ package resources;
 
 import java.util.HashMap;
 
-import org.newdawn.slick.Animation;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
@@ -13,6 +12,7 @@ import org.newdawn.slick.TrueTypeFont;
 import java.awt.Font;
 
 
+@SuppressWarnings("deprecation")
 public class ResourceManager
 {
     /// CLASS NAMESPACE CONSTANTS
@@ -69,7 +69,7 @@ public class ResourceManager
     private HashMap<String, Sound> sounds = new HashMap<String, Sound>();
     private HashMap<String, Music> musics = new HashMap<String, Music>();
     private TrueTypeFont font;
-    private TrueTypeFont fontBig;
+	private TrueTypeFont fontBig;
 
     /// METHODS
     
@@ -80,7 +80,7 @@ public class ResourceManager
     	addImage(LOADING, JPG);    	
     }
     
-    public void load()
+	public void load()
     {
     	if(loaded)
     		return;
@@ -131,12 +131,12 @@ public class ResourceManager
 
     // query
     
-    public TrueTypeFont getFont()
+	public TrueTypeFont getFont()
     {
     	return font;
     }
     
-    public TrueTypeFont getFontBig()
+	public TrueTypeFont getFontBig()
     {
     	return fontBig;
     }

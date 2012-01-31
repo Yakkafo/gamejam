@@ -1,10 +1,8 @@
 package system;
 
-import math.FVect;
 import math.IVect;
 import navigation.Loading;
 import navigation.Scene;
-import navigation.Title;
 
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;

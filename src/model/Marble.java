@@ -70,7 +70,7 @@ public class Marble extends GameObject
 		IDynamic.Rtn super_rtn = super.update();
 		if(super_rtn != IDynamic.Rtn.CONTINUE) return super_rtn;
 		// Move marble and continue
-		angle += (reverse_spin) ? -DEFAULT_SPEED : DEFAULT_SPEED;
+		angle += (reverse_spin) ? -DEFAULT_SPIN : DEFAULT_SPIN;
 		translatePosition(speed);
 		return IDynamic.Rtn.CONTINUE;
 	}

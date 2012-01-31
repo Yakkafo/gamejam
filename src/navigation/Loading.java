@@ -4,11 +4,8 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 
 import resources.ResourceManager;
-import system.ColourCode;
-import system.ControlManager;
 
 import utility.IDynamic;
-import utility.IVisible;
 
 public class Loading extends Scene
 {

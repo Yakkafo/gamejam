@@ -14,7 +14,6 @@ import resources.ResourceManager;
 import system.ColourCode;
 import system.ControlManager;
 import utility.IDynamic;
-import utility.IVisible;
 
 public class Level extends Scene
 {

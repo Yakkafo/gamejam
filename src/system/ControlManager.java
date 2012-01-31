@@ -2,14 +2,11 @@ package system;
 
 import java.util.ArrayList;
 
-import model.GameObject;
-
 import org.lwjgl.input.Controller;
 import org.lwjgl.input.Controllers;
 import org.newdawn.slick.ControllerListener;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.util.Log;
 
 
 public class ControlManager implements ControllerListener
@@ -18,6 +15,7 @@ public class ControlManager implements ControllerListener
 	private static ControlManager instance = null;
 	
 	/// CONSTANTS
+	@SuppressWarnings("unused")
 	private final static int AXISINDEX = 4;
 	final static int GREENBUTTON = 5;
 	final static int REDBUTTON = 6;
@@ -46,9 +44,10 @@ public class ControlManager implements ControllerListener
 	private Device device = Device.KEYBOARD;
 	private Input input;
 	private Input inputController; //For controllers only
-	private ControllerListener controllerListener;
+
 	
 	// ------- input state --------
+	@SuppressWarnings("unused")
 	private int wheel_direction = 0;
 	private boolean any_key = false;
 	private boolean blueDown = false;
@@ -57,6 +56,7 @@ public class ControlManager implements ControllerListener
 	// -------		-------
 	
 	private int deviceIndex = -1;
+	@SuppressWarnings("unused")
 	private String deviceName;
 	private ArrayList<Controller> controllers;
 

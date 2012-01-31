@@ -1,11 +1,9 @@
 package navigation;
 
-import model.GameObject;
 import model.Level;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
 
 import resources.ResourceManager;
 import system.ColourCode;

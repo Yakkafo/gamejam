@@ -1,11 +1,10 @@
 package model;
 
-import math.FRect;
 import math.FVect;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
-import org.newdawn.slick.Sound;
+//import org.newdawn.slick.Sound;
 
 import resources.ResourceManager;
 import system.ColourCode;
@@ -40,7 +39,7 @@ public class Snake extends GameObject
 	private float current_frame = 1;
 	private float anim_speed = 0;
 	// sounds
-	private Sound snd_grind;
+	//private Sound snd_grind;
 	
 	/// METHODS
 	
@@ -83,7 +82,7 @@ public class Snake extends GameObject
 		
 		// cache sounds
 		ResourceManager rm = ResourceManager.getInstance();
-		snd_grind = rm.getSound(ResourceManager.SND_GRIND);
+		//snd_grind = rm.getSound(ResourceManager.SND_GRIND);
 		
 		// cache images
 		head = new Image[3];
